@@ -2,7 +2,7 @@
 
 Product executive with a strong engineering background, specialised in **AI-native SaaS, enterprise platforms, and data products**.
 
-I’ve spent the last 20 years building and scaling complex products at the intersection of **product strategy, platform architecture, and AI systems** — from early-stage SaaS to enterprise platforms (~€6M ARR, large ACV, regulated environments).
+I’ve spent the last 20 years building and scaling complex products at the intersection of **product strategy, platform architecture, and AI systems**.
 
 ### What I work on
 
