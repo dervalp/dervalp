@@ -45,7 +45,7 @@
   --credibility-image-opacity: 0.54;
   --credibility-image-overlay: linear-gradient(180deg, rgba(243, 239, 231, 0.14), rgba(243, 239, 231, 0.28));
   --credibility-band-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(243, 239, 231, 0.12));
-  --credibility-tile-background: rgba(26, 34, 39, 0.74);
+  --credibility-tile-background: rgba(22, 29, 34, 0.84);
   --card-radial-core: rgba(255, 255, 255, 0.78);
   --card-radial-mid: rgba(247, 243, 236, 0.44);
   --card-radial-edge: rgba(233, 225, 214, 0.18);
@@ -86,7 +86,7 @@
   --credibility-image-opacity: 0.4;
   --credibility-image-overlay: linear-gradient(180deg, rgba(17, 22, 26, 0.18), rgba(17, 22, 26, 0.44));
   --credibility-band-overlay: linear-gradient(180deg, rgba(17, 22, 26, 0.08), rgba(17, 22, 26, 0.2));
-  --credibility-tile-background: rgba(19, 24, 29, 0.78);
+  --credibility-tile-background: rgba(16, 21, 25, 0.86);
   --card-radial-core: rgba(255, 255, 255, 0.14);
   --card-radial-mid: rgba(88, 98, 107, 0.14);
   --card-radial-edge: rgba(31, 38, 43, 0.08);

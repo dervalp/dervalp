@@ -250,7 +250,7 @@ export const siteData = {
   },
   credibility: {
     title: "Proven in Enterprise",
-    description: "20+ years of experience in B2B and B2B Enterprise SaaS",
+    description: "20+ years of experience in B2B and B2C Enterprise SaaS",
     items: [
       {
         company: "CluedIn",
