@@ -1,0 +1,20 @@
+{
+  "name": "pierre-derval",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview"
+  },
+  "devDependencies": {
+    "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^5.18.1",
+    "cross-env": "^10.1.0",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3"
+  }
+}

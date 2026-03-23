@@ -1,0 +1,168 @@
+---
+import CapabilityCard from "../components/CapabilityCard.astro";
+import ContactPanel from "../components/ContactPanel.astro";
+import HeaderNav from "../components/HeaderNav.astro";
+import MetricCard from "../components/MetricCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import TimelineItem from "../components/TimelineItem.astro";
+import { siteData } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/url";
+
+const resumeHref = withBase(siteData.contact.resumePath);
+---
+
+<BaseLayout>
+  <HeaderNav
+    ctaHref={`mailto:${siteData.contact.email}`}
+    ctaLabel={siteData.hero.primaryCtaLabel}
+    name={siteData.hero.name}
+    positioning={siteData.hero.positioning}
+    sections={siteData.navigation}
+  />
+
+  <main id="main-content">
+    <section class="shell section pt-14 sm:pt-18 lg:pt-24">
+      <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,0.75fr)] lg:gap-12">
+        <div class="reveal">
+          <p class="eyebrow">{siteData.hero.positioning}</p>
+          <h1 class="mt-5 text-balance text-5xl font-semibold tracking-[-0.07em] text-ink-950 sm:text-6xl lg:text-7xl">
+            {siteData.hero.name}
+          </h1>
+          <p class="mt-6 max-w-4xl text-balance text-xl font-medium leading-8 text-ink-800 sm:text-2xl sm:leading-9">
+            {siteData.hero.headline}
+          </p>
+
+          <div class="mt-8 max-w-3xl space-y-4 text-base leading-8 text-ink-600 sm:text-lg">
+            {siteData.hero.intro.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a class="button-primary" href={`mailto:${siteData.contact.email}`}>
+              {siteData.hero.primaryCtaLabel}
+            </a>
+            <a
+              class="button-secondary"
+              href={siteData.contact.linkedinUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {siteData.hero.secondaryCtaLabel}
+            </a>
+            <a class="button-secondary" href={resumeHref}>
+              {siteData.hero.tertiaryCtaLabel}
+            </a>
+          </div>
+
+          <div class="mt-10">
+            <p class="eyebrow">Selected domains</p>
+            <ul class="mt-4 flex flex-wrap gap-2" aria-label="Selected domains">
+              {siteData.domains.map((domain) => <li class="chip">{domain}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <aside class="panel reveal p-7 sm:p-8" style="--delay: 140ms;">
+          <p class="eyebrow">Executive profile</p>
+
+          <div class="mt-7 space-y-6">
+            <div>
+              <p class="text-sm uppercase tracking-[0.22em] text-ink-500">Location</p>
+              <p class="mt-2 text-base leading-7 text-ink-900">{siteData.hero.profile.location}</p>
+            </div>
+
+            <div>
+              <p class="text-sm uppercase tracking-[0.22em] text-ink-500">Work style</p>
+              <p class="mt-2 text-base leading-7 text-ink-900">{siteData.hero.profile.workStyle}</p>
+            </div>
+
+            <div>
+              <p class="text-sm uppercase tracking-[0.22em] text-ink-500">Target roles</p>
+              <ul class="mt-3 flex flex-wrap gap-2" aria-label="Target roles">
+                {siteData.hero.profile.targetRoles.map((role) => <li class="chip">{role}</li>)}
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-sm uppercase tracking-[0.22em] text-ink-500">Language note</p>
+              <p class="mt-2 text-base leading-7 text-ink-900">{siteData.hero.profile.languageNote}</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="shell section" data-section id="impact">
+      <SectionHeading
+        description="A concise view of the scale, speed, and enterprise outcomes that define the profile."
+        eyebrow="Selected impact"
+        title="Business outcomes delivered across product, platform, and AI leadership."
+      />
+
+      <dl class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {siteData.impactMetrics.map((metric) => <MetricCard {...metric} />)}
+      </dl>
+    </section>
+
+    <section class="shell section grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(18rem,0.95fr)] lg:gap-14" data-section id="about">
+      <div>
+        <SectionHeading eyebrow="About" title={siteData.about.title} />
+        <div class="mt-8 max-w-3xl space-y-5 text-base leading-8 text-ink-600 sm:text-lg">
+          {siteData.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+
+      <aside class="panel p-7 sm:p-8">
+        <p class="eyebrow">Core strengths</p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {siteData.about.strengths.map((strength) => <li class="chip">{strength}</li>)}
+        </ul>
+      </aside>
+    </section>
+
+    <section class="shell section" data-section id="experience">
+      <SectionHeading
+        description="A concise snapshot of the roles that shaped the current leadership profile."
+        eyebrow="Experience snapshot"
+        title={siteData.experience.title}
+      />
+
+      <ol class="mt-10 grid gap-10">
+        {siteData.experience.items.map((item) => <TimelineItem {...item} />)}
+      </ol>
+    </section>
+
+    <section class="shell section" data-section id="capabilities">
+      <SectionHeading
+        description="Support for organizations that need stronger strategic clarity, safer execution, and a better path through complexity."
+        eyebrow="What I help companies do"
+        title={siteData.capabilities.title}
+      />
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {siteData.capabilities.items.map((item) => <CapabilityCard {...item} />)}
+      </div>
+    </section>
+
+    <section class="shell section" data-section id="contact">
+      <ContactPanel
+        availability={siteData.contact.availability}
+        description={siteData.contact.description}
+        email={siteData.contact.email}
+        languageNote={siteData.contact.languageNote}
+        linkedinUrl={siteData.contact.linkedinUrl}
+        location={siteData.contact.location}
+        resumeHref={resumeHref}
+        title={siteData.contact.title}
+      />
+    </section>
+  </main>
+
+  <footer class="border-t border-[color:var(--line-subtle)] py-8">
+    <div class="shell flex flex-col gap-3 text-sm text-ink-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>{siteData.hero.name}</p>
+      <p>{siteData.contact.footerNote}</p>
+    </div>
+  </footer>
+</BaseLayout>
+

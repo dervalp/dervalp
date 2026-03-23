@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<article class="panel card-lift h-full p-6 sm:p-7">
+  <p class="eyebrow">Capability</p>
+  <h3 class="mt-4 text-xl font-semibold tracking-[-0.03em] text-ink-950">{title}</h3>
+  <p class="mt-4 text-base leading-8 text-ink-600">{description}</p>
+</article>
+

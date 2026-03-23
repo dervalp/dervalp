@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Pierre Derval social preview</title>
+  <desc id="desc">Executive-style social preview card for Pierre Derval.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7f4ef" />
+      <stop offset="100%" stop-color="#efebe4" />
+    </linearGradient>
+    <radialGradient id="accent" cx="85%" cy="18%" r="55%">
+      <stop offset="0%" stop-color="#4e7f88" stop-opacity=".22" />
+      <stop offset="100%" stop-color="#4e7f88" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#accent)" />
+  <rect x="60" y="60" width="1080" height="510" rx="34" fill="rgba(255,255,255,0.72)" stroke="rgba(20,24,27,0.12)" />
+  <text x="120" y="180" fill="#7a858f" font-family="'IBM Plex Mono', monospace" font-size="24" letter-spacing="6">PRODUCT, PLATFORM &amp; AI EXECUTIVE</text>
+  <text x="120" y="290" fill="#14181b" font-family="'Manrope', 'Avenir Next', sans-serif" font-size="74" font-weight="700" letter-spacing="-2.4">Pierre Derval</text>
+  <text x="120" y="368" fill="#303940" font-family="'Manrope', 'Avenir Next', sans-serif" font-size="34" font-weight="500">
+    Engineering, Product &amp; Platform Leader
+  </text>
+  <text x="120" y="418" fill="#303940" font-family="'Manrope', 'Avenir Next', sans-serif" font-size="34" font-weight="500">
+    AI, Data Platforms, Enterprise SaaS
+  </text>
+  <text x="120" y="510" fill="#5a656f" font-family="'Manrope', 'Avenir Next', sans-serif" font-size="28">
+    Strategy to delivery. Calm execution for complex enterprise environments.
+  </text>
+  <rect x="120" y="538" width="240" height="2" fill="#4e7f88" />
+</svg>
+

@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  email: string;
+  linkedinUrl: string;
+  resumeHref: string;
+  availability: string;
+  location: string;
+  languageNote: string;
+}
+
+const {
+  title,
+  description,
+  email,
+  linkedinUrl,
+  resumeHref,
+  availability,
+  location,
+  languageNote
+} = Astro.props;
+---
+
+<div class="panel overflow-hidden">
+  <div class="grid gap-10 p-8 sm:p-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:gap-14">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 class="mt-4 max-w-2xl text-balance text-3xl font-semibold tracking-[-0.04em] text-ink-950 sm:text-4xl">
+        {title}
+      </h2>
+      <p class="mt-6 max-w-2xl text-base leading-8 text-ink-600 sm:text-lg">
+        {description}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="button-primary" href={`mailto:${email}`}>
+          Get in touch
+        </a>
+        <a class="button-secondary" href={linkedinUrl} rel="noreferrer" target="_blank">
+          View LinkedIn
+        </a>
+        <a class="button-secondary" href={resumeHref}>
+          Download resume
+        </a>
+      </div>
+    </div>
+
+    <address class="not-italic">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
+          <p class="eyebrow">Email</p>
+          <a
+            class="mt-3 inline-flex text-base font-medium text-ink-950 transition-colors duration-200 hover:text-[color:var(--accent-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-strong)]"
+            href={`mailto:${email}`}
+          >
+            {email}
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
+          <p class="eyebrow">Availability</p>
+          <p class="mt-3 text-sm leading-7 text-ink-600">{availability}</p>
+        </div>
+
+        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
+          <p class="eyebrow">Location</p>
+          <p class="mt-3 text-sm leading-7 text-ink-600">{location}</p>
+        </div>
+
+        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
+          <p class="eyebrow">Language</p>
+          <p class="mt-3 text-sm leading-7 text-ink-600">{languageNote}</p>
+        </div>
+      </div>
+    </address>
+  </div>
+</div>

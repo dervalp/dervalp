@@ -1,0 +1,92 @@
+---
+import type { NavItem } from "../data/site";
+
+interface Props {
+  name: string;
+  positioning: string;
+  sections: NavItem[];
+  ctaHref: string;
+  ctaLabel: string;
+}
+
+const { name, positioning, sections, ctaHref, ctaLabel } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-[color:var(--line-subtle)] bg-[color:var(--surface-overlay)] backdrop-blur-xl">
+  <div class="shell flex min-h-18 items-center justify-between gap-6 py-4">
+    <a class="min-w-0 transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--canvas)]" href="#">
+      <span class="block text-sm font-semibold tracking-[-0.02em] text-ink-950">{name}</span>
+      <span class="block text-xs uppercase tracking-[0.22em] text-ink-500">{positioning}</span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-1 md:flex">
+      {
+        sections.map((section) => (
+          <a class="nav-link" data-nav-link href={`#${section.id}`}>
+            {section.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="button-secondary hidden shrink-0 sm:inline-flex" href={ctaHref}>
+      {ctaLabel}
+    </a>
+  </div>
+
+  <nav aria-label="Section navigation" class="border-t border-[color:var(--line-subtle)] md:hidden">
+    <div class="shell no-scrollbar flex gap-2 overflow-x-auto py-3">
+      {
+        sections.map((section) => (
+          <a class="nav-link shrink-0" data-nav-link href={`#${section.id}`}>
+            {section.label}
+          </a>
+        ))
+      }
+      <a class="nav-link shrink-0" href={ctaHref}>
+        {ctaLabel}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+  const observedSections = Array.from(document.querySelectorAll("[data-section]"));
+
+  const setActiveLink = (id) => {
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === `#${id}`;
+      link.dataset.active = isActive ? "true" : "false";
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  if (navLinks.length > 0 && observedSections.length > 0) {
+    const initialHash = window.location.hash.replace("#", "");
+    setActiveLink(initialHash || observedSections[0].id);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+        if (visibleEntry?.target?.id) {
+          setActiveLink(visibleEntry.target.id);
+        }
+      },
+      {
+        rootMargin: "-24% 0px -58% 0px",
+        threshold: [0.2, 0.45, 0.7]
+      }
+    );
+
+    observedSections.forEach((section) => observer.observe(section));
+  }
+</script>
+
