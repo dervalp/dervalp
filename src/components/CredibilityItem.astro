@@ -1,0 +1,33 @@
+---
+import { withBase } from "../utils/url";
+
+interface Props {
+  company: string;
+  relevance?: string;
+  logoAlt: string;
+  logoPath: string;
+  slug: string;
+}
+
+const { relevance, logoAlt, logoPath, slug } = Astro.props;
+const resolvedLogoPath = withBase(logoPath);
+const hasRelevance = typeof relevance === "string" && relevance.trim().length > 0;
+---
+
+<article class:list={["credibility-item", !hasRelevance && "credibility-item--logo-only"]}>
+  <div class={`credibility-logo credibility-logo--${slug}`}>
+    <img
+      src={resolvedLogoPath}
+      alt={logoAlt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  {
+    hasRelevance && (
+      <div class="credibility-item__meta">
+        <p class="text-sm leading-7 text-ink-600 sm:text-base">{relevance}</p>
+      </div>
+    )
+  }
+</article>

@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
 const repository = process.env.GITHUB_REPOSITORY;
@@ -25,8 +26,8 @@ export default defineConfig({
   output: "static",
   site,
   base,
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()]
   }
 });
-

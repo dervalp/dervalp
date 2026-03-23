@@ -1,0 +1,57 @@
+---
+import lucideIcons from "lucide-react";
+
+interface Props {
+  href: string;
+  label: string;
+  icon: "download" | "github" | "linkedin";
+  kind?: "button-primary" | "button-secondary" | "icon";
+  external?: boolean;
+}
+
+const {
+  href,
+  label,
+  icon,
+  kind = "button-secondary",
+  external = false
+} = Astro.props;
+
+const { Download } = lucideIcons;
+const rel = external ? "noreferrer" : undefined;
+const target = external ? "_blank" : undefined;
+const className = kind === "icon" ? "icon-link-button" : `${kind} icon-label-button`;
+---
+
+<a
+  aria-label={label}
+  class={className}
+  href={href}
+  rel={rel}
+  target={target}
+>
+  {
+    icon === "download" ? (
+      <Download aria-hidden="true" className="icon-link-button__icon" size={18} strokeWidth={1.9} />
+    ) : icon === "github" ? (
+      <svg
+        aria-hidden="true"
+        class="icon-link-button__icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M12 .5C5.65.5.5 5.8.5 12.35c0 5.24 3.3 9.68 7.87 11.25.58.1.79-.26.79-.58 0-.28-.02-1.23-.02-2.24-3.2.71-3.88-1.4-3.88-1.4-.53-1.38-1.29-1.75-1.29-1.75-1.05-.74.08-.72.08-.72 1.16.08 1.77 1.22 1.77 1.22 1.03 1.82 2.71 1.29 3.37.98.1-.77.4-1.29.73-1.59-2.56-.3-5.25-1.31-5.25-5.86 0-1.29.45-2.35 1.19-3.18-.12-.3-.52-1.51.11-3.14 0 0 .97-.32 3.19 1.21a10.8 10.8 0 0 1 5.8 0c2.22-1.53 3.19-1.21 3.19-1.21.63 1.63.23 2.84.11 3.14.74.83 1.19 1.89 1.19 3.18 0 4.56-2.69 5.55-5.26 5.85.41.37.78 1.1.78 2.22 0 1.61-.02 2.9-.02 3.29 0 .32.21.69.8.57 4.56-1.58 7.85-6.01 7.85-11.25C23.5 5.8 18.35.5 12 .5Z" />
+      </svg>
+    ) : (
+      <svg
+        aria-hidden="true"
+        class="icon-link-button__icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+      </svg>
+    )
+  }
+  {kind !== "icon" && <span>{label}</span>}
+</a>

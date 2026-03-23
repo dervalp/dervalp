@@ -3,21 +3,28 @@ export type NavItem = {
   label: string;
 };
 
-export type Metric = {
-  value: string;
-  label: string;
-  detail: string;
-};
-
-export type ExperienceItem = {
-  role: string;
-  company: string;
-  context: string;
-};
-
 export type Capability = {
   title: string;
   description: string;
+};
+
+export type CapabilityGroup = {
+  label: string;
+  items: Capability[];
+};
+
+export type Transformation = {
+  eyebrow?: string;
+  title: string;
+  description: string;
+};
+
+export type CredibilityItem = {
+  company: string;
+  relevance?: string;
+  logoAlt: string;
+  logoPath: string;
+  slug: string;
 };
 
 export type SiteData = {
@@ -32,239 +39,244 @@ export type SiteData = {
   navigation: NavItem[];
   hero: {
     name: string;
-    positioning: string;
+    brandLine: string;
+    eyebrow: string;
     headline: string;
-    intro: string[];
+    supportingText: string[];
+    focusAreas: string[];
     primaryCtaLabel: string;
     secondaryCtaLabel: string;
+    quaternaryCtaLabel: string;
     tertiaryCtaLabel: string;
-    profile: {
-      location: string;
-      workStyle: string;
-      languageNote: string;
-      targetRoles: string[];
-    };
   };
-  impactMetrics: Metric[];
-  domains: string[];
-  about: {
+  pointOfView: {
     title: string;
     paragraphs: string[];
-    strengths: string[];
-  };
-  experience: {
-    title: string;
-    items: ExperienceItem[];
+    closing: string;
   };
   capabilities: {
     title: string;
-    items: Capability[];
+    description: string;
+    groups: CapabilityGroup[];
+  };
+  transformations: {
+    title: string;
+    description: string;
+    items: Transformation[];
+  };
+  credibility: {
+    title: string;
+    description?: string;
+    items: CredibilityItem[];
   };
   contact: {
     title: string;
     description: string;
+    directMessage: string;
+    secondaryMessage?: string;
     formTitle: string;
     formDescription: string;
-    privacyNote: string;
-    unavailableMessage: string;
+    directTitle: string;
+    directDescription: string;
+    privacyNote?: string;
+    unavailableMessage?: string;
     submitLabel: string;
     successMessage: string;
     errorMessage: string;
-    linkedinUrl: string;
-    resumePath: string;
-    availability: string;
-    location: string;
-    languageNote: string;
     footerNote: string;
+  };
+  socials: {
+    linkedinUrl: string;
+    githubUrl: string;
+    resumePath: string;
   };
 };
 
 export const siteData = {
   seo: {
-    title: "Pierre Derval | Product, Platform & AI Executive",
+    title: "Pierre Derval | AI Product Leadership for Complex Enterprise Software",
     description:
-      "Executive one-page profile for Pierre Derval, a Product, Platform and AI leader focused on enterprise SaaS, data platforms, and measurable business outcomes.",
+      "Executive one-page site for Pierre Derval, focused on AI product leadership, platform strategy, and governed delivery in complex enterprise software.",
     siteName: "Pierre Derval",
     locale: "en_BE",
     ogImage: "/og-image.svg",
     favicon: "/favicon.svg"
   },
   navigation: [
-    { id: "impact", label: "Impact" },
-    { id: "about", label: "About" },
-    { id: "experience", label: "Experience" },
-    { id: "capabilities", label: "What I Help Do" },
+    { id: "point-of-view", label: "Point of View" },
+    { id: "capabilities", label: "Focus" },
+    { id: "transformations", label: "Work" },
+    { id: "credibility", label: "Experience" },
     { id: "contact", label: "Contact" }
   ],
   hero: {
     name: "Pierre Derval",
-    positioning: "Product, Platform & AI Executive",
-    headline:
-      "Engineering, Product & Platform Leader | AI, Data Platforms, Enterprise SaaS | From strategy to delivery",
-    intro: [
-      "I work at the intersection of product, engineering, platform, and AI in enterprise SaaS and data-intensive environments.",
-      "My focus is helping organizations turn technical complexity into clearer execution, stronger products, and measurable business outcomes.",
-      "I am most effective where the product is complex, the organization is evolving, and leadership needs more clarity, speed, and alignment."
+    brandLine: "AI → shipped",
+    eyebrow: "AI • Product Leadership • Platform Strategy",
+    headline: "AI. Shipped.",
+    supportingText: [
+      "AI doesn't fail in the lab. It fails in production.",
+      "I help enterprise teams turn AI ambition into shipped, governed products — by aligning product, platform, and execution.",
+      "Built and scaled AI and data platforms in complex, regulated environments."
     ],
-    primaryCtaLabel: "Get in touch",
+    focusAreas: [
+      "Enterprise AI productization",
+      "Platform modernization",
+      "Executive alignment"
+    ],
+    primaryCtaLabel: "Start a conversation",
     secondaryCtaLabel: "View LinkedIn",
-    tertiaryCtaLabel: "Download resume",
-    profile: {
-      location: "Based in Belgium",
-      workStyle: "Open to Brussels, Paris, hybrid, or remote",
-      languageNote: "Open to conversations in English and French.",
-      targetRoles: [
-        "VP Product",
-        "Head of Product",
-        "CPO",
-        "Product / Platform leadership",
-        "AI-native product leadership"
-      ]
-    }
+    quaternaryCtaLabel: "View GitHub",
+    tertiaryCtaLabel: "Download resume"
   },
-  impactMetrics: [
-    {
-      value: "20 years",
-      label: "Across product, platform, engineering, and enterprise software",
-      detail: "Built depth across strategy, delivery, and product modernization."
-    },
-    {
-      value: "40 people",
-      label: "Cross-functional organization led",
-      detail: "Directed product, engineering, UX, delivery, and adjacent functions."
-    },
-    {
-      value: "~6M ARR",
-      label: "Enterprise platform scaled",
-      detail: "Helped grow and stabilize a data-intensive platform business."
-    },
-    {
-      value: "4 months",
-      label: "Multi-tenant SaaS transformation delivered",
-      detail: "Moved quickly under real operating constraints."
-    },
-    {
-      value: "3 months to days",
-      label: "Installation and onboarding reduced",
-      detail: "Compressed time-to-value for enterprise customers."
-    },
-    {
-      value: "Weeks to hours",
-      label: "Time-to-AI-agent reduced",
-      detail: "Introduced AI workflows with guardrails, auditability, and governance."
-    }
-  ],
-  domains: [
-    "AI",
-    "Data Platforms",
-    "Enterprise SaaS",
-    "Platform Product",
-    "Regulated Environments"
-  ],
-  about: {
-    title: "A leadership profile shaped by complexity, clarity, and execution.",
+  pointOfView: {
+    title: "AI is not a feature.",
     paragraphs: [
-      "My work sits between product strategy, platform thinking, engineering credibility, and executive decision-making. That combination is most useful when a company has strong technical depth but needs a clearer product direction, tighter operating rhythm, or a safer path to bringing AI capabilities to market.",
-      "I have worked across enterprise software, data platforms, and regulated environments where governance matters as much as velocity. I am comfortable moving from strategic framing to operating model design to delivery oversight when the goal is to create better alignment and better outcomes.",
-      "I work best with founders, CEOs, boards, and senior teams who need a calm operator to turn complexity into a sharper plan and a more executable product organization."
+      "In enterprise software, AI does not sit on top of the product. It reshapes boundaries, workflows, governance, and trust.",
+      "Most teams treat AI as an add-on. That is why it creates noise, risk, and complexity instead of value.",
+      "The challenge is not technical. It is deciding where AI belongs, how it fits the platform, and how to ship it without breaking execution."
     ],
-    strengths: [
-      "Product strategy",
-      "Platform strategy",
-      "AI-native product leadership",
-      "Enterprise SaaS",
-      "Data platforms",
-      "Product operations",
-      "Cross-functional leadership",
-      "Governance and execution",
-      "Pricing and packaging",
-      "Complex product modernization"
-    ]
+    closing:
+      "I work with CEOs, founders, and senior leaders to turn complexity into clarity and shipped outcomes."
   },
-  experience: {
-    title: "Selected career path",
-    items: [
+  capabilities: {
+    title: "Focus",
+    description:
+      "Structured around the work that matters most in complex software businesses: strategy, execution, and AI productization.",
+    groups: [
       {
-        role: "Chief Product Officer",
-        company: "CluedIn",
-        context:
-          "Led product direction in AI and data platform work with a strong enterprise lens."
+        label: "Strategy",
+        items: [
+          {
+            title: "Turn platform complexity into clear product direction",
+            description:
+              "Clarify boundaries, remove structural ambiguity, and give leaders a product direction they can execute."
+          },
+          {
+            title: "Align product, platform, and engineering leadership",
+            description:
+              "Create shared priorities, faster decisions, and cleaner execution across the senior team."
+          }
+        ]
       },
       {
-        role: "Product Architect",
-        company: "Adform",
-        context:
-          "Worked across platform architecture, product complexity, and large-scale delivery."
+        label: "Execution",
+        items: [
+          {
+            title: "Strengthen cadence, prioritization, and decision quality",
+            description:
+              "Tighten the operating rhythm so priorities stay clear and fewer decisions stall between teams."
+          },
+          {
+            title: "Reduce time to value in complex SaaS products",
+            description:
+              "Shorten onboarding, reduce adoption friction, and make complex products easier to implement and expand."
+          }
+        ]
       },
       {
-        role: "Lead Software Developer (UI/UX)",
-        company: "Sitecore",
-        context:
-          "Built deep engineering and experience design credibility in enterprise software."
-      },
-      {
-        role: "VP Product Development",
-        company: "Amilia",
-        context:
-          "Connected product leadership and execution across a growing SaaS organization."
+        label: "AI",
+        items: [
+          {
+            title: "Ship AI capabilities with clear guardrails",
+            description:
+              "Move from scattered experiments to reusable AI capabilities, with clear rollout paths and trust built in."
+          },
+          {
+            title: "Turn AI ambition into shipped products",
+            description:
+              "Translate AI ambition into product choices, delivery plans, and releases that actually make it to market."
+          }
+        ]
       }
     ]
   },
-  capabilities: {
-    title: "What I help companies do",
+  transformations: {
+    title: "Work",
+    description:
+      "A few of the operating shifts I’m most often asked to lead inside complex software businesses.",
     items: [
       {
-        title: "Turn complex platforms into clearer product strategy",
+        eyebrow: "AI",
+        title: "From AI experiments to shipped product capabilities",
         description:
-          "Create sharper portfolio direction, better product boundaries, and decisions leaders can act on."
+          "Turned isolated AI work into reusable, governed product capabilities with clear rollout paths, stronger auditability, and delivery moving from weeks to hours."
       },
       {
-        title: "Align product and engineering",
+        eyebrow: "Platform",
+        title: "From platform sprawl to scalable product structure",
         description:
-          "Improve operating rhythm, prioritization, and execution quality across senior teams."
+          "Reshaped complex SaaS and data platforms into clearer product structures, stronger boundaries, and transformations delivered in months instead of multi-year drift."
       },
       {
-        title: "Bring AI features to market safely",
+        eyebrow: "Adoption",
+        title: "From slow onboarding to fast adoption",
         description:
-          "Introduce useful AI workflows with guardrails, auditability, and enterprise-grade governance."
+          "Reduced adoption friction, shortened onboarding from months to days, and made complex enterprise products easier to implement and expand."
       },
       {
-        title: "Reduce time-to-value in enterprise SaaS",
+        eyebrow: "Alignment",
+        title: "From misalignment to decisive execution",
         description:
-          "Shorten onboarding, simplify adoption, and remove friction in high-consideration products."
+          "Aligned founders, executives, product, and engineering around clear priorities, cleaner tradeoffs, and plans that hold up in delivery."
+      }
+    ]
+  },
+  credibility: {
+    title: "Proven in Enterprise",
+    description: "20+ years of experience in B2B and B2B Enterprise SaaS",
+    items: [
+      {
+        company: "CluedIn",
+        logoAlt: "CluedIn logo",
+        logoPath: "/logos/cluedin.png",
+        slug: "cluedin"
       },
       {
-        title: "Improve product operating cadence",
-        description:
-          "Strengthen planning, product operations, cross-functional visibility, and decision quality."
+        company: "Adform",
+        logoAlt: "Adform logo",
+        logoPath: "/logos/adform.svg",
+        slug: "adform"
       },
       {
-        title: "Lead transformation under constraints",
-        description:
-          "Move modernization forward without losing control of execution, compliance, or customer trust."
+        company: "Sitecore",
+        logoAlt: "Sitecore logo",
+        logoPath: "/logos/sitecore.svg",
+        slug: "sitecore"
+      },
+      {
+        company: "Amilia",
+        logoAlt: "Amilia logo",
+        logoPath: "/logos/amilia.svg",
+        slug: "amilia"
       }
     ]
   },
   contact: {
-    title: "If you are hiring for product, platform, or AI leadership, I would be glad to talk.",
+    title: "For AI, product, and platform leadership conversations.",
     description:
-      "I am open to conversations with recruiters, founders, CEOs, boards, and senior hiring managers looking for calm, outcome-oriented leadership in enterprise SaaS and data-intensive environments.",
+      "If you are building in complex software, reach out.",
+    directMessage:
+      "I work with founders, CEOs, and senior leaders where AI, product, platform, and execution need to move together.",
+    secondaryMessage:
+      "I take on a small number of roles, advisory relationships, and selected conversations.",
     formTitle: "Start a conversation",
     formDescription:
-      "Use the form for a brief introduction, role context, or advisory discussion. Messages go through a private backend so contact details do not need to be published on the site.",
-    privacyNote:
-      "The form routes through a private contact service. No public email address is exposed on the page.",
-    unavailableMessage:
-      "The form endpoint is not configured yet. The site still deploys cleanly, and LinkedIn remains available in the meantime.",
+      "A few lines of context are enough.",
+    directTitle: "Start a conversation",
+    directDescription:
+      "LinkedIn is the simplest place to begin.",
+    privacyNote: "Selected conversations only.",
+    unavailableMessage: "",
     submitLabel: "Send message",
     successMessage: "Your message has been sent. I will review it and respond through the details you provided.",
     errorMessage:
-      "The message could not be sent right now. Please try again in a moment or use LinkedIn instead.",
-    linkedinUrl: "https://www.linkedin.com/in/replace-this-linkedin-profile",
-    resumePath: "/Pierre_Derval_Resume.pdf",
-    availability: "Open to permanent roles and advisory conversations.",
-    location: "Brussels, Paris, hybrid, or remote.",
-    languageNote: "English / French",
-    footerNote: "Senior executive landing page built with Astro, Tailwind CSS, and GitHub Pages."
+      "The message could not be sent right now. Please try again in a moment or reach out on LinkedIn instead.",
+    footerNote: "AI → shipped"
+  },
+  socials: {
+    linkedinUrl: "https://be.linkedin.com/in/pierrederval",
+    githubUrl: "https://github.com/dervalp",
+    resumePath: "/Pierre_Derval_Resume.pdf"
   }
 } satisfies SiteData;

@@ -2,29 +2,42 @@
   type="button"
   class="theme-toggle"
   data-theme-toggle
-  aria-label="Switch to dark theme"
-  aria-pressed="false"
+  aria-label="Switch to light theme"
+  aria-pressed="true"
 >
-  <span class="theme-toggle__indicator" aria-hidden="true"></span>
-  <span data-theme-toggle-label>LIGHT THEME</span>
+  <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+      <circle cx="12" cy="12" r="4.5"></circle>
+      <path d="M12 2.5v2.25"></path>
+      <path d="M12 19.25v2.25"></path>
+      <path d="m4.93 4.93 1.59 1.59"></path>
+      <path d="m17.48 17.48 1.59 1.59"></path>
+      <path d="M2.5 12h2.25"></path>
+      <path d="M19.25 12h2.25"></path>
+      <path d="m4.93 19.07 1.59-1.59"></path>
+      <path d="m17.48 6.52 1.59-1.59"></path>
+    </svg>
+  </span>
+  <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+      <path d="M20.5 14.14A8.5 8.5 0 1 1 9.86 3.5a7 7 0 0 0 10.64 10.64Z"></path>
+    </svg>
+  </span>
+  <span class="sr-only" data-theme-toggle-label>Light theme</span>
 </button>
 
 <script is:inline>
   const themeStorageKey = "pierre-theme";
-  const themeLabels = {
-    light: "LIGHT THEME",
-    dark: "DARK THEME"
-  };
   const themeColors = {
-    light: "#f4f1eb",
-    dark: "#0f1316"
+    light: "#f3efe7",
+    dark: "#11161a"
   };
 
   const syncThemeControls = (theme) => {
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
       const label = button.querySelector("[data-theme-toggle-label]");
       const nextTheme = theme === "dark" ? "light" : "dark";
-      label.textContent = themeLabels[theme];
+      label.textContent = `${theme} theme`;
       button.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
       button.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
     });

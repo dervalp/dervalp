@@ -1,279 +1,71 @@
 ---
+import IconLink from "./IconLink.astro";
+
 interface Props {
   title: string;
   description: string;
+  directMessage: string;
+  secondaryMessage?: string;
   formTitle: string;
   formDescription: string;
-  privacyNote: string;
-  unavailableMessage: string;
+  directTitle: string;
+  directDescription: string;
+  privacyNote?: string;
+  unavailableMessage?: string;
   submitLabel: string;
   successMessage: string;
   errorMessage: string;
   endpoint: string;
   linkedinUrl: string;
+  githubUrl: string;
   resumeHref: string;
-  availability: string;
-  location: string;
-  languageNote: string;
 }
 
 const {
   title,
   description,
-  formTitle,
-  formDescription,
-  privacyNote,
-  unavailableMessage,
-  submitLabel,
-  successMessage,
-  errorMessage,
-  endpoint,
+  directMessage,
+  secondaryMessage,
   linkedinUrl,
-  resumeHref,
-  availability,
-  location,
-  languageNote
+  githubUrl,
+  resumeHref
 } = Astro.props;
-
-const isFormEnabled = endpoint.length > 0;
 ---
 
-<div class="panel overflow-hidden">
-  <div class="grid gap-10 p-8 sm:p-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14">
-    <div>
-      <p class="eyebrow">Contact</p>
-      <h2 class="mt-4 max-w-2xl text-balance text-3xl font-semibold tracking-[-0.05em] text-ink-950 sm:text-4xl">
-        {title}
-      </h2>
-      <p class="mt-6 max-w-2xl text-base leading-8 text-ink-600 sm:text-lg">
-        {description}
-      </p>
+<div class="contact-panel">
+  <div>
+    <p class="eyebrow">Contact</p>
+    <h2 class="mt-4 max-w-3xl text-balance text-3xl font-semibold tracking-[-0.05em] text-ink-950 sm:text-4xl">
+      {title}
+    </h2>
+    <p class="mt-6 max-w-2xl text-base leading-8 text-ink-600 sm:text-lg">
+      {description}
+    </p>
+    <p class="mt-6 max-w-2xl text-base leading-8 text-ink-600 sm:text-lg">
+      {directMessage}
+    </p>
+    {
+      secondaryMessage && (
+        <p class="mt-6 max-w-2xl text-base leading-8 text-ink-600 sm:text-lg">
+          {secondaryMessage}
+        </p>
+      )
+    }
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a class="button-primary" href={linkedinUrl} rel="noreferrer" target="_blank">
-          View LinkedIn
-        </a>
-        <a class="button-secondary" href={resumeHref}>
-          Download resume
-        </a>
-      </div>
-
-      <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
-          <p class="eyebrow">Availability</p>
-          <p class="mt-3 text-sm leading-7 text-ink-600">{availability}</p>
-        </div>
-
-        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
-          <p class="eyebrow">Location</p>
-          <p class="mt-3 text-sm leading-7 text-ink-600">{location}</p>
-        </div>
-
-        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
-          <p class="eyebrow">Language</p>
-          <p class="mt-3 text-sm leading-7 text-ink-600">{languageNote}</p>
-        </div>
-
-        <div class="rounded-2xl border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-5">
-          <p class="eyebrow">Privacy</p>
-          <p class="mt-3 text-sm leading-7 text-ink-600">{privacyNote}</p>
-        </div>
-      </div>
+    <div class="contact-panel__actions">
+      <IconLink external={true} href={linkedinUrl} icon="linkedin" kind="button-secondary" label="LinkedIn" />
+      <IconLink external={true} href={githubUrl} icon="github" kind="button-secondary" label="GitHub" />
+      <IconLink href={resumeHref} icon="download" kind="button-secondary" label="Resume" />
     </div>
+  </div>
 
-    <div class="rounded-[1.6rem] border border-[color:var(--line-subtle)] bg-[color:var(--surface-strong)] p-6 shadow-[var(--shadow-panel)] sm:p-8">
-      <div class="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p class="eyebrow">Contact form</p>
-          <h3 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-ink-950">
-            {formTitle}
-          </h3>
-          <p class="mt-4 max-w-xl text-sm leading-7 text-ink-600 sm:text-base">
-            {formDescription}
-          </p>
-        </div>
-
-        <span class={`status-pill ${isFormEnabled ? "status-pill--ready" : "status-pill--setup"}`}>
-          {isFormEnabled ? "Ready" : "Setup"}
-        </span>
-      </div>
-
-      <form
-        class="mt-8 space-y-5"
-        data-contact-form
-        data-endpoint={endpoint}
-        data-success-message={successMessage}
-        data-error-message={errorMessage}
-        data-unavailable-message={unavailableMessage}
-      >
-        <div class="sr-only" aria-hidden="true">
-          <label for="website">Website</label>
-          <input id="website" name="website" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <div class="form-grid form-grid--two">
-          <div class="form-field">
-            <label class="form-label" for="name">Name</label>
-            <input
-              id="name"
-              class="form-input"
-              name="name"
-              type="text"
-              autocomplete="name"
-              required
-              disabled={!isFormEnabled}
-              placeholder="Your name"
-            />
-          </div>
-
-          <div class="form-field">
-            <label class="form-label" for="email">Work email</label>
-            <input
-              id="email"
-              class="form-input"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-              disabled={!isFormEnabled}
-              placeholder="name@company.com"
-            />
-          </div>
-        </div>
-
-        <div class="form-field">
-          <label class="form-label" for="company">Company or organization</label>
-          <input
-            id="company"
-            class="form-input"
-            name="company"
-            type="text"
-            autocomplete="organization"
-            disabled={!isFormEnabled}
-            placeholder="Optional"
-          />
-        </div>
-
-        <div class="form-field">
-          <label class="form-label" for="message">Message</label>
-          <textarea
-            id="message"
-            class="form-textarea"
-            name="message"
-            rows="7"
-            required
-            disabled={!isFormEnabled}
-            placeholder="A short note about the role, context, or conversation you have in mind."
-          ></textarea>
-        </div>
-
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p class="text-sm leading-7 text-ink-600">
-            {isFormEnabled ? privacyNote : unavailableMessage}
-          </p>
-          <button
-            type="submit"
-            class="button-primary"
-            data-submit-button
-            data-default-label={submitLabel}
-            disabled={!isFormEnabled}
-          >
-            {submitLabel}
-          </button>
-        </div>
-
-        <p class="status-note" data-form-status aria-live="polite"></p>
-      </form>
-    </div>
+  <div class="contact-panel__surface">
+    <div
+      class="calendly-inline-widget contact-panel__calendly"
+      data-url="https://calendly.com/dervalp/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=f3efe7&text_color=5c6871&primary_color=15191c"
+      style="min-width:320px;height:480px;"
+    ></div>
   </div>
 </div>
 
-<script is:inline>
-  const contactForms = Array.from(document.querySelectorAll("[data-contact-form]"));
-
-  contactForms.forEach((form) => {
-    if (form.dataset.bound === "true") {
-      return;
-    }
-
-    form.dataset.bound = "true";
-
-    const status = form.querySelector("[data-form-status]");
-    const submitButton = form.querySelector("[data-submit-button]");
-    const endpoint = form.dataset.endpoint;
-    const defaultLabel = submitButton?.getAttribute("data-default-label") ?? "Send message";
-
-    const setStatus = (message, state) => {
-      if (!status) {
-        return;
-      }
-
-      status.textContent = message;
-      status.dataset.state = state;
-    };
-
-    if (!endpoint) {
-      setStatus(form.dataset.unavailableMessage ?? "", "idle");
-      return;
-    }
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const currentForm = event.currentTarget;
-      if (!(currentForm instanceof HTMLFormElement) || !(submitButton instanceof HTMLButtonElement)) {
-        return;
-      }
-
-      if (!currentForm.reportValidity()) {
-        return;
-      }
-
-      const formData = new FormData(currentForm);
-      const payload = {
-        name: String(formData.get("name") ?? "").trim(),
-        email: String(formData.get("email") ?? "").trim(),
-        company: String(formData.get("company") ?? "").trim(),
-        message: String(formData.get("message") ?? "").trim(),
-        website: String(formData.get("website") ?? "").trim()
-      };
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
-      setStatus("Sending your message...", "idle");
-
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-
-        let responseBody = null;
-        try {
-          responseBody = await response.json();
-        } catch {
-          responseBody = null;
-        }
-
-        if (!response.ok || !responseBody?.ok) {
-          throw new Error(responseBody?.message || form.dataset.errorMessage || "Unable to send your message.");
-        }
-
-        currentForm.reset();
-        setStatus(form.dataset.successMessage || "Your message has been sent.", "success");
-      } catch (error) {
-        const message = error instanceof Error
-          ? error.message
-          : form.dataset.errorMessage || "Unable to send your message.";
-        setStatus(message, "error");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = defaultLabel;
-      }
-    });
-  });
-</script>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
