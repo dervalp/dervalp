@@ -21,7 +21,7 @@ const faviconHref = withBase(siteData.seo.favicon);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,7 +29,29 @@ const faviconHref = withBase(siteData.seo.favicon);
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#f4f1eb" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      (() => {
+        const storageKey = "pierre-theme";
+        const fallbackTheme = "light";
+        const themeColors = {
+          light: "#f4f1eb",
+          dark: "#0f1316"
+        };
+
+        try {
+          const savedTheme = window.localStorage.getItem(storageKey);
+          const theme = savedTheme === "dark" || savedTheme === "light"
+            ? savedTheme
+            : fallbackTheme;
+          document.documentElement.dataset.theme = theme;
+          const themeMeta = document.querySelector('meta[name="theme-color"]');
+          themeMeta?.setAttribute("content", themeColors[theme]);
+        } catch {
+          document.documentElement.dataset.theme = fallbackTheme;
+        }
+      })();
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteData.seo.siteName} />
     <meta property="og:title" content={title} />

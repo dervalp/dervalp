@@ -1,0 +1,62 @@
+<button
+  type="button"
+  class="theme-toggle"
+  data-theme-toggle
+  aria-label="Switch to dark theme"
+  aria-pressed="false"
+>
+  <span class="theme-toggle__indicator" aria-hidden="true"></span>
+  <span data-theme-toggle-label>LIGHT THEME</span>
+</button>
+
+<script is:inline>
+  const themeStorageKey = "pierre-theme";
+  const themeLabels = {
+    light: "LIGHT THEME",
+    dark: "DARK THEME"
+  };
+  const themeColors = {
+    light: "#f4f1eb",
+    dark: "#0f1316"
+  };
+
+  const syncThemeControls = (theme) => {
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+      const label = button.querySelector("[data-theme-toggle-label]");
+      const nextTheme = theme === "dark" ? "light" : "dark";
+      label.textContent = themeLabels[theme];
+      button.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+      button.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+    });
+  };
+
+  const applyTheme = (theme, persist) => {
+    document.documentElement.dataset.theme = theme;
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    themeMeta?.setAttribute("content", themeColors[theme]);
+    syncThemeControls(theme);
+
+    if (persist) {
+      try {
+        window.localStorage.setItem(themeStorageKey, theme);
+      } catch {
+        // Ignore storage failures and still apply the theme locally.
+      }
+    }
+  };
+
+  const currentTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  syncThemeControls(currentTheme);
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    if (button.dataset.bound === "true") {
+      return;
+    }
+
+    button.dataset.bound = "true";
+    button.addEventListener("click", () => {
+      const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      applyTheme(theme, true);
+    });
+  });
+</script>

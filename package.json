@@ -9,8 +9,7 @@
     "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview"
   },
   "devDependencies": {
-    "@fontsource-variable/manrope": "^5.2.8",
-    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource-variable/inter": "^5.2.6",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^5.18.1",
     "cross-env": "^10.1.0",

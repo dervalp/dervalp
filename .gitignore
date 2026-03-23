@@ -1,4 +1,8 @@
 node_modules/
 .astro/
 dist/
-
+.env
+.env.local
+.wrangler/
+contact-worker/.dev.vars
+contact-worker/.wrangler/

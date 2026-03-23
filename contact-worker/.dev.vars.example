@@ -1,0 +1,4 @@
+RESEND_API_KEY=re_xxxxxxxxx
+RESEND_FROM_EMAIL=Pierre Derval <contact@your-domain.com>
+RESEND_TO_EMAIL=private-destination@example.com
+ALLOWED_ORIGIN=http://localhost:4321

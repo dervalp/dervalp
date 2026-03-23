@@ -63,7 +63,13 @@ export type SiteData = {
   contact: {
     title: string;
     description: string;
-    email: string;
+    formTitle: string;
+    formDescription: string;
+    privacyNote: string;
+    unavailableMessage: string;
+    submitLabel: string;
+    successMessage: string;
+    errorMessage: string;
     linkedinUrl: string;
     resumePath: string;
     availability: string;
@@ -243,13 +249,22 @@ export const siteData = {
     title: "If you are hiring for product, platform, or AI leadership, I would be glad to talk.",
     description:
       "I am open to conversations with recruiters, founders, CEOs, boards, and senior hiring managers looking for calm, outcome-oriented leadership in enterprise SaaS and data-intensive environments.",
-    email: "dervalp@gmail.com",
+    formTitle: "Start a conversation",
+    formDescription:
+      "Use the form for a brief introduction, role context, or advisory discussion. Messages go through a private backend so contact details do not need to be published on the site.",
+    privacyNote:
+      "The form routes through a private contact service. No public email address is exposed on the page.",
+    unavailableMessage:
+      "The form endpoint is not configured yet. The site still deploys cleanly, and LinkedIn remains available in the meantime.",
+    submitLabel: "Send message",
+    successMessage: "Your message has been sent. I will review it and respond through the details you provided.",
+    errorMessage:
+      "The message could not be sent right now. Please try again in a moment or use LinkedIn instead.",
     linkedinUrl: "https://www.linkedin.com/in/replace-this-linkedin-profile",
     resumePath: "/Pierre_Derval_Resume.pdf",
     availability: "Open to permanent roles and advisory conversations.",
     location: "Brussels, Paris, hybrid, or remote.",
     languageNote: "English / French",
-    footerNote: "Senior executive landing page built with Astro and Tailwind CSS."
+    footerNote: "Senior executive landing page built with Astro, Tailwind CSS, and GitHub Pages."
   }
 } satisfies SiteData;
-

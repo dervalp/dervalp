@@ -10,11 +10,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../utils/url";
 
 const resumeHref = withBase(siteData.contact.resumePath);
+const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
 ---
 
 <BaseLayout>
   <HeaderNav
-    ctaHref={`mailto:${siteData.contact.email}`}
+    ctaHref="#contact"
     ctaLabel={siteData.hero.primaryCtaLabel}
     name={siteData.hero.name}
     positioning={siteData.hero.positioning}
@@ -38,7 +39,7 @@ const resumeHref = withBase(siteData.contact.resumePath);
           </div>
 
           <div class="mt-8 flex flex-wrap gap-3">
-            <a class="button-primary" href={`mailto:${siteData.contact.email}`}>
+            <a class="button-primary" href="#contact">
               {siteData.hero.primaryCtaLabel}
             </a>
             <a
@@ -148,12 +149,19 @@ const resumeHref = withBase(siteData.contact.resumePath);
       <ContactPanel
         availability={siteData.contact.availability}
         description={siteData.contact.description}
-        email={siteData.contact.email}
+        endpoint={contactEndpoint}
+        errorMessage={siteData.contact.errorMessage}
+        formDescription={siteData.contact.formDescription}
+        formTitle={siteData.contact.formTitle}
         languageNote={siteData.contact.languageNote}
         linkedinUrl={siteData.contact.linkedinUrl}
         location={siteData.contact.location}
+        privacyNote={siteData.contact.privacyNote}
         resumeHref={resumeHref}
+        submitLabel={siteData.contact.submitLabel}
+        successMessage={siteData.contact.successMessage}
         title={siteData.contact.title}
+        unavailableMessage={siteData.contact.unavailableMessage}
       />
     </section>
   </main>
@@ -165,4 +173,3 @@ const resumeHref = withBase(siteData.contact.resumePath);
     </div>
   </footer>
 </BaseLayout>
-
