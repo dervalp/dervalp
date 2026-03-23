@@ -12,6 +12,7 @@ import { withBase } from "../utils/url";
 
 const resumeHref = withBase(siteData.socials.resumePath);
 const heroBackgroundHref = withBase("/hero-background-test.png");
+const credibilityBackgroundHref = withBase("/proven-enterprise-background.png");
 const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
 ---
 
@@ -73,15 +74,38 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
     </section>
 
     <section class="shell section section-band section-band--muted" data-section id="point-of-view">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-        <div class="reveal">
+      <div class="point-of-view__layout grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+        <div class="point-of-view__intro reveal">
           <p class="eyebrow">Point of view</p>
-          <h2 class="section-title mt-5 max-w-lg">{siteData.pointOfView.title}</h2>
+          <h2 class="section-title mt-5 max-w-lg">
+            {siteData.pointOfView.titleLines.map((line) => <span class="block">{line}</span>)}
+          </h2>
+
+          <div class="point-of-view__partners point-of-view__partners--headline" aria-label={siteData.pointOfView.workWithLabel}>
+            <p class="eyebrow">{siteData.pointOfView.workWithLabel}</p>
+
+            <ul class="point-of-view__partner-list" aria-label={siteData.pointOfView.workWithLabel}>
+              {
+                siteData.pointOfView.workWith.map((item) => (
+                  <li class={`point-of-view__partner point-of-view__partner--${item.slug}`}>
+                    <img
+                      alt={item.name}
+                      decoding="async"
+                      loading="lazy"
+                      src={withBase(item.logoPath)}
+                    />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
 
-        <div class="reveal space-y-5 text-base leading-8 text-ink-600 sm:text-lg" style="--delay: 80ms;">
-          {siteData.pointOfView.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-          <p class="point-of-view-note">{siteData.pointOfView.closing}</p>
+        <div class="point-of-view__body reveal" style="--delay: 80ms;">
+          <div class="point-of-view__copy text-base leading-8 text-ink-600 sm:text-lg">
+            {siteData.pointOfView.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            <p class="point-of-view-note">{siteData.pointOfView.closing}</p>
+          </div>
         </div>
       </div>
     </section>
@@ -139,30 +163,42 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
       </div>
     </section>
 
-    <section class="shell section section-band section-band--muted" data-section id="credibility">
-      <div class="credibility-strip reveal">
-        <div class="max-w-2xl">
-          <p class="eyebrow">Experience / credibility</p>
-          <h2 class="section-title mt-5">{siteData.credibility.title}</h2>
-          {siteData.credibility.description && (
-            <p class="mt-5 text-base leading-8 text-ink-600 sm:text-lg">
-              {siteData.credibility.description}
-            </p>
-          )}
-        </div>
+    <section class="section section-band section-band--muted section--credibility-art" data-section id="credibility">
+      <div aria-hidden="true" class="credibility-strip__backdrop">
+        <img
+          alt=""
+          class="credibility-strip__background-image"
+          decoding="async"
+          loading="lazy"
+          src={credibilityBackgroundHref}
+        />
+      </div>
 
-        <div class="credibility-strip__grid">
-          {
-            siteData.credibility.items.map((item) => (
-              <CredibilityItem
-                company={item.company}
-                logoAlt={item.logoAlt}
-                logoPath={item.logoPath}
-                relevance={item.relevance}
-                slug={item.slug}
-              />
-            ))
-          }
+      <div class="shell">
+        <div class="credibility-strip reveal">
+          <div class="max-w-2xl">
+            <p class="eyebrow">Experience / credibility</p>
+            <h2 class="section-title mt-5">{siteData.credibility.title}</h2>
+            {siteData.credibility.description && (
+              <p class="mt-5 text-base leading-8 text-ink-600 sm:text-lg">
+                {siteData.credibility.description}
+              </p>
+            )}
+          </div>
+
+          <div class="credibility-strip__grid">
+            {
+              siteData.credibility.items.map((item) => (
+                <CredibilityItem
+                  company={item.company}
+                  logoAlt={item.logoAlt}
+                  logoPath={item.logoPath}
+                  relevance={item.relevance}
+                  slug={item.slug}
+                />
+              ))
+            }
+          </div>
         </div>
       </div>
     </section>

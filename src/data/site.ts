@@ -19,6 +19,12 @@ export type Transformation = {
   description: string;
 };
 
+export type LogoItem = {
+  name: string;
+  logoPath: string;
+  slug: string;
+};
+
 export type CredibilityItem = {
   company: string;
   relevance?: string;
@@ -50,9 +56,11 @@ export type SiteData = {
     tertiaryCtaLabel: string;
   };
   pointOfView: {
-    title: string;
+    titleLines: string[];
     paragraphs: string[];
     closing: string;
+    workWithLabel: string;
+    workWith: LogoItem[];
   };
   capabilities: {
     title: string;
@@ -130,14 +138,32 @@ export const siteData = {
     tertiaryCtaLabel: "Download resume"
   },
   pointOfView: {
-    title: "AI is not a feature.",
+    titleLines: ["AI is not", "a feature."],
     paragraphs: [
       "In enterprise software, AI does not sit on top of the product. It reshapes boundaries, workflows, governance, and trust.",
       "Most teams treat AI as an add-on. That is why it creates noise, risk, and complexity instead of value.",
       "The challenge is not technical. It is deciding where AI belongs, how it fits the platform, and how to ship it without breaking execution."
     ],
     closing:
-      "I work with CEOs, founders, and senior leaders to turn complexity into clarity and shipped outcomes."
+      "I work with CEOs, founders, and senior leaders to turn complexity into clarity and shipped outcomes.",
+    workWithLabel: "Work with",
+    workWith: [
+      {
+        name: "Anthropic",
+        logoPath: "/logos/providers/anthropic.svg",
+        slug: "anthropic"
+      },
+      {
+        name: "OpenAI",
+        logoPath: "/logos/providers/openai.svg",
+        slug: "openai"
+      },
+      {
+        name: "Gemini",
+        logoPath: "/logos/providers/gemini.svg",
+        slug: "gemini"
+      }
+    ]
   },
   capabilities: {
     title: "Focus",
