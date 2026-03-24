@@ -44,21 +44,6 @@ const { name, sections, ctaHref, ctaLabel, githubUrl, linkedinUrl } = Astro.prop
         </a>
       </div>
     </div>
-
-    <nav aria-label="Section navigation" class="site-header__mobile-nav">
-      <div class="no-scrollbar flex gap-2 overflow-x-auto pb-2">
-        {
-          sections.map((section) => (
-            <a class="nav-link shrink-0" data-nav-link href={`#${section.id}`}>
-              {section.label}
-            </a>
-          ))
-        }
-        <a class="nav-link shrink-0" href={ctaHref}>
-          {ctaLabel}
-        </a>
-      </div>
-    </nav>
   </div>
 </header>
 

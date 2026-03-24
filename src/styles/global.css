@@ -16,7 +16,7 @@
 
 :root,
 :root[data-theme="light"] {
-  --header-offset: 7.25rem;
+  --header-offset: 4.85rem;
   --canvas: #f3efe7;
   --surface: rgba(255, 255, 255, 0.58);
   --surface-strong: rgba(255, 255, 255, 0.82);
@@ -611,10 +611,10 @@ h3,
 .site-header__bar {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  min-height: 4.4rem;
+  min-height: 4rem;
   align-items: center;
-  gap: 1rem;
-  padding-block: 0.95rem;
+  gap: 0.75rem;
+  padding-block: 0.7rem;
 }
 
 .site-header__brand {
@@ -624,7 +624,7 @@ h3,
 
 .site-header__name {
   display: block;
-  font-size: 0.98rem;
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--color-ink-950);
@@ -650,16 +650,12 @@ h3,
 .site-header__actions {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.45rem;
   justify-self: end;
 }
 
 .site-header__cta {
   display: none;
-}
-
-.site-header__mobile-nav {
-  padding-bottom: 0.45rem;
 }
 
 .nav-link {
@@ -688,8 +684,8 @@ h3,
 .theme-toggle {
   position: relative;
   display: inline-flex;
-  height: 2.75rem;
-  width: 2.75rem;
+  height: 2.5rem;
+  width: 2.5rem;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line-strong);
@@ -704,8 +700,8 @@ h3,
 
 .icon-link-button {
   display: inline-flex;
-  height: 2.75rem;
-  width: 2.75rem;
+  height: 2.5rem;
+  width: 2.5rem;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line-strong);
@@ -1312,10 +1308,9 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
   .site-header__bar {
     grid-template-columns: auto minmax(0, 1fr) auto;
-  }
-
-  .site-header__mobile-nav {
-    display: none;
+    min-height: 4.4rem;
+    gap: 1rem;
+    padding-block: 0.95rem;
   }
 
   .site-header__nav {
@@ -1326,8 +1321,38 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
     display: inline-flex;
   }
 
+  .site-header__name {
+    font-size: 0.98rem;
+  }
+
+  .site-header__actions {
+    gap: 0.65rem;
+  }
+
+  .theme-toggle,
+  .icon-link-button {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
   .credibility-strip__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .section {
+    min-height: auto;
+    scroll-snap-align: none;
+  }
+
+  .section--hero {
+    min-height: calc(100svh - var(--header-offset));
+    min-height: calc(100dvh - var(--header-offset));
   }
 }
 
