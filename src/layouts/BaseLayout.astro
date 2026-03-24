@@ -21,14 +21,14 @@ const faviconHref = withBase(siteData.seo.favicon);
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#11161a" />
+    <meta name="theme-color" content="#f3efe7" />
     <meta name="color-scheme" content="light dark" />
     <script is:inline>
       (() => {
@@ -42,12 +42,12 @@ const faviconHref = withBase(siteData.seo.favicon);
           const savedTheme = window.localStorage.getItem(storageKey);
           const theme = savedTheme === "dark" || savedTheme === "light"
             ? savedTheme
-            : "dark";
+            : "light";
           document.documentElement.dataset.theme = theme;
           const themeMeta = document.querySelector('meta[name="theme-color"]');
           themeMeta?.setAttribute("content", themeColors[theme]);
         } catch {
-          document.documentElement.dataset.theme = "dark";
+          document.documentElement.dataset.theme = "light";
         }
       })();
     </script>
