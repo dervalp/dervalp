@@ -770,7 +770,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
 }
 
@@ -989,6 +989,14 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   justify-content: center;
 }
 
+.credibility-strip__note {
+  margin-top: 1.35rem;
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--color-ink-500);
+}
+
 .contact-panel {
   display: grid;
   gap: 2rem;
@@ -1198,7 +1206,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 @media (min-width: 1024px) {
   .hero__layout {
-    grid-template-columns: minmax(0, 1fr) 16rem;
+    grid-template-columns: minmax(0, 1fr) 22.75rem;
     gap: 3rem;
     align-items: center;
   }
@@ -1206,7 +1214,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   .hero__actions-panel {
     grid-template-rows: repeat(3, minmax(4.15rem, auto));
     align-self: center;
-    justify-self: center;
+    justify-self: stretch;
+    width: 100%;
   }
 
   .point-of-view__layout {

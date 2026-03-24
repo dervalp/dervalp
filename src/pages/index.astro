@@ -199,6 +199,12 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
               ))
             }
           </div>
+
+          {siteData.credibility.note && (
+            <p class="credibility-strip__note">
+              {siteData.credibility.note}
+            </p>
+          )}
         </div>
       </div>
     </section>

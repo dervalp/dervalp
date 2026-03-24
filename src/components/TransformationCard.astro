@@ -2,7 +2,7 @@
 interface Props {
   eyebrow?: string;
   title: string;
-  description: string;
+  description: string[];
 }
 
 const { eyebrow, title, description } = Astro.props;
@@ -11,5 +11,7 @@ const { eyebrow, title, description } = Astro.props;
 <article class="transformation-card">
   {eyebrow && <p class="eyebrow">{eyebrow}</p>}
   <h3 class="mt-5 text-2xl font-semibold tracking-[-0.04em] text-ink-950">{title}</h3>
-  <p class="mt-5 max-w-xl text-base leading-8 text-ink-600">{description}</p>
+  <div class="mt-5 max-w-xl space-y-4 text-base leading-8 text-ink-600">
+    {description.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
 </article>

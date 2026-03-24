@@ -16,7 +16,7 @@ export type CapabilityGroup = {
 export type Transformation = {
   eyebrow?: string;
   title: string;
-  description: string;
+  description: string[];
 };
 
 export type LogoItem = {
@@ -75,6 +75,7 @@ export type SiteData = {
   credibility: {
     title: string;
     description?: string;
+    note?: string;
     items: CredibilityItem[];
   };
   contact: {
@@ -124,7 +125,7 @@ export const siteData = {
     headline: "AI. Shipped.",
     supportingText: [
       "AI doesn't fail in the lab. It fails in production.",
-      "I help enterprise teams turn AI ambition into shipped, governed products — by aligning product, platform, and execution.",
+      "I help enterprise teams turn AI ambition into shipped, governed products - by treating AI as a platform capability, not a feature.",
       "Built and scaled AI and data platforms in complex, regulated environments."
     ],
     focusAreas: [
@@ -140,12 +141,12 @@ export const siteData = {
   pointOfView: {
     titleLines: ["AI is not", "a feature."],
     paragraphs: [
-      "In enterprise software, AI does not sit on top of the product. It reshapes boundaries, workflows, governance, and trust.",
-      "Most teams treat AI as an add-on. That is why it creates noise, risk, and complexity instead of value.",
-      "The challenge is not technical. It is deciding where AI belongs, how it fits the platform, and how to ship it without breaking execution."
+      "AI changes how a product behaves, how decisions are made, and how trust is built.",
+      "The challenge is not adding AI. It is deciding where it belongs and how to ship it without breaking the system around it.",
+      "Most teams treat AI as an add-on. That creates complexity, not value."
     ],
     closing:
-      "I work with CEOs, founders, and senior leaders to turn complexity into clarity and shipped outcomes.",
+      "I work with leaders to turn that into clear decisions and shipped outcomes.",
     workWithLabel: "Work with",
     workWith: [
       {
@@ -166,22 +167,22 @@ export const siteData = {
     ]
   },
   capabilities: {
-    title: "Focus",
+    title: "What I focus on",
     description:
-      "Structured around the work that matters most in complex software businesses: strategy, execution, and AI productization.",
+      "Structured around what matters most in complex software environments.",
     groups: [
       {
         label: "Strategy",
         items: [
           {
-            title: "Turn platform complexity into clear product direction",
+            title: "Platform clarity",
             description:
-              "Clarify boundaries, remove structural ambiguity, and give leaders a product direction they can execute."
+              "Turn platform complexity into product decisions teams can execute."
           },
           {
-            title: "Align product, platform, and engineering leadership",
+            title: "AI productization",
             description:
-              "Create shared priorities, faster decisions, and cleaner execution across the senior team."
+              "Move AI from isolated experiments to reusable, governed product capabilities."
           }
         ]
       },
@@ -189,14 +190,14 @@ export const siteData = {
         label: "Execution",
         items: [
           {
-            title: "Strengthen cadence, prioritization, and decision quality",
+            title: "Leadership alignment",
             description:
-              "Tighten the operating rhythm so priorities stay clear and fewer decisions stall between teams."
+              "Align product, platform, and engineering around one clear execution path."
           },
           {
-            title: "Reduce time to value in complex SaaS products",
+            title: "Execution quality",
             description:
-              "Shorten onboarding, reduce adoption friction, and make complex products easier to implement and expand."
+              "Drive faster decisions, cleaner prioritization, and stronger delivery in complex teams."
           }
         ]
       },
@@ -204,53 +205,62 @@ export const siteData = {
         label: "AI",
         items: [
           {
-            title: "Ship AI capabilities with clear guardrails",
+            title: "Time to value",
             description:
-              "Move from scattered experiments to reusable AI capabilities, with clear rollout paths and trust built in."
+              "Reduce time to value in complex SaaS environments."
           },
           {
-            title: "Turn AI ambition into shipped products",
+            title: "Product structure",
             description:
-              "Translate AI ambition into product choices, delivery plans, and releases that actually make it to market."
+              "Bring clarity to complex product landscapes so teams can scale without fragmentation."
           }
         ]
       }
     ]
   },
   transformations: {
-    title: "Work",
+    title: "What I've led",
     description:
-      "A few of the operating shifts I’m most often asked to lead inside complex software businesses.",
+      "A few of the operating shifts I’m most often asked to lead in complex software environments.",
     items: [
       {
         eyebrow: "AI",
         title: "From AI experiments to shipped product capabilities",
-        description:
-          "Turned isolated AI work into reusable, governed product capabilities with clear rollout paths, stronger auditability, and delivery moving from weeks to hours."
+        description: [
+          "Turned isolated AI work into reusable, governed product capabilities integrated into the platform.",
+          "Reduced time to launch from weeks to hours and enabled consistent delivery across teams."
+        ]
       },
       {
         eyebrow: "Platform",
         title: "From platform sprawl to scalable product structure",
-        description:
-          "Reshaped complex SaaS and data platforms into clearer product structures, stronger boundaries, and transformations delivered in months instead of multi-year drift."
+        description: [
+          "Reshaped complex SaaS and data platforms into clearer product structures with stronger boundaries and ownership.",
+          "Enabled faster execution and reduced long-term fragmentation."
+        ]
       },
       {
         eyebrow: "Adoption",
         title: "From slow onboarding to fast adoption",
-        description:
-          "Reduced adoption friction, shortened onboarding from months to days, and made complex enterprise products easier to implement and expand."
+        description: [
+          "Reduced onboarding friction and shortened time to value from months to days.",
+          "Made complex enterprise products easier to implement, use, and expand."
+        ]
       },
       {
         eyebrow: "Alignment",
         title: "From misalignment to decisive execution",
-        description:
-          "Aligned founders, executives, product, and engineering around clear priorities, cleaner tradeoffs, and plans that hold up in delivery."
+        description: [
+          "Aligned founders, executives, product, and engineering around clear priorities and tradeoffs.",
+          "Improved decision speed and ensured plans held up in delivery."
+        ]
       }
     ]
   },
   credibility: {
     title: "Proven in Enterprise",
-    description: "20+ years of experience in B2B and B2C Enterprise SaaS",
+    description: "20+ years building and scaling product, platform, and AI initiatives in complex B2B environments.",
+    note: "Worked across data platforms, adtech, and enterprise SaaS in complex and regulated environments.",
     items: [
       {
         company: "CluedIn",
@@ -279,9 +289,9 @@ export const siteData = {
     ]
   },
   contact: {
-    title: "For AI, product, and platform leadership conversations.",
+    title: "Building AI products in a complex environment?",
     description:
-      "If you are building in complex software, reach out.",
+      "If product, platform, and AI need to move together, I can help make that real.",
     directMessage:
       "I work with founders, CEOs, and senior leaders where AI, product, platform, and execution need to move together.",
     secondaryMessage:
