@@ -259,7 +259,7 @@ export const siteData = {
   },
   credibility: {
     title: "Proven in Enterprise",
-    description: "20+ years building and scaling product, platform, and AI initiatives in complex B2B environments.",
+    description: "20+ years building and scaling product, platform, and AI systems in complex B2B environments.",
     note: "Worked across data platforms, adtech, and enterprise SaaS in complex and regulated environments.",
     items: [
       {
@@ -289,7 +289,7 @@ export const siteData = {
     ]
   },
   contact: {
-    title: "Building AI products in a complex environment?",
+    title: "Building AI products in complex environments?",
     description:
       "If product, platform, and AI need to move together, I can help make that real.",
     directMessage:

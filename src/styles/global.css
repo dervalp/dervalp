@@ -46,14 +46,32 @@
   --credibility-image-overlay: linear-gradient(180deg, rgba(243, 239, 231, 0.14), rgba(243, 239, 231, 0.28));
   --credibility-band-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(243, 239, 231, 0.12));
   --credibility-tile-background: rgba(22, 29, 34, 0.84);
-  --card-radial-core: rgba(255, 255, 255, 0.78);
-  --card-radial-mid: rgba(247, 243, 236, 0.44);
-  --card-radial-edge: rgba(233, 225, 214, 0.18);
-  --work-radial-core: rgba(255, 255, 255, 0.62);
-  --work-radial-mid: rgba(249, 245, 237, 0.58);
-  --work-radial-edge: rgba(239, 232, 222, 0.34);
-  --work-hover-top: rgba(247, 243, 236, 0.9);
-  --work-hover-bottom: rgba(239, 232, 222, 0.66);
+  --focus-card-surface-top: rgba(255, 255, 255, 0.9);
+  --focus-card-surface-bottom: rgba(246, 241, 233, 0.98);
+  --focus-card-surface-falloff: rgba(223, 212, 199, 0.44);
+  --focus-card-frame-rest: rgba(21, 25, 28, 0.08);
+  --focus-card-frame-hover: rgba(21, 25, 28, 0.13);
+  --focus-card-highlight-rest: rgba(255, 255, 255, 0.62);
+  --focus-card-highlight-hover: rgba(255, 255, 255, 0.82);
+  --focus-card-shadow-rest: inset 0 1px 0 rgba(255, 255, 255, 0.52), inset 0 0 0 1px rgba(21, 25, 28, 0.04);
+  --focus-card-shadow-hover: inset 0 1px 0 rgba(255, 255, 255, 0.72), inset 0 0 0 1px rgba(21, 25, 28, 0.08);
+  --focus-card-bloom-core: rgba(255, 255, 255, 0.9);
+  --focus-card-bloom-mid: rgba(248, 244, 237, 0.58);
+  --focus-card-bloom-edge: rgba(229, 221, 210, 0.3);
+  --work-card-surface-top: rgba(255, 255, 255, 0.96);
+  --work-card-surface-bottom: rgba(243, 237, 229, 1);
+  --work-card-surface-falloff: rgba(221, 209, 196, 0.5);
+  --work-card-frame-rest: rgba(21, 25, 28, 0.09);
+  --work-card-frame-hover: rgba(21, 25, 28, 0.15);
+  --work-card-highlight-rest: rgba(255, 255, 255, 0.68);
+  --work-card-highlight-hover: rgba(255, 255, 255, 0.88);
+  --work-card-shadow-rest: inset 0 1px 0 rgba(255, 255, 255, 0.58), inset 0 0 0 1px rgba(21, 25, 28, 0.05);
+  --work-card-shadow-hover: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 0 1px rgba(21, 25, 28, 0.09);
+  --work-card-bloom-core: rgba(255, 255, 255, 0.96);
+  --work-card-bloom-mid: rgba(249, 245, 238, 0.72);
+  --work-card-bloom-edge: rgba(232, 224, 213, 0.42);
+  --work-card-hover-top: rgba(250, 246, 240, 0.92);
+  --work-card-hover-bottom: rgba(239, 232, 222, 0.62);
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -87,14 +105,32 @@
   --credibility-image-overlay: linear-gradient(180deg, rgba(17, 22, 26, 0.18), rgba(17, 22, 26, 0.44));
   --credibility-band-overlay: linear-gradient(180deg, rgba(17, 22, 26, 0.08), rgba(17, 22, 26, 0.2));
   --credibility-tile-background: rgba(16, 21, 25, 0.86);
-  --card-radial-core: rgba(255, 255, 255, 0.14);
-  --card-radial-mid: rgba(88, 98, 107, 0.14);
-  --card-radial-edge: rgba(31, 38, 43, 0.08);
-  --work-radial-core: rgba(255, 255, 255, 0.08);
-  --work-radial-mid: rgba(86, 95, 104, 0.18);
-  --work-radial-edge: rgba(27, 34, 39, 0.14);
-  --work-hover-top: rgba(29, 35, 40, 0.92);
-  --work-hover-bottom: rgba(18, 23, 28, 0.96);
+  --focus-card-surface-top: rgba(30, 38, 43, 0.84);
+  --focus-card-surface-bottom: rgba(18, 24, 28, 0.96);
+  --focus-card-surface-falloff: rgba(90, 101, 111, 0.18);
+  --focus-card-frame-rest: rgba(236, 241, 244, 0.04);
+  --focus-card-frame-hover: rgba(236, 241, 244, 0.09);
+  --focus-card-highlight-rest: rgba(255, 255, 255, 0.05);
+  --focus-card-highlight-hover: rgba(255, 255, 255, 0.11);
+  --focus-card-shadow-rest: inset 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --focus-card-shadow-hover: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --focus-card-bloom-core: rgba(255, 255, 255, 0.14);
+  --focus-card-bloom-mid: rgba(96, 107, 117, 0.22);
+  --focus-card-bloom-edge: rgba(32, 39, 45, 0.14);
+  --work-card-surface-top: rgba(33, 41, 47, 0.92);
+  --work-card-surface-bottom: rgba(17, 22, 26, 0.98);
+  --work-card-surface-falloff: rgba(101, 112, 122, 0.22);
+  --work-card-frame-rest: rgba(236, 241, 244, 0.05);
+  --work-card-frame-hover: rgba(236, 241, 244, 0.1);
+  --work-card-highlight-rest: rgba(255, 255, 255, 0.06);
+  --work-card-highlight-hover: rgba(255, 255, 255, 0.12);
+  --work-card-shadow-rest: inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --work-card-shadow-hover: inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --work-card-bloom-core: rgba(255, 255, 255, 0.18);
+  --work-card-bloom-mid: rgba(94, 104, 114, 0.28);
+  --work-card-bloom-edge: rgba(28, 35, 40, 0.2);
+  --work-card-hover-top: rgba(42, 50, 57, 0.44);
+  --work-card-hover-bottom: rgba(20, 26, 31, 0.34);
 
   --color-ink-950: #eef2f3;
   --color-ink-900: #dde4e8;
@@ -136,6 +172,7 @@ body,
 .form-textarea,
 .contact-link-row,
 .contact-inline-link,
+.capability-block,
 .transformation-card,
 .contact-panel__surface {
   transition:
@@ -759,7 +796,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   border-right: 1px solid var(--line-subtle);
   border-bottom: 1px solid var(--line-subtle);
   border-radius: 0;
-  background: transparent;
+  background:
+    linear-gradient(180deg, var(--focus-card-surface-top), var(--focus-card-surface-bottom)),
+    radial-gradient(100% 88% at 88% 100%, var(--focus-card-surface-falloff) 0%, transparent 60%);
+  box-shadow: var(--focus-card-shadow-rest);
   padding: clamp(1.15rem, 1.75vw, 1.55rem);
   overflow: hidden;
 }
@@ -776,6 +816,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .capability-block__eyebrow {
   margin-bottom: 0.25rem;
+  opacity: 0.84;
+  transition:
+    color 220ms var(--ease-premium),
+    opacity 220ms var(--ease-premium);
 }
 
 .capability-block::before,
@@ -793,14 +837,40 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .capability-block::before {
   background:
-    radial-gradient(112% 92% at 14% 12%, var(--card-radial-core) 0%, var(--card-radial-mid) 24%, var(--card-radial-edge) 48%, transparent 68%),
-    radial-gradient(90% 88% at 82% 100%, var(--card-radial-edge) 0%, transparent 56%);
+    radial-gradient(116% 98% at 14% 12%, var(--focus-card-bloom-core) 0%, var(--focus-card-bloom-mid) 26%, var(--focus-card-bloom-edge) 52%, transparent 74%),
+    radial-gradient(96% 92% at 84% 100%, var(--focus-card-bloom-edge) 0%, transparent 58%);
 }
 
 .transformation-card::before {
   background:
-    radial-gradient(118% 96% at 14% 12%, var(--work-radial-core) 0%, var(--work-radial-mid) 30%, var(--work-radial-edge) 54%, transparent 74%),
-    linear-gradient(180deg, var(--work-hover-top), var(--work-hover-bottom));
+    radial-gradient(118% 98% at 14% 12%, var(--work-card-bloom-core) 0%, var(--work-card-bloom-mid) 28%, var(--work-card-bloom-edge) 56%, transparent 78%),
+    linear-gradient(180deg, var(--work-card-hover-top), var(--work-card-hover-bottom));
+}
+
+.capability-block::after,
+.transformation-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition:
+    opacity 220ms var(--ease-premium),
+    box-shadow 260ms var(--ease-premium);
+}
+
+.capability-block::after {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), transparent 42%);
+  box-shadow:
+    inset 0 1px 0 var(--focus-card-highlight-rest),
+    inset 0 0 0 1px var(--focus-card-frame-rest);
+}
+
+.transformation-card::after {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), transparent 44%);
+  box-shadow:
+    inset 0 1px 0 var(--work-card-highlight-rest),
+    inset 0 0 0 1px var(--work-card-frame-rest);
 }
 
 .capability-block:hover::before,
@@ -813,7 +883,15 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .capability-block:hover,
 .capability-block:focus-within {
-  background: var(--surface);
+  border-color: var(--focus-card-frame-hover);
+  box-shadow: var(--focus-card-shadow-hover);
+}
+
+.capability-block:hover::after,
+.capability-block:focus-within::after {
+  box-shadow:
+    inset 0 1px 0 var(--focus-card-highlight-hover),
+    inset 0 0 0 1px var(--focus-card-frame-hover);
 }
 
 .transformation-grid {
@@ -837,19 +915,63 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   border-right: 1px solid var(--line-subtle);
   border-bottom: 1px solid var(--line-subtle);
   border-radius: 0;
-  background: var(--surface);
+  background:
+    linear-gradient(180deg, var(--work-card-surface-top), var(--work-card-surface-bottom)),
+    radial-gradient(102% 90% at 88% 100%, var(--work-card-surface-falloff) 0%, transparent 62%);
+  box-shadow: var(--work-card-shadow-rest);
   padding: 1.75rem;
   overflow: hidden;
 }
 
 .transformation-card:hover,
 .transformation-card:focus-within {
-  background: var(--surface-strong);
+  border-color: var(--work-card-frame-hover);
+  box-shadow: var(--work-card-shadow-hover);
 }
 
 .transformation-card > * {
   position: relative;
   z-index: 1;
+}
+
+.capability-block h3,
+.transformation-card h3 {
+  color: var(--color-ink-900);
+  transition: color 220ms var(--ease-premium);
+}
+
+.capability-block__content > p,
+.transformation-card > div > p,
+.transformation-card > .eyebrow {
+  transition:
+    color 220ms var(--ease-premium),
+    opacity 220ms var(--ease-premium);
+}
+
+.transformation-card > .eyebrow {
+  opacity: 0.84;
+}
+
+.capability-block:hover .capability-block__eyebrow,
+.capability-block:focus-within .capability-block__eyebrow,
+.transformation-card:hover > .eyebrow,
+.transformation-card:focus-within > .eyebrow {
+  opacity: 1;
+  color: var(--color-ink-600);
+}
+
+.capability-block:hover h3,
+.capability-block:focus-within h3,
+.transformation-card:hover h3,
+.transformation-card:focus-within h3 {
+  color: var(--color-ink-950);
+}
+
+.capability-block:hover .capability-block__content > p,
+.capability-block:focus-within .capability-block__content > p,
+.transformation-card:hover > div > p,
+.transformation-card:focus-within > div > p {
+  color: var(--color-ink-800);
 }
 
 .credibility-strip {
