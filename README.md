@@ -1,122 +1,37 @@
-# Pierre Derval Executive One-Page Site
+# Pierre Derval
 
-Premium one-page personal website for Pierre Derval, built with Astro and Tailwind CSS for GitHub Pages deployment.
+**AI. Shipped.**
 
-## Stack
+I lead at the intersection of product, platform, engineering, and AI in complex enterprise software.
 
-- Astro static site
-- Tailwind CSS v4 via `@tailwindcss/vite`
-- Self-hosted `Manrope` variable font
-- GitHub Pages via GitHub Actions
-- Optional Cloudflare Worker + Resend contact backend
+I help enterprise teams turn AI ambition into shipped, governed products by aligning product direction, platform strategy, and execution.
 
-## Local development
+## Focus
 
-### Prerequisites
+- AI productization in complex and regulated environments
+- Platform strategy and modernization
+- Product, platform, and engineering alignment
+- Delivery governance, operating cadence, and execution
 
-- Node.js 24+
-- npm 11+
+## Selected Experience
 
-### Commands
+- CluedIn
+- Adform
+- Sitecore
+- Amilia
 
-```bash
-npm install
-npm run dev
-```
+## Signature Outcomes
 
-Build the production site:
+- Reduced time to AI delivery from weeks to hours
+- Reduced onboarding from months to days
+- Delivered multi-tenant SaaS transformation in months
+- Built AI and data platform capabilities for enterprise environments
 
-```bash
-npm run build
-```
+## Background
 
-Preview the production build:
+20+ years across B2B and B2C Enterprise SaaS, spanning architecture, product leadership, platform evolution, and delivery.
 
-```bash
-npm run preview
-```
+## Connect
 
-## Project structure
-
-```text
-.
-├── .github/workflows/deploy.yml
-├── astro.config.mjs
-├── contact-worker/
-├── public/
-├── src/
-│   ├── components/
-│   ├── data/site.ts
-│   ├── layouts/BaseLayout.astro
-│   ├── pages/index.astro
-│   ├── styles/global.css
-│   └── utils/url.ts
-└── tailwind.config.mjs
-```
-
-## Main edit points
-
-- `src/data/site.ts`
-  Central content contract for hero copy, point of view, capabilities, transformations, credibility strip, contact copy, and public links.
-- `src/pages/index.astro`
-  One-page composition for the executive site.
-- `src/components/`
-  Reusable building blocks for navigation, capability blocks, transformations, theme toggle, and contact handling.
-- `src/styles/global.css`
-  Design tokens, layout rhythm, typography, theme handling, and shared UI styles.
-- `public/og-image.svg`
-  Social preview artwork.
-
-## Public links and resume
-
-The site uses these public links from `src/data/site.ts`:
-
-- LinkedIn
-- GitHub
-- Resume path
-
-Replace the resume PDF by overwriting:
-
-```text
-public/Pierre_Derval_Resume.pdf
-```
-
-## Contact form behavior
-
-The contact section supports two states:
-
-- If `PUBLIC_CONTACT_FORM_ENDPOINT` is set, the form is rendered and posts to that endpoint.
-- If `PUBLIC_CONTACT_FORM_ENDPOINT` is not set, no broken or disabled form is shown; visitors see direct contact links instead.
-
-### Local environment
-
-Copy the example file and set the public endpoint only if you want the form enabled locally:
-
-```bash
-cp .env.example .env
-```
-
-Example:
-
-```text
-PUBLIC_CONTACT_FORM_ENDPOINT=https://your-worker-subdomain.workers.dev
-```
-
-## Optional backend
-
-The repository includes an optional Cloudflare Worker in `contact-worker/` for private form handling with Resend.
-
-See:
-
-- `contact-worker/README.md`
-
-## GitHub Pages deployment
-
-The repository ships with a GitHub Actions deployment workflow.
-
-Important notes:
-
-- Project repositories build with the correct repo base path automatically.
-- Root `username.github.io` repositories build without a repo base path.
-- `CUSTOM_DOMAIN` can be set later if you move to a custom domain.
-- `PUBLIC_CONTACT_FORM_ENDPOINT` should be added as an Actions variable only if you want the form enabled in production.
+- [LinkedIn](https://be.linkedin.com/in/pierrederval)
+- [Resume](./public/Pierre_Derval_Resume.pdf)
