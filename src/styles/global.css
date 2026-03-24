@@ -1087,6 +1087,11 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   object-fit: contain;
 }
 
+.credibility-logo--ikary img {
+  max-height: 1.45rem;
+  max-width: 9.75rem;
+}
+
 .credibility-logo--cluedin img {
   max-height: 2.25rem;
 }
@@ -1368,7 +1373,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   }
 
   .credibility-strip__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 

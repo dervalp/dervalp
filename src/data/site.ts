@@ -263,6 +263,12 @@ export const siteData = {
     note: "Worked across data platforms, adtech, and enterprise SaaS in complex and regulated environments.",
     items: [
       {
+        company: "Ikary",
+        logoAlt: "Ikary logo",
+        logoPath: "/logos/ikary.svg",
+        slug: "ikary"
+      },
+      {
         company: "CluedIn",
         logoAlt: "CluedIn logo",
         logoPath: "/logos/cluedin.png",
