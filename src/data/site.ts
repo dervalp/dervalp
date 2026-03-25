@@ -103,9 +103,9 @@ export type SiteData = {
 
 export const siteData = {
   seo: {
-    title: "Pierre Derval | AI Product Leadership for Complex Enterprise Software",
+    title: "Pierre Derval | AI Product Leadership for Enterprise Software",
     description:
-      "Executive one-page site for Pierre Derval, focused on AI product leadership, platform strategy, and governed delivery in complex enterprise software.",
+      "Pierre Derval helps enterprise software teams turn AI ambition into shipped, governed products by aligning product, platform, and execution in complex B2B environments.",
     siteName: "Pierre Derval",
     locale: "en_BE",
     ogImage: "/og-image.svg",
