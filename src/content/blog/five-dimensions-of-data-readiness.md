@@ -2,7 +2,7 @@
 title: "Five Dimensions of Data Readiness — and Why Each One Matters"
 excerpt: "Before any AI project starts, five questions about your data need honest answers. Access, quality, ownership, compliance, and currency. Here is what each one reveals — and what happens when you skip it."
 author: "Pierre Derval"
-publishDate: 2026-03-31
+publishDate: 2026-04-01
 category: "Data Strategy"
 tags: ["data", "readiness", "ai", "strategy", "enterprise"]
 cta: "data-readiness"
