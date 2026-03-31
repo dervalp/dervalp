@@ -16,7 +16,15 @@ const tools = [
       "Work through 28 questions across five dimensions — business priority, data readiness, architecture maturity, governance, and delivery capability — before scoping any AI engagement.",
     cta: "Run the checklist →",
     meta: "28 questions · 5 dimensions · Free",
-    full: true,
+  },
+  {
+    href: withBase("/tools/data-readiness"),
+    eyebrow: "Assessment",
+    title: "Data Readiness Checklist",
+    description:
+      "Work through 27 questions across five dimensions — accessibility, quality, ownership, compliance, and currency — before starting any AI project.",
+    cta: "Run the checklist →",
+    meta: "27 questions · 5 dimensions · Free",
   },
 ];
 ---
@@ -31,7 +39,7 @@ const tools = [
 
     <div class="tools-grid">
       {tools.map((tool) => (
-        <a href={tool.href} class={`tool-card${tool.full ? " tool-card--full" : ""}`}>
+        <a href={tool.href} class="tool-card">
           <div class="tool-card__body">
             <p class="eyebrow tool-card__eyebrow">{tool.eyebrow}</p>
             <h2 class="tool-card__title">{tool.title}</h2>

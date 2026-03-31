@@ -8,6 +8,21 @@ export interface CtaBlock {
 }
 
 export const CTA_BLOCKS: Record<string, CtaBlock> = {
+  "data-readiness": {
+    eyebrow: "Interactive tool",
+    title: "Run the assessment on your own data",
+    description:
+      "A structured checklist across accessibility, quality, ownership, compliance, and currency — 27 questions with a live readiness score.",
+    pills: [
+      "Accessibility",
+      "Quality",
+      "Ownership",
+      "Compliance",
+      "Currency",
+    ],
+    ctaLabel: "Open the data readiness checklist",
+    ctaHref: "/tools/data-readiness",
+  },
   "ai-readiness": {
     eyebrow: "Interactive tool",
     title: "Ready to run the assessment?",

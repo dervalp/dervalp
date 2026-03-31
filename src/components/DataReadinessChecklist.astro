@@ -1,0 +1,497 @@
+---
+import { SECTIONS, FLAG_CONFIG } from '../data/dataReadinessChecklist';
+---
+
+<section class="checklist-wrap" id="data-readiness-checklist">
+
+  <!-- Header -->
+  <div class="checklist-header">
+    <h2>Data readiness checklist</h2>
+    <p>Work through each dimension before starting any AI project. A gap in any one area can invalidate your data foundation before you've built anything.</p>
+
+    <!-- Score bars -->
+    <div class="score-bars" id="score-bars">
+      {SECTIONS.map((s) => (
+        <div class="score-row">
+          <span class="score-label">{s.label}</span>
+          <div class="score-track">
+            <div
+              class="score-fill"
+              id={`bar-${s.id}`}
+              style={`width: 0%; background: ${s.color}`}
+            ></div>
+          </div>
+          <span class="score-num" id={`bar-num-${s.id}`}>0/{s.items.length}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Total + verdict -->
+    <div class="total-row">
+      <div class="total-score">
+        <span class="total-num" id="total-pct">0%</span>
+        <span class="total-label">overall readiness</span>
+      </div>
+      <span class="verdict" id="verdict-badge"></span>
+    </div>
+
+    <button class="reset-btn" id="reset-btn" type="button">Reset all</button>
+  </div>
+
+  <!-- Sections -->
+  <div class="sections-list">
+    {SECTIONS.map((section) => (
+      <div class="section-card" id={`section-${section.id}`}>
+
+        <!-- Section header (toggle) -->
+        <button
+          class="section-head"
+          type="button"
+          aria-expanded="false"
+          aria-controls={`body-${section.id}`}
+          data-section={section.id}
+        >
+          <span
+            class="section-icon"
+            style={`background: ${section.bg}; color: ${section.color}`}
+            aria-hidden="true"
+          >{section.icon}</span>
+          <span class="section-title">{section.label}</span>
+          <span class="section-meta" id={`meta-${section.id}`}>0/{section.items.length} checked</span>
+          <span class="section-chevron" aria-hidden="true">▶</span>
+        </button>
+
+        <!-- Section body -->
+        <div class="section-body" id={`body-${section.id}`} hidden>
+          <p class="section-desc">{section.desc}</p>
+
+          <ul class="item-list">
+            {section.items.map((item, i) => {
+              const fc = FLAG_CONFIG[item.flag as keyof typeof FLAG_CONFIG];
+              const key = `${section.id}-${i}`;
+              return (
+                <li class="item">
+                  <button
+                    class="item-check"
+                    type="button"
+                    role="checkbox"
+                    aria-checked="false"
+                    data-key={key}
+                    data-section={section.id}
+                    data-index={i}
+                    aria-label={item.q}
+                    style={`--accent: ${section.color}`}
+                  >
+                    <svg width="11" height="9" viewBox="0 0 11 9" fill="none" aria-hidden="true">
+                      <path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <div class="item-text">
+                    <p class="item-q">{item.q}</p>
+                    <p class="item-hint">{item.hint}</p>
+                    <span
+                      class="item-flag"
+                      style={`color: ${fc.textColor}; background: ${fc.bgColor}`}
+                    >{fc.label}</span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<style>
+  .checklist-wrap {
+    font-family: var(--font-sans, "Manrope Variable", system-ui, sans-serif);
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--color-ink-950, #1a1a1a);
+  }
+
+  /* ── Header ── */
+  .checklist-header { margin-bottom: 2rem; }
+
+  .checklist-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    margin: 0 0 0.5rem;
+    color: var(--color-ink-950, #1a1a1a);
+  }
+
+  .checklist-header > p {
+    font-size: 0.9rem;
+    color: var(--color-ink-600, #666);
+    margin: 0 0 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* Score bars */
+  .score-bars { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+
+  .score-row { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; }
+
+  .score-label {
+    min-width: 160px;
+    color: var(--color-ink-500, #666);
+    font-size: 0.8rem;
+  }
+
+  .score-track {
+    flex: 1;
+    height: 6px;
+    background: var(--line-subtle, #e5e5e5);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .score-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.35s ease;
+    width: 0%;
+  }
+
+  .score-num {
+    color: var(--color-ink-500, #666);
+    font-size: 0.75rem;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* Total row */
+  .total-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .total-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--surface, #f4f4f4);
+    border: 1px solid var(--line-subtle, #e5e5e5);
+    border-radius: 8px;
+  }
+
+  .total-num {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--color-ink-950, #1a1a1a);
+  }
+
+  .total-label {
+    font-size: 0.8rem;
+    color: var(--color-ink-500, #666);
+  }
+
+  .verdict {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 99px;
+    display: inline-block;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .reset-btn {
+    font-size: 0.8rem;
+    color: var(--color-ink-500, #666);
+    background: none;
+    border: 1px solid var(--line-subtle, #ccc);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+
+  .reset-btn:hover { background: var(--surface, #f4f4f4); }
+
+  /* ── Sections ── */
+  .sections-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .section-card {
+    border: 1px solid var(--line-subtle, #e5e5e5);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface, #fafafa);
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+
+  .section-head:hover { background: var(--surface-strong, #f0f0f0); }
+
+  .section-head[aria-expanded="true"] { background: var(--surface-strong, #f0f0f0); }
+
+  .section-head[aria-expanded="true"] .section-chevron { transform: rotate(90deg); }
+
+  .section-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-ink-950, #1a1a1a);
+    flex: 1;
+    text-align: left;
+    letter-spacing: -0.02em;
+  }
+
+  .section-meta {
+    font-size: 0.75rem;
+    color: var(--color-ink-500, #666);
+  }
+
+  .section-chevron {
+    font-size: 0.65rem;
+    color: var(--color-ink-500, #aaa);
+    transition: transform 0.2s;
+  }
+
+  /* Section body */
+  .section-body { padding: 0 16px 6px; }
+
+  .section-desc {
+    font-size: 0.875rem;
+    color: var(--color-ink-600, #555);
+    line-height: 1.6;
+    padding: 12px 0 10px;
+    border-bottom: 1px solid var(--line-subtle, #ebebeb);
+    margin: 0 0 4px;
+  }
+
+  /* Item list */
+  .item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line-subtle, #f0f0f0);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .item:hover {
+    background: rgba(74, 156, 165, 0.055);
+  }
+
+  .item:last-child { border-bottom: none; }
+
+  /* Checkbox button */
+  .item-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid var(--line-strong, #ccc);
+    background: transparent;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+    padding: 0;
+  }
+
+  .item-check svg { display: none; }
+
+  .item-check[aria-checked="true"] {
+    background: var(--accent);
+    border-color: transparent;
+  }
+
+  .item-check[aria-checked="true"] svg { display: block; }
+
+  /* Item text */
+  .item-text { flex: 1; }
+
+  .item-q {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink-950, #1a1a1a);
+    margin: 0 0 4px;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+  }
+
+  .item-hint {
+    font-size: 0.8rem;
+    color: var(--color-ink-600, #666);
+    margin: 0 0 6px;
+    line-height: 1.5;
+  }
+
+  .item-flag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+    display: inline-block;
+  }
+
+  /* ── Dark mode ── */
+  html[data-theme="dark"] .checklist-header > p,
+  html[data-theme="dark"] .score-label,
+  html[data-theme="dark"] .score-num,
+  html[data-theme="dark"] .total-label,
+  html[data-theme="dark"] .section-meta,
+  html[data-theme="dark"] .reset-btn,
+  html[data-theme="dark"] .section-desc,
+  html[data-theme="dark"] .item-hint { color: var(--color-ink-500, #aaa); }
+
+  html[data-theme="dark"] .section-chevron { color: var(--color-ink-500, #aaa); }
+
+  html[data-theme="dark"] .checklist-header h2,
+  html[data-theme="dark"] .total-num,
+  html[data-theme="dark"] .section-title,
+  html[data-theme="dark"] .item-q { color: var(--color-ink-950, #eef2f3); }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .score-label { min-width: 110px; }
+  }
+</style>
+
+<script>
+  const SECTION_META: Record<string, { total: number; color: string }> = {
+    access:     { total: 6, color: "#0F6E56" },
+    quality:    { total: 6, color: "#185FA5" },
+    ownership:  { total: 5, color: "#BA7517" },
+    compliance: { total: 5, color: "#993C1D" },
+    currency:   { total: 5, color: "#534AB7" },
+  };
+
+  const SECTION_IDS = ["access", "quality", "ownership", "compliance", "currency"];
+
+  const state: Record<string, boolean> = {};
+  SECTION_IDS.forEach(id => {
+    for (let i = 0; i < SECTION_META[id].total; i++) state[`${id}-${i}`] = false;
+  });
+
+  function getScore(sectionId: string) {
+    const { total } = SECTION_META[sectionId];
+    let checked = 0;
+    for (let i = 0; i < total; i++) if (state[`${sectionId}-${i}`]) checked++;
+    return { checked, total, pct: Math.round((checked / total) * 100) };
+  }
+
+  function getTotalScore() {
+    let checked = 0, total = 0;
+    SECTION_IDS.forEach(id => { const s = getScore(id); checked += s.checked; total += s.total; });
+    return { checked, total, pct: Math.round((checked / total) * 100) };
+  }
+
+  function getVerdict(pct: number) {
+    if (pct >= 80) return { label: "Ready to proceed",     text: "#085041", bg: "#9FE1CB" };
+    if (pct >= 55) return { label: "Proceed with caution", text: "#633806", bg: "#FAC775" };
+    if (pct >= 30) return { label: "Significant gaps",     text: "#712B13", bg: "#F5C4B3" };
+    return               { label: "Not ready",             text: "#501313", bg: "#F7C1C1" };
+  }
+
+  function updateUI() {
+    SECTION_IDS.forEach(id => {
+      const { checked, total, pct } = getScore(id);
+      const bar  = document.getElementById(`bar-${id}`) as HTMLElement | null;
+      const num  = document.getElementById(`bar-num-${id}`) as HTMLElement | null;
+      const meta = document.getElementById(`meta-${id}`) as HTMLElement | null;
+      if (bar)  bar.style.width = `${pct}%`;
+      if (num)  num.textContent = `${checked}/${total}`;
+      if (meta) meta.textContent = `${checked}/${total} checked`;
+    });
+
+    const { pct } = getTotalScore();
+    const totalEl = document.getElementById("total-pct");
+    if (totalEl) totalEl.textContent = `${pct}%`;
+
+    const badge = document.getElementById("verdict-badge") as HTMLElement | null;
+    if (badge) {
+      if (pct === 0) {
+        badge.textContent = "";
+        badge.style.background = "";
+      } else {
+        const v = getVerdict(pct);
+        badge.textContent = v.label;
+        badge.style.color = v.text;
+        badge.style.background = v.bg;
+      }
+    }
+  }
+
+  document.querySelectorAll<HTMLButtonElement>(".item-check").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.key!;
+      state[key] = !state[key];
+      btn.setAttribute("aria-checked", String(state[key]));
+      updateUI();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>(".section-head").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id      = btn.dataset.section!;
+      const body    = document.getElementById(`body-${id}`);
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!expanded));
+      if (body) body.hidden = expanded;
+    });
+  });
+
+  document.getElementById("reset-btn")?.addEventListener("click", () => {
+    Object.keys(state).forEach(k => { state[k] = false; });
+    document.querySelectorAll<HTMLButtonElement>(".item-check").forEach(btn => {
+      btn.setAttribute("aria-checked", "false");
+    });
+    updateUI();
+  });
+
+  // Clicking anywhere on an item row toggles the checkbox
+  document.querySelectorAll<HTMLElement>(".item").forEach(item => {
+    item.addEventListener("click", (e) => {
+      const btn = item.querySelector<HTMLButtonElement>(".item-check");
+      if (!btn) return;
+      if (e.target === btn || btn.contains(e.target as Node)) return;
+      btn.click();
+    });
+  });
+
+  updateUI();
+</script>
