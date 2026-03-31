@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BlogPostCard from "../../../components/BlogPostCard.astro";
+import BlogSidebar from "../../../components/BlogSidebar.astro";
+import {
+  sortedPosts,
+  groupByCategory,
+  groupByYear,
+  uniqueTags,
+} from "../../../utils/blog";
+import { siteData } from "../../../data/site";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const years = [
+    ...new Set(allPosts.map((p) => p.data.publishDate.getFullYear().toString())),
+  ];
+
+  return years.map((year) => ({
+    params: { year },
+    props: {
+      year,
+      posts: sortedPosts(
+        allPosts.filter(
+          (p) => p.data.publishDate.getFullYear().toString() === year
+        )
+      ),
+      allPosts,
+    },
+  }));
+}
+
+const { year, posts, allPosts } = Astro.props;
+
+const categories = groupByCategory(allPosts);
+const tags = uniqueTags(allPosts);
+const archiveByYear = groupByYear(allPosts);
+
+const pageTitle = `Archive: ${year} | ${siteData.hero.name}`;
+const pageDescription = `All posts from ${year}.`;
+---
+
+<BlogLayout title={pageTitle} description={pageDescription}>
+  <div class="blog-page shell">
+    <header class="blog-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Archive</p>
+      <h1 class="section-title">{year}</h1>
+      <p class="blog-page__description">
+        {posts.length} {posts.length === 1 ? "post" : "posts"} from {year}
+      </p>
+    </header>
+
+    <div class="blog-layout">
+      <div>
+        <div class="blog-post-grid">
+          {posts.map((post) => (
+            <BlogPostCard post={post} />
+          ))}
+        </div>
+      </div>
+
+      <BlogSidebar
+        categories={categories}
+        tags={tags}
+        archiveByYear={archiveByYear}
+        currentYear={year}
+      />
+    </div>
+  </div>
+</BlogLayout>

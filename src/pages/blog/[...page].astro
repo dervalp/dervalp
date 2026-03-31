@@ -1,0 +1,84 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogPostCard from "../../components/BlogPostCard.astro";
+import BlogSidebar from "../../components/BlogSidebar.astro";
+import {
+  groupByCategory,
+  groupByYear,
+  uniqueTags,
+  sortedPosts,
+} from "../../utils/blog";
+import { withBase } from "../../utils/url";
+import { siteData } from "../../data/site";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const sorted = sortedPosts(allPosts);
+  return paginate(sorted, { pageSize: 5 });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+
+// Sidebar data — re-fetch all posts (cheap at build time)
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const categories = groupByCategory(allPosts);
+const tags = uniqueTags(allPosts);
+const archiveByYear = groupByYear(allPosts);
+
+const pageTitle =
+  page.currentPage === 1
+    ? `Blog | ${siteData.hero.name}`
+    : `Blog — Page ${page.currentPage} | ${siteData.hero.name}`;
+const pageDescription =
+  "Thinking on AI product leadership, platform strategy, and enterprise software — from practitioner to practitioner.";
+---
+
+<BlogLayout title={pageTitle} description={pageDescription}>
+  <div class="blog-page shell">
+    <header class="blog-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Writing</p>
+      <h1 class="section-title">Blog</h1>
+      <p class="blog-page__description">{pageDescription}</p>
+    </header>
+
+    <div class="blog-layout">
+      <div>
+        <div class="blog-post-grid">
+          {page.data.map((post) => (
+            <BlogPostCard post={post} />
+          ))}
+        </div>
+
+        <nav class="blog-pagination" aria-label="Blog pagination">
+          {page.url.prev ? (
+            <a href={page.url.prev} class="button-secondary">
+              ← Newer
+            </a>
+          ) : (
+            <span />
+          )}
+          <span class="blog-pagination__info">
+            Page {page.currentPage} of {page.lastPage}
+          </span>
+          {page.url.next ? (
+            <a href={page.url.next} class="button-secondary">
+              Older →
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      </div>
+
+      <BlogSidebar
+        categories={categories}
+        tags={tags}
+        archiveByYear={archiveByYear}
+      />
+    </div>
+  </div>
+</BlogLayout>

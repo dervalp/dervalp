@@ -1,0 +1,139 @@
+---
+import { getCollection } from "astro:content";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogSidebar from "../../components/BlogSidebar.astro";
+import ToolCTA from "../../components/ToolCTA.astro";
+import { CTA_BLOCKS } from "../../data/ctaBlocks";
+import {
+  slugify,
+  formatDate,
+  groupByCategory,
+  groupByYear,
+  uniqueTags,
+} from "../../utils/blog";
+import { withBase, absoluteUrl } from "../../utils/url";
+import { siteData } from "../../data/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const { title, excerpt, author, publishDate, updatedDate, category, tags, image, imageAlt, cta } =
+  post.data;
+const ctaBlock = cta ? CTA_BLOCKS[cta] : null;
+
+// Sidebar data
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const categories = groupByCategory(allPosts);
+const tagList = uniqueTags(allPosts);
+const archiveByYear = groupByYear(allPosts);
+
+// Social sharing
+const postUrl = Astro.site
+  ? new URL(withBase(`/blog/${post.slug}`), Astro.site).toString()
+  : withBase(`/blog/${post.slug}`);
+const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
+const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(title)}`;
+
+const pageTitle = `${title} | ${siteData.hero.name}`;
+---
+
+<BlogLayout
+  title={pageTitle}
+  description={excerpt}
+  isArticle={true}
+  publishDate={publishDate}
+  updatedDate={updatedDate}
+  image={image}
+  author={author}
+  category={category}
+>
+  <div class="blog-page shell">
+    <div class="blog-layout">
+      <article class="blog-post">
+        {image && (
+          <div class="blog-post__hero-image">
+            <img src={image} alt={imageAlt ?? ""} loading="eager" decoding="async" />
+          </div>
+        )}
+
+        <header class="blog-post__header">
+          <a
+            href={withBase(`/blog/category/${slugify(category)}`)}
+            class="eyebrow blog-post__category"
+          >
+            {category}
+          </a>
+          <h1 class="blog-post__title">{title}</h1>
+          <div class="blog-post__meta">
+            <span class="blog-post__author">{author}</span>
+            <time datetime={publishDate.toISOString()} class="blog-post__date">
+              {formatDate(publishDate)}
+            </time>
+            {updatedDate && (
+              <span class="blog-post__updated">
+                Updated {formatDate(updatedDate)}
+              </span>
+            )}
+          </div>
+          {tags.length > 0 && (
+            <div class="blog-post__tags">
+              {tags.map((tag) => (
+                <a
+                  href={withBase(`/blog/tag/${slugify(tag)}`)}
+                  class="blog-tag"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <div class="blog-post__body prose">
+          <Content />
+        </div>
+
+        {ctaBlock && <ToolCTA {...ctaBlock} />}
+
+        <footer class="blog-post__footer">
+          <p class="eyebrow">Share this post</p>
+          <div class="blog-post__sharing-links">
+            <a
+              href={linkedinShareUrl}
+              class="button-secondary"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Share on LinkedIn"
+            >
+              Share on LinkedIn
+            </a>
+            <a
+              href={twitterShareUrl}
+              class="button-secondary"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Share on X (Twitter)"
+            >
+              Share on X
+            </a>
+          </div>
+        </footer>
+      </article>
+
+      <BlogSidebar
+        categories={categories}
+        tags={tagList}
+        archiveByYear={archiveByYear}
+        currentCategory={slugify(category)}
+      />
+    </div>
+  </div>
+</BlogLayout>
