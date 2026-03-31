@@ -8,7 +8,7 @@ tags: ["data", "readiness", "ai", "strategy", "enterprise"]
 image: "/data-readiness.png"
 imageAlt: "Five dimensions of data readiness framework"
 cta: "data-readiness"
-draft: false
+draft: true
 ---
 
 When I ask a client whether their data is ready for an AI project, the answer is almost always yes. The assessment almost always says otherwise.
