@@ -60,7 +60,7 @@ const pageTitle = `${title} | ${siteData.hero.name}`;
       <article class="blog-post">
         {image && (
           <div class="blog-post__hero-image">
-            <img src={image} alt={imageAlt ?? ""} loading="eager" decoding="async" />
+            <img src={withBase(image)} alt={imageAlt ?? ""} loading="eager" decoding="async" />
           </div>
         )}
 
