@@ -18,7 +18,7 @@ const categoryHref = withBase(`/blog/category/${slugify(category)}`);
   {image && (
     <div class="blog-card__image-wrap">
       <img
-        src={image}
+        src={withBase(image)}
         alt={imageAlt ?? ""}
         loading="lazy"
         decoding="async"
