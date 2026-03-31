@@ -22,6 +22,7 @@ export async function GET() {
     { path: "/blog/",                           changefreq: "weekly",  priority: "0.8", lastmod },
     { path: "/tools/",                          changefreq: "monthly", priority: "0.8", lastmod },
     { path: "/tools/ai-readiness-checklist/",   changefreq: "monthly", priority: "0.9", lastmod },
+    { path: "/tools/data-readiness/",           changefreq: "monthly", priority: "0.9", lastmod },
   ];
 
   const posts = await getCollection("blog", ({ data }) => !data.draft);
