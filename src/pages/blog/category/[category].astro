@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BlogPostCard from "../../../components/BlogPostCard.astro";
+import BlogSidebar from "../../../components/BlogSidebar.astro";
+import {
+  slugify,
+  sortedPosts,
+  groupByCategory,
+  groupByYear,
+  uniqueTags,
+} from "../../../utils/blog";
+import { siteData } from "../../../data/site";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const categories = [...new Set(allPosts.map((p) => p.data.category))];
+
+  return categories.map((cat) => ({
+    params: { category: slugify(cat) },
+    props: {
+      categoryLabel: cat,
+      posts: sortedPosts(allPosts.filter((p) => p.data.category === cat)),
+      allPosts,
+    },
+  }));
+}
+
+const { categoryLabel, posts, allPosts } = Astro.props;
+const categorySlug = slugify(categoryLabel);
+
+const categories = groupByCategory(allPosts);
+const tags = uniqueTags(allPosts);
+const archiveByYear = groupByYear(allPosts);
+
+const pageTitle = `Category: ${categoryLabel} | ${siteData.hero.name}`;
+const pageDescription = `All posts in the "${categoryLabel}" category.`;
+---
+
+<BlogLayout title={pageTitle} description={pageDescription}>
+  <div class="blog-page shell">
+    <header class="blog-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Category</p>
+      <h1 class="section-title">{categoryLabel}</h1>
+      <p class="blog-page__description">
+        {posts.length} {posts.length === 1 ? "post" : "posts"} in this category
+      </p>
+    </header>
+
+    <div class="blog-layout">
+      <div>
+        <div class="blog-post-grid">
+          {posts.map((post) => (
+            <BlogPostCard post={post} />
+          ))}
+        </div>
+      </div>
+
+      <BlogSidebar
+        categories={categories}
+        tags={tags}
+        archiveByYear={archiveByYear}
+        currentCategory={categorySlug}
+      />
+    </div>
+  </div>
+</BlogLayout>

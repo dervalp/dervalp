@@ -1,5 +1,6 @@
 ---
 import type { NavItem } from "../data/site";
+import { withBase } from "../utils/url";
 import IconLink from "./IconLink.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
@@ -13,6 +14,10 @@ interface Props {
 }
 
 const { name, sections, ctaHref, ctaLabel, githubUrl, linkedinUrl } = Astro.props;
+
+// Normalise path for server-side active state on page-link nav items
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pathWithoutBase = Astro.url.pathname.replace(base, "") || "/";
 ---
 
 <header class="site-header">
@@ -20,18 +25,29 @@ const { name, sections, ctaHref, ctaLabel, githubUrl, linkedinUrl } = Astro.prop
     <div class="site-header__bar">
       <a
         class="site-header__brand"
-        href="#main-content"
+        href={withBase("/")}
       >
         <span class="site-header__name">{name}</span>
       </a>
 
       <nav aria-label="Primary" class="site-header__nav">
         {
-          sections.map((section) => (
-            <a class="nav-link" data-nav-link href={`#${section.id}`}>
-              {section.label}
-            </a>
-          ))
+          sections.map((section) => {
+            const isPageLink = !!section.href;
+            const linkHref = isPageLink ? withBase(section.href!) : `#${section.id}`;
+            const serverActive = isPageLink && pathWithoutBase.startsWith(section.href!);
+            return (
+              <a
+                class="nav-link"
+                data-nav-link={!isPageLink ? "" : undefined}
+                data-active={serverActive ? "true" : isPageLink ? "false" : undefined}
+                href={linkHref}
+                aria-current={serverActive ? "page" : undefined}
+              >
+                {section.label}
+              </a>
+            );
+          })
         }
       </nav>
 

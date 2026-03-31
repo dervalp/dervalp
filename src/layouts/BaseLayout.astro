@@ -116,6 +116,7 @@ const structuredData = siteRootUrl
         set:html={JSON.stringify(structuredData)}
       />
     )}
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>

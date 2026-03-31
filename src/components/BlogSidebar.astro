@@ -1,0 +1,103 @@
+---
+import { slugify } from "../utils/blog";
+import { withBase } from "../utils/url";
+
+interface Props {
+  categories: Record<string, number>;
+  tags: string[];
+  archiveByYear: Record<string, number>;
+  currentCategory?: string;
+  currentTag?: string;
+  currentYear?: string;
+}
+
+const {
+  categories,
+  tags,
+  archiveByYear,
+  currentCategory,
+  currentTag,
+  currentYear,
+} = Astro.props;
+
+const sortedYears = Object.entries(archiveByYear).sort(
+  ([a], [b]) => Number(b) - Number(a)
+);
+const sortedCategories = Object.entries(categories).sort(
+  ([, a], [, b]) => b - a
+);
+---
+
+<aside class="blog-sidebar" aria-label="Blog navigation">
+  {sortedCategories.length > 0 && (
+    <section class="blog-sidebar__section">
+      <p class="eyebrow">Categories</p>
+      <ul class="blog-sidebar__list">
+        {sortedCategories.map(([cat, count]) => {
+          const catSlug = slugify(cat);
+          return (
+            <li>
+              <a
+                href={withBase(`/blog/category/${catSlug}`)}
+                class="blog-sidebar__link"
+                data-active={currentCategory === catSlug ? "true" : "false"}
+                aria-current={currentCategory === catSlug ? "page" : undefined}
+              >
+                <span>{cat}</span>
+                <span class="blog-sidebar__count">{count}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )}
+
+  {tags.length > 0 && (
+    <section class="blog-sidebar__section">
+      <p class="eyebrow">Tags</p>
+      <div class="blog-sidebar__tag-cloud">
+        {tags.map((tag) => {
+          const tagSlug = slugify(tag);
+          return (
+            <a
+              href={withBase(`/blog/tag/${tagSlug}`)}
+              class="blog-tag"
+              data-active={currentTag === tagSlug ? "true" : "false"}
+              aria-current={currentTag === tagSlug ? "page" : undefined}
+            >
+              {tag}
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  {sortedYears.length > 0 && (
+    <section class="blog-sidebar__section">
+      <p class="eyebrow">Archive</p>
+      <ul class="blog-sidebar__list">
+        {sortedYears.map(([year, count]) => (
+          <li>
+            <a
+              href={withBase(`/blog/archive/${year}`)}
+              class="blog-sidebar__link"
+              data-active={currentYear === year ? "true" : "false"}
+              aria-current={currentYear === year ? "page" : undefined}
+            >
+              <span>{year}</span>
+              <span class="blog-sidebar__count">{count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="blog-sidebar__section">
+    <a href={withBase("/blog")} class="blog-sidebar__all-link button-secondary">
+      ← All posts
+    </a>
+  </section>
+</aside>

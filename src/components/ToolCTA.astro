@@ -1,0 +1,107 @@
+---
+import { withBase } from "../utils/url";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  pills: string[];
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const { eyebrow, title, description, pills, ctaLabel, ctaHref } = Astro.props;
+---
+
+<div class="tool-cta">
+  <p class="tool-cta__eyebrow">{eyebrow}</p>
+  <h3 class="tool-cta__title">{title}</h3>
+  <p class="tool-cta__desc">{description}</p>
+  <div class="tool-cta__pills">
+    {pills.map((pill) => <span class="tool-cta__pill">{pill}</span>)}
+  </div>
+  <a href={withBase(ctaHref)} class="tool-cta__btn">
+    {ctaLabel}
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .tool-cta {
+    margin-top: 3rem;
+    background: var(--color-ink-950, #15191c);
+    border-radius: 16px;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .tool-cta__eyebrow {
+    font-family: var(--font-meta, ui-monospace, monospace);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  .tool-cta__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .tool-cta__desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 42rem;
+    margin: 0;
+  }
+
+  .tool-cta__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .tool-cta__pill {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .tool-cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--color-ink-950, #15191c);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: opacity 180ms ease, transform 180ms ease;
+    margin-top: 0.25rem;
+  }
+
+  .tool-cta__btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+</style>

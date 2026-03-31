@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BlogPostCard from "../../../components/BlogPostCard.astro";
+import BlogSidebar from "../../../components/BlogSidebar.astro";
+import {
+  slugify,
+  sortedPosts,
+  groupByCategory,
+  groupByYear,
+  uniqueTags,
+} from "../../../utils/blog";
+import { siteData } from "../../../data/site";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const allTags = [...new Set(allPosts.flatMap((p) => p.data.tags))];
+
+  return allTags.map((tag) => ({
+    params: { tag: slugify(tag) },
+    props: {
+      tagLabel: tag,
+      posts: sortedPosts(allPosts.filter((p) => p.data.tags.includes(tag))),
+      allPosts,
+    },
+  }));
+}
+
+const { tagLabel, posts, allPosts } = Astro.props;
+const tagSlug = slugify(tagLabel);
+
+const categories = groupByCategory(allPosts);
+const tags = uniqueTags(allPosts);
+const archiveByYear = groupByYear(allPosts);
+
+const pageTitle = `Tag: ${tagLabel} | ${siteData.hero.name}`;
+const pageDescription = `All posts tagged "${tagLabel}".`;
+---
+
+<BlogLayout title={pageTitle} description={pageDescription}>
+  <div class="blog-page shell">
+    <header class="blog-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Tag</p>
+      <h1 class="section-title">{tagLabel}</h1>
+      <p class="blog-page__description">
+        {posts.length} {posts.length === 1 ? "post" : "posts"} with this tag
+      </p>
+    </header>
+
+    <div class="blog-layout">
+      <div>
+        <div class="blog-post-grid">
+          {posts.map((post) => (
+            <BlogPostCard post={post} />
+          ))}
+        </div>
+      </div>
+
+      <BlogSidebar
+        categories={categories}
+        tags={tags}
+        archiveByYear={archiveByYear}
+        currentTag={tagSlug}
+      />
+    </div>
+  </div>
+</BlogLayout>

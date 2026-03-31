@@ -1,6 +1,7 @@
 export type NavItem = {
   id: string;
   label: string;
+  href?: string; // if present, used as link href directly instead of #id
 };
 
 export type Capability = {
@@ -112,11 +113,8 @@ export const siteData = {
     favicon: "/favicon.svg"
   },
   navigation: [
-    { id: "point-of-view", label: "Point of View" },
-    { id: "capabilities", label: "Focus" },
-    { id: "transformations", label: "Work" },
-    { id: "credibility", label: "Experience" },
-    { id: "contact", label: "Contact" }
+    { id: "blog", label: "Blog", href: "/blog" },
+    { id: "tools", label: "Tools", href: "/tools" }
   ],
   hero: {
     name: "Pierre Derval",

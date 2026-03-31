@@ -1,0 +1,48 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { withBase } from "../../utils/url";
+import { siteData } from "../../data/site";
+
+const title = `Tools | ${siteData.hero.name}`;
+const description =
+  "Free, practical tools for AI product leaders and enterprise software teams. No sign-up required.";
+
+const tools = [
+  {
+    href: withBase("/tools/ai-readiness-checklist"),
+    eyebrow: "Assessment",
+    title: "AI Readiness Checklist",
+    description:
+      "Work through 28 questions across five dimensions — business priority, data readiness, architecture maturity, governance, and delivery capability — before scoping any AI engagement.",
+    cta: "Run the checklist →",
+    meta: "28 questions · 5 dimensions · Free",
+    full: true,
+  },
+];
+---
+
+<BlogLayout {title} {description}>
+  <div class="blog-page shell">
+    <header class="blog-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Free resources</p>
+      <h1 class="section-title">Tools</h1>
+      <p class="blog-page__description">{description}</p>
+    </header>
+
+    <div class="tools-grid">
+      {tools.map((tool) => (
+        <a href={tool.href} class={`tool-card${tool.full ? " tool-card--full" : ""}`}>
+          <div class="tool-card__body">
+            <p class="eyebrow tool-card__eyebrow">{tool.eyebrow}</p>
+            <h2 class="tool-card__title">{tool.title}</h2>
+            <p class="tool-card__description">{tool.description}</p>
+            <div class="tool-card__footer">
+              <span class="tool-card__meta">{tool.meta}</span>
+              <span class="tool-card__cta">{tool.cta}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BlogLayout>
