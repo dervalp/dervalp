@@ -114,7 +114,7 @@ export const siteData = {
   },
   navigation: [
     { id: "blog", label: "Blog", href: "/blog" },
-    { id: "tools", label: "Tools", href: "/tools" }
+    { id: "tools", label: "Diagnostics", href: "/tools" }
   ],
   hero: {
     name: "Pierre Derval",
