@@ -18,7 +18,7 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
 
 <BaseLayout>
   <HeaderNav
-    ctaHref="#contact"
+    ctaHref="/contact"
     ctaLabel={siteData.hero.primaryCtaLabel}
     githubUrl={siteData.socials.githubUrl}
     linkedinUrl={siteData.socials.linkedinUrl}
@@ -233,10 +233,4 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
     </section>
   </main>
 
-  <footer class="border-t border-[color:var(--line-subtle)] py-8">
-    <div class="shell flex flex-col gap-3 text-sm text-ink-500 sm:flex-row sm:items-center sm:justify-between">
-      <p>{siteData.hero.name}</p>
-      <p>{siteData.contact.footerNote}</p>
-    </div>
-  </footer>
 </BaseLayout>

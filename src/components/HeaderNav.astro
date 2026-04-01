@@ -26,8 +26,10 @@ const pathWithoutBase = Astro.url.pathname.replace(base, "") || "/";
       <a
         class="site-header__brand"
         href={withBase("/")}
+        aria-label="Pierre Derval — home"
       >
-        <span class="site-header__name">{name}</span>
+        <img class="site-header__logo site-header__logo--dark" src={withBase("/pierre-derval-logo.svg")} alt="Pierre Derval" height="22" />
+        <img class="site-header__logo site-header__logo--light" src={withBase("/pierre-derval-logo-white.svg")} alt="Pierre Derval" height="22" />
       </a>
 
       <nav aria-label="Primary" class="site-header__nav">
@@ -55,7 +57,7 @@ const pathWithoutBase = Astro.url.pathname.replace(base, "") || "/";
         <IconLink external={true} href={githubUrl} icon="github" kind="icon" label="View GitHub profile" />
         <IconLink external={true} href={linkedinUrl} icon="linkedin" kind="icon" label="View LinkedIn profile" />
         <ThemeToggle />
-        <a class="button-secondary site-header__cta" href={ctaHref}>
+        <a class="button-primary site-header__cta" href={ctaHref}>
           {ctaLabel}
         </a>
       </div>
