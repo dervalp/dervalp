@@ -10,30 +10,30 @@
   --color-ink-950: #15191c;
   --color-ink-900: #20272c;
   --color-ink-800: #364047;
-  --color-ink-600: #5c6871;
-  --color-ink-500: #7d8891;
+  --color-ink-600: #3a4a53;
+  --color-ink-500: #586672;
 }
 
 :root,
 :root[data-theme="light"] {
   --header-offset: 4.85rem;
   --canvas: #f3efe7;
-  --surface: rgba(255, 255, 255, 0.58);
-  --surface-strong: rgba(255, 255, 255, 0.82);
+  --surface: rgba(255, 255, 255, 0.80);
+  --surface-strong: rgba(255, 255, 255, 0.96);
   --surface-overlay: rgba(243, 239, 231, 0.82);
   --panel-background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(249, 245, 237, 0.9));
   --body-background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 32%),
     linear-gradient(180deg, #f7f3ec 0%, #f3efe7 42%, #efe8de 100%);
-  --line-subtle: rgba(21, 25, 28, 0.08);
-  --line-strong: rgba(21, 25, 28, 0.16);
+  --line-subtle: rgba(21, 25, 28, 0.13);
+  --line-strong: rgba(21, 25, 28, 0.24);
   --accent-700: #2e5d63;
   --accent-500: #507a80;
   --accent-soft: rgba(80, 122, 128, 0.12);
   --danger-600: #b04c4a;
   --shadow-soft: 0 10px 30px rgba(21, 25, 28, 0.03);
   --shadow-button: 0 6px 18px rgba(21, 25, 28, 0.05);
-  --section-contrast: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12));
+  --section-contrast: linear-gradient(180deg, rgba(255, 255, 255, 0.50), rgba(255, 255, 255, 0.22));
   --section-contrast-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(249, 245, 237, 0.4));
   --button-primary-bg: #161c20;
   --button-primary-bg-hover: #0f1418;
@@ -49,7 +49,7 @@
   --focus-card-surface-top: rgba(255, 255, 255, 0.9);
   --focus-card-surface-bottom: rgba(246, 241, 233, 0.98);
   --focus-card-surface-falloff: rgba(223, 212, 199, 0.44);
-  --focus-card-frame-rest: rgba(21, 25, 28, 0.08);
+  --focus-card-frame-rest: rgba(21, 25, 28, 0.12);
   --focus-card-frame-hover: rgba(21, 25, 28, 0.13);
   --focus-card-highlight-rest: rgba(255, 255, 255, 0.62);
   --focus-card-highlight-hover: rgba(255, 255, 255, 0.82);
@@ -61,7 +61,7 @@
   --work-card-surface-top: rgba(255, 255, 255, 0.96);
   --work-card-surface-bottom: rgba(243, 237, 229, 1);
   --work-card-surface-falloff: rgba(221, 209, 196, 0.5);
-  --work-card-frame-rest: rgba(21, 25, 28, 0.09);
+  --work-card-frame-rest: rgba(21, 25, 28, 0.13);
   --work-card-frame-hover: rgba(21, 25, 28, 0.15);
   --work-card-highlight-rest: rgba(255, 255, 255, 0.68);
   --work-card-highlight-hover: rgba(255, 255, 255, 0.88);
@@ -77,15 +77,15 @@
 
 :root[data-theme="dark"] {
   --canvas: #11161a;
-  --surface: rgba(23, 30, 35, 0.54);
-  --surface-strong: rgba(27, 35, 41, 0.88);
+  --surface: rgba(23, 30, 35, 0.78);
+  --surface-strong: rgba(27, 35, 41, 0.96);
   --surface-overlay: rgba(17, 22, 26, 0.84);
   --panel-background: linear-gradient(180deg, rgba(28, 36, 42, 0.94), rgba(20, 26, 31, 0.98));
   --body-background:
     radial-gradient(circle at top left, rgba(94, 138, 145, 0.12), transparent 30%),
     linear-gradient(180deg, #151b20 0%, #11161a 45%, #0d1115 100%);
-  --line-subtle: rgba(236, 241, 244, 0.08);
-  --line-strong: rgba(236, 241, 244, 0.16);
+  --line-subtle: rgba(236, 241, 244, 0.13);
+  --line-strong: rgba(236, 241, 244, 0.24);
   --accent-700: #a7c1c6;
   --accent-500: #86aeb4;
   --accent-soft: rgba(134, 174, 180, 0.14);
@@ -135,8 +135,8 @@
   --color-ink-950: #eef2f3;
   --color-ink-900: #dde4e8;
   --color-ink-800: #c5d0d6;
-  --color-ink-600: #9cabb3;
-  --color-ink-500: #85949d;
+  --color-ink-600: #b2c0c8;
+  --color-ink-500: #9aabb4;
 }
 
 html {
@@ -1981,7 +1981,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   flex-direction: column;
   border: 1px solid var(--line-subtle);
   padding: clamp(1.75rem, 3vw, 2.5rem);
-  background: transparent;
+  background: var(--surface);
   transition:
     background-color 220ms var(--ease-premium),
     border-color 220ms var(--ease-premium),
