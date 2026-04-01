@@ -1441,7 +1441,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .blog-post-grid {
   display: grid;
-  gap: 1.875rem;
+  gap: 2rem;
 }
 
 .blog-card {
