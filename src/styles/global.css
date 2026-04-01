@@ -17,14 +17,14 @@
 :root,
 :root[data-theme="light"] {
   --header-offset: 4.85rem;
-  --canvas: #ede9e1;
+  --canvas: #faf9f5;
   --surface: rgba(255, 255, 255, 0.80);
   --surface-strong: rgba(255, 255, 255, 0.96);
-  --surface-overlay: rgba(237, 233, 225, 0.82);
+  --surface-overlay: rgba(250, 249, 245, 0.82);
   --panel-background: linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(249, 245, 237, 0.98));
   --body-background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 32%),
-    linear-gradient(180deg, #f4f0e8 0%, #ede9e1 42%, #e6dfd2 100%);
+    linear-gradient(180deg, #fdfcf9 0%, #faf9f5 42%, #f4f1ea 100%);
   --line-subtle: rgba(21, 25, 28, 0.13);
   --line-strong: rgba(21, 25, 28, 0.24);
   --accent-700: #2e5d63;
@@ -41,7 +41,7 @@
   --button-primary-fg: #f7f4ef;
   --hero-image-filter: grayscale(1) saturate(0.55) contrast(0.92);
   --hero-image-opacity: 0.5;
-  --hero-image-overlay: linear-gradient(180deg, rgba(237, 233, 225, 0.68), rgba(237, 233, 225, 0.82));
+  --hero-image-overlay: linear-gradient(180deg, rgba(250, 249, 245, 0.68), rgba(250, 249, 245, 0.82));
   --credibility-image-filter: grayscale(1) saturate(0.42) contrast(0.96);
   --credibility-image-opacity: 0.54;
   --credibility-image-overlay: linear-gradient(180deg, rgba(243, 239, 231, 0.14), rgba(243, 239, 231, 0.28));
