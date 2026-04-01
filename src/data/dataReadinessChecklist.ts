@@ -66,8 +66,8 @@ export const SECTIONS = [
     ]
   },
   {
-    id: "currency",
-    label: "Currency",
+    id: "freshness",
+    label: "Freshness",
     icon: "🕐",
     color: "#534AB7",
     bg: "#EEEDFE",

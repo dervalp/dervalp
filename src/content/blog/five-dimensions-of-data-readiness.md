@@ -1,6 +1,6 @@
 ---
 title: "Five Dimensions of Data Readiness — and Why Each One Matters"
-excerpt: "Before any AI project starts, five questions about your data need honest answers. Access, quality, ownership, compliance, and currency. Here is what each one reveals — and what happens when you skip it."
+excerpt: "Before any AI project starts, five questions about your data need honest answers. Access, quality, ownership, compliance, and freshness. Here is what each one reveals — and what happens when you skip it."
 author: "Pierre Derval"
 publishDate: 2026-04-01
 category: "Data Strategy"
@@ -59,11 +59,11 @@ Regulated industries carry additional complexity. Financial services, healthcare
 
 > **What to check:** Involve legal and data protection at the start, not as a sign-off at the end. Review the original consent or collection basis for each data source against the intended AI use. Map data residency requirements before selecting a platform. For regulated sectors, identify the specific frameworks that apply and confirm the intended architecture satisfies them.
 
-## 05 — Currency: Is the data fresh enough now — and will it stay that way?
+## 05 — Freshness: Is the data fresh enough now — and will it stay that way?
 
-> *My take: Currency is the dimension people most often treat as an afterthought, because at launch the data is usually current. The problem surfaces six months later when the model is quietly producing worse outputs because the world has changed and nobody updated it. I have never seen a model degrade dramatically overnight. It happens gradually, and without monitoring in place, it is invisible until users notice.*
+> *My take: Freshness is the dimension people most often treat as an afterthought, because at launch the data is usually current. The problem surfaces six months later when the model is quietly producing worse outputs because the world has changed and nobody updated it. I have never seen a model degrade dramatically overnight. It happens gradually, and without monitoring in place, it is invisible until users notice.*
 
-Currency covers two distinct things. The first is the training data: is it recent enough to represent current conditions, or has the domain shifted since it was collected? For some use cases twelve months of historical data is perfectly adequate. For others it is dangerously stale.
+Freshness covers two distinct things. The first is the training data: is it recent enough to represent current conditions, or has the domain shifted since it was collected? For some use cases twelve months of historical data is perfectly adequate. For others it is dangerously stale.
 
 The second is the ongoing refresh: once the system is live, how does the data stay current? Manual refresh processes fail. They get deprioritised, forgotten, or orphaned when the person responsible moves on. Automation is the only answer that holds up over time.
 
@@ -77,6 +77,6 @@ Every one of these dimensions is assessable before a project starts. None of the
 
 Organisations that skip this work do not avoid data problems. They find them later, in circumstances that are harder to address and more expensive to fix. A data readiness assessment is not a barrier to getting started. It is what makes getting started worth doing.
 
-If accessibility is unclear, map the extraction path before anything else. If quality is unknown, profile the data before scoping the model. If ownership is diffuse, name an owner before the build begins. If compliance is unreviewed, involve legal before the architecture is locked. If currency is unmanaged, design refresh and monitoring in from the start.
+If accessibility is unclear, map the extraction path before anything else. If quality is unknown, profile the data before scoping the model. If ownership is diffuse, name an owner before the build begins. If compliance is unreviewed, involve legal before the architecture is locked. If freshness is unmanaged, design refresh and monitoring in from the start.
 
 None of these steps are long. All of them are cheaper now than they will be in three months.

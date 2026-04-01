@@ -12,13 +12,13 @@ export const CTA_BLOCKS: Record<string, CtaBlock> = {
     eyebrow: "Interactive tool",
     title: "Run the assessment on your own data",
     description:
-      "A structured checklist across accessibility, quality, ownership, compliance, and currency — 27 questions with a live readiness score.",
+      "A structured checklist across accessibility, quality, ownership, compliance, and freshness — 27 questions with a live readiness score.",
     pills: [
       "Accessibility",
       "Quality",
       "Ownership",
       "Compliance",
-      "Currency",
+      "Freshness",
     ],
     ctaLabel: "Open the data readiness checklist",
     ctaHref: "/tools/data-readiness",

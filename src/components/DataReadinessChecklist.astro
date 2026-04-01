@@ -397,10 +397,10 @@ import { SECTIONS, FLAG_CONFIG } from '../data/dataReadinessChecklist';
     quality:    { total: 6, color: "#185FA5" },
     ownership:  { total: 5, color: "#BA7517" },
     compliance: { total: 5, color: "#993C1D" },
-    currency:   { total: 5, color: "#534AB7" },
+    freshness:   { total: 5, color: "#534AB7" },
   };
 
-  const SECTION_IDS = ["access", "quality", "ownership", "compliance", "currency"];
+  const SECTION_IDS = ["access", "quality", "ownership", "compliance", "freshness"];
 
   const state: Record<string, boolean> = {};
   SECTION_IDS.forEach(id => {
