@@ -1441,14 +1441,13 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .blog-post-grid {
   display: grid;
-  border-top: 1px solid var(--line-subtle);
-  border-left: 1px solid var(--line-subtle);
+  gap: 1.875rem;
 }
 
 .blog-card {
   position: relative;
-  border-right: 1px solid var(--line-subtle);
-  border-bottom: 1px solid var(--line-subtle);
+  border: 1px solid var(--line-subtle);
+  border-radius: 12px;
   padding: clamp(1.5rem, 2.5vw, 2rem);
   display: grid;
   gap: 0.85rem;
@@ -1467,6 +1466,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   border-bottom: 1px solid var(--line-subtle);
   margin: calc(-1 * clamp(1.5rem, 2.5vw, 2rem));
   margin-bottom: 0;
+  border-radius: 11px 11px 0 0;
 }
 
 .blog-card__image {
