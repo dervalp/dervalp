@@ -14,6 +14,30 @@ const resumeHref = withBase(siteData.socials.resumePath);
 const heroBackgroundHref = withBase("/hero-background-test.png");
 const credibilityBackgroundHref = withBase("/proven-enterprise-background.png");
 const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
+
+const diagnostics = [
+  {
+    href: withBase("/tools/ai-approach-finder"),
+    eyebrow: "Decision Tool",
+    title: "AI Approach Finder",
+    description: "Eight questions to find the right AI approach for your use case — rules, ML, GenAI, RAG, or Agents.",
+    date: "Mar 2025",
+  },
+  {
+    href: withBase("/tools/ai-readiness-checklist"),
+    eyebrow: "Assessment",
+    title: "AI Readiness Checklist",
+    description: "28 questions across five dimensions to assess whether your team and organisation are ready to ship AI.",
+    date: "Feb 2025",
+  },
+  {
+    href: withBase("/tools/data-readiness"),
+    eyebrow: "Assessment",
+    title: "Data Readiness Checklist",
+    description: "27 questions across five dimensions to evaluate data quality, governance, and accessibility before any AI project.",
+    date: "Jan 2025",
+  },
+];
 ---
 
 <BaseLayout>
@@ -70,6 +94,32 @@ const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? 
             <IconLink href={resumeHref} icon="download" kind="button-secondary" label={siteData.hero.tertiaryCtaLabel} />
           </aside>
         </div>
+      </div>
+    </section>
+
+    <section class="shell section section-band section-band--muted" data-section id="diagnostics">
+      <div class="reveal">
+        <p class="eyebrow">Diagnostics</p>
+        <h2 class="section-title mt-5">Practical tools for AI decisions</h2>
+      </div>
+      <div class="diagnostics-grid" role="list">
+        {diagnostics.map((d, i) => (
+          <div class="diagnostic-card reveal" style={`--delay: ${i * 80}ms`} role="listitem">
+            <div class="diagnostic-card__body">
+              <p class="diagnostic-card__eyebrow eyebrow">{d.eyebrow}</p>
+              <h3 class="diagnostic-card__title">{d.title}</h3>
+              <p class="diagnostic-card__desc">{d.description}</p>
+            </div>
+            <div class="diagnostic-card__footer">
+              <div class="diagnostic-card__meta">
+                <span class="diagnostic-card__date-label">Date</span>
+                <span class="diagnostic-card__date">{d.date}</span>
+              </div>
+              <hr class="diagnostic-card__rule" />
+              <a href={d.href} class="button-primary diagnostic-card__cta">Start →</a>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
