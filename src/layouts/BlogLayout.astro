@@ -62,7 +62,7 @@ const ogImageUrl = image ? absoluteUrl(image, Astro.site) : undefined;
   </Fragment>
 
   <HeaderNav
-    ctaHref="/#contact"
+    ctaHref="/contact"
     ctaLabel={siteData.hero.primaryCtaLabel}
     githubUrl={siteData.socials.githubUrl}
     linkedinUrl={siteData.socials.linkedinUrl}
@@ -73,13 +73,4 @@ const ogImageUrl = image ? absoluteUrl(image, Astro.site) : undefined;
   <main id="main-content">
     <slot />
   </main>
-
-  <footer class="site-footer">
-    <div class="shell">
-      <div class="site-footer__bar">
-        <span class="site-footer__name">{siteData.hero.name}</span>
-        <span class="site-footer__tagline">{siteData.hero.brandLine}</span>
-      </div>
-    </div>
-  </footer>
 </BaseLayout>

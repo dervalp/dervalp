@@ -1,0 +1,195 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { siteData } from "../data/site";
+
+const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
+const hasEndpoint = endpoint.length > 0;
+---
+
+<BlogLayout
+  title={`Contact · ${siteData.seo.siteName}`}
+  description="Start a conversation with Pierre Derval about AI product leadership, platform strategy, or enterprise AI execution."
+>
+  <div class="contact-page">
+
+    <!-- Left: dark manifesto panel -->
+    <div class="contact-page__left reveal">
+      <h1 class="contact-page__headline">
+        {siteData.contact.title}
+      </h1>
+      <p class="contact-page__desc">
+        {siteData.contact.directMessage}
+      </p>
+      {siteData.contact.secondaryMessage && (
+        <p class="contact-page__desc">
+          {siteData.contact.secondaryMessage}
+        </p>
+      )}
+      <hr class="contact-page__divider" />
+      <div class="contact-page__links">
+        <a
+          class="contact-page__link"
+          href={siteData.socials.linkedinUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+          <span class="contact-page__link-arrow" aria-hidden="true">→</span>
+        </a>
+        <a
+          class="contact-page__link"
+          href={siteData.socials.githubUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+          <span class="contact-page__link-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: form panel -->
+    <div class="contact-page__right">
+      <div class="contact-page__form-wrap reveal" style="--delay: 120ms">
+        <p class="eyebrow">Send a message</p>
+
+        {hasEndpoint ? (
+          <>
+            <form class="contact-form" id="contact-form" novalidate>
+
+              <!-- Honeypot (hidden from humans, visible to bots) -->
+              <div class="contact-form__honeypot" aria-hidden="true">
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <div class="contact-form__field">
+                <label class="form-label" for="cf-name">Name</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="cf-name"
+                  name="name"
+                  autocomplete="name"
+                  required
+                  maxlength="120"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div class="contact-form__field">
+                <label class="form-label" for="cf-email">Email</label>
+                <input
+                  class="form-input"
+                  type="email"
+                  id="cf-email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  maxlength="160"
+                  placeholder="you@company.com"
+                />
+              </div>
+
+              <div class="contact-form__field">
+                <div class="contact-form__label-row">
+                  <label class="form-label" for="cf-company">Company</label>
+                  <span class="contact-form__optional">optional</span>
+                </div>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="cf-company"
+                  name="company"
+                  autocomplete="organization"
+                  maxlength="160"
+                  placeholder="Where you work"
+                />
+              </div>
+
+              <div class="contact-form__field">
+                <label class="form-label" for="cf-message">Message</label>
+                <textarea
+                  class="form-textarea"
+                  id="cf-message"
+                  name="message"
+                  required
+                  maxlength="4000"
+                  placeholder={siteData.contact.formDescription}
+                ></textarea>
+              </div>
+
+              <div>
+                <button type="submit" class="button-primary contact-form__submit" id="cf-submit">
+                  {siteData.contact.submitLabel}
+                </button>
+                <p class="contact-form__error" id="contact-error" hidden></p>
+              </div>
+
+            </form>
+
+            <div class="contact-form__success" id="contact-success" hidden>
+              {siteData.contact.successMessage}
+            </div>
+          </>
+        ) : (
+          <div style="margin-top: 1.75rem;">
+            <p style="font-family: var(--font-sans); font-size: 1rem; line-height: 1.7; color: var(--color-ink-600); margin-bottom: 1.5rem;">
+              {siteData.contact.directDescription}
+            </p>
+            <a
+              class="button-primary"
+              href={siteData.socials.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Connect on LinkedIn
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+  </div>
+</BlogLayout>
+
+{hasEndpoint && (
+  <script define:vars={{ endpoint, successMessage: siteData.contact.successMessage, errorMessage: siteData.contact.errorMessage }}>
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('cf-submit');
+    const errorEl = document.getElementById('contact-error');
+    const successEl = document.getElementById('contact-success');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+        errorEl.hidden = true;
+
+        const data = Object.fromEntries(new FormData(form));
+
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          const json = await res.json();
+
+          if (json.ok) {
+            form.hidden = true;
+            successEl.hidden = false;
+          } else {
+            throw new Error(json.message || errorMessage);
+          }
+        } catch (err) {
+          errorEl.textContent = err.message || errorMessage;
+          errorEl.hidden = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message';
+        }
+      });
+    }
+  </script>
+)}

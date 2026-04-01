@@ -1,0 +1,503 @@
+/* ─── Design token mappings ─────────────────────────────────────────────── */
+/*
+ * All --aaf-* vars are defined on .wrap so they inherit the site's CSS
+ * custom properties (canvas, surface, line-subtle, accent-*, shadow-card)
+ * and automatically respond to the site's light/dark theme toggle.
+ */
+.wrap {
+  --aaf-bg:           var(--canvas, #faf7f2);
+  --aaf-surface:      var(--surface-strong, #ffffff);
+  --aaf-border:       var(--line-subtle, rgba(21,25,28,0.13));
+  --aaf-border-hover: var(--line-strong, rgba(21,25,28,0.24));
+  --aaf-accent:       var(--accent-700, #2e5d63);
+  --aaf-accent-light: var(--accent-500, #507a80);
+  --aaf-accent-bg:    var(--accent-soft, rgba(80,122,128,0.12));
+  --aaf-accent-border:var(--accent-soft, rgba(80,122,128,0.25));
+  --aaf-card-shadow:  var(--shadow-card, 0 1px 2px rgba(21,25,28,0.05), 0 4px 16px rgba(21,25,28,0.08));
+  /* Text colours – overridden per theme below */
+  --aaf-text:         #2d2520;
+  --aaf-text-strong:  #1a1410;
+  --aaf-muted:        #6b7f85;
+  --aaf-muted-light:  #9eafb2;
+  /* Section accent colours */
+  --aaf-section-brain: var(--accent-700, #2e5d63);
+  --aaf-section-arch:  #7c6340;
+  /* Approach-specific score bar fills */
+  --aaf-fill-rules:   #a68b6b;
+  --aaf-fill-ml:      #507a80;
+  --aaf-fill-dl:      #2e5d63;
+  --aaf-fill-genai:   #6b9fa6;
+  --aaf-fill-direct:  #b8956a;
+  --aaf-fill-rag:     #6b7c5e;
+  --aaf-fill-agents:  #5e6b7c;
+
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+:global([data-theme="dark"]) .wrap {
+  --aaf-text:        #cbc6be;
+  --aaf-text-strong: #ece9e3;
+  --aaf-muted:       #8a9ea3;
+  --aaf-muted-light: #567279;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+@keyframes aafSlideIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Progress bar ───────────────────────────────────────────────────────── */
+.progressWrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: var(--aaf-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--aaf-accent), var(--aaf-accent-light));
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--aaf-muted);
+  white-space: nowrap;
+}
+
+/* ─── Question card ──────────────────────────────────────────────────────── */
+.questionCard {
+  background: var(--aaf-surface);
+  border: 1px solid var(--aaf-border);
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin-bottom: 16px;
+  box-shadow: var(--aaf-card-shadow);
+  animation: aafSlideIn 0.35s ease;
+}
+
+.qNumber {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--aaf-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.qText {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--aaf-text-strong);
+  line-height: 1.35;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.qHint {
+  font-size: 13px;
+  color: var(--aaf-muted);
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+
+/* ─── Options ────────────────────────────────────────────────────────────── */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--aaf-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--aaf-bg);
+  user-select: none;
+}
+
+.option:hover {
+  border-color: var(--aaf-border-hover);
+  box-shadow: 0 2px 8px rgba(21, 25, 28, 0.05);
+}
+
+.option.selected {
+  border-color: var(--aaf-accent-border);
+  background: var(--aaf-accent-bg);
+  box-shadow: 0 0 0 1px var(--aaf-accent-border);
+}
+
+.optionDot {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--aaf-muted-light);
+  margin-top: 1px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option.selected .optionDot {
+  border-color: var(--aaf-accent);
+  background: var(--aaf-accent);
+}
+
+.option.selected .optionDot::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  display: block;
+}
+
+.optionLabel {
+  font-size: 14px;
+  color: var(--aaf-text);
+  line-height: 1.5;
+}
+
+.optionLabel strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 1px;
+  color: var(--aaf-text-strong);
+  font-size: 14px;
+}
+
+.sub {
+  font-size: 12.5px;
+  color: var(--aaf-muted);
+  line-height: 1.45;
+  display: block;
+}
+
+/* ─── Navigation ─────────────────────────────────────────────────────────── */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.btnGhost {
+  background: transparent;
+  border: 1px solid var(--aaf-border);
+  color: var(--aaf-muted);
+}
+
+.btnGhost:hover:not(:disabled) {
+  border-color: var(--aaf-border-hover);
+  color: var(--aaf-text);
+}
+
+.btnPrimary {
+  background: var(--aaf-accent);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(46, 93, 99, 0.2);
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: var(--aaf-accent-light);
+  box-shadow: 0 2px 8px rgba(46, 93, 99, 0.25);
+}
+
+.btnPrimary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ─── Results ────────────────────────────────────────────────────────────── */
+.results {
+  animation: aafSlideIn 0.4s ease;
+}
+
+.resultsHeader {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.resultsHeader h2 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--aaf-text-strong);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.resultsHeader p {
+  font-size: 14px;
+  color: var(--aaf-muted);
+  margin: 0;
+}
+
+/* ─── Results tag ────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--aaf-accent);
+  background: var(--aaf-accent-bg);
+  border: 1px solid var(--aaf-accent-border);
+  padding: 5px 14px;
+  border-radius: 99px;
+  margin-bottom: 24px;
+}
+
+/* ─── Section headers ────────────────────────────────────────────────────── */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.sectionIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.sectionIcon.brain {
+  background: var(--aaf-accent-bg);
+  color: var(--aaf-section-brain);
+}
+
+.sectionIcon.arch {
+  background: rgba(124, 99, 64, 0.10);
+  color: var(--aaf-section-arch);
+}
+
+.sectionLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sectionLabel.brain { color: var(--aaf-section-brain); }
+.sectionLabel.arch  { color: var(--aaf-section-arch); }
+
+.sectionSublabel {
+  font-size: 12px;
+  color: var(--aaf-muted);
+  margin-left: auto;
+  font-weight: 400;
+}
+
+/* ─── Score cards ────────────────────────────────────────────────────────── */
+.scoreCard {
+  background: var(--aaf-surface);
+  border: 1px solid var(--aaf-border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 10px;
+  box-shadow: var(--aaf-card-shadow);
+  transition: all 0.2s;
+}
+
+.scoreCard.top {
+  border-color: var(--aaf-accent-border);
+  background: var(--aaf-accent-bg);
+  box-shadow: 0 0 0 1px var(--aaf-accent-border), var(--aaf-card-shadow);
+}
+
+.scoreTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+.scoreName {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--aaf-text-strong);
+}
+
+.scoreRank {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.rankOrdinal {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--aaf-accent);
+  line-height: 1;
+}
+
+.scoreCard:not(.top) .rankOrdinal {
+  color: var(--aaf-muted-light);
+  font-size: 18px;
+}
+
+.rankLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+/* Qualitative label variants */
+.strongFit {
+  background: var(--aaf-accent-bg);
+  color: var(--aaf-accent);
+}
+
+.worthConsidering {
+  background: rgba(124, 99, 64, 0.10);
+  color: var(--aaf-section-arch);
+}
+
+.possible {
+  background: rgba(106, 127, 131, 0.10);
+  color: var(--aaf-muted);
+}
+
+.unlikely {
+  background: rgba(106, 127, 131, 0.06);
+  color: var(--aaf-muted-light);
+}
+
+.scoreBarBg {
+  height: 5px;
+  background: var(--aaf-border);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.scoreBarFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scoreWhy {
+  font-size: 13px;
+  color: var(--aaf-muted);
+  line-height: 1.65;
+}
+
+.scoreWhy strong {
+  color: var(--aaf-text);
+  font-weight: 600;
+}
+
+/* ─── Reasoning card ─────────────────────────────────────────────────────── */
+.reasoningCard {
+  background: var(--aaf-surface);
+  border: 1px solid var(--aaf-border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--aaf-card-shadow);
+}
+
+.reasoningCard h3 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--aaf-text-strong);
+  margin-bottom: 14px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reasoningCard h3::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 18px;
+  background: var(--aaf-accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.reasoningCard p {
+  font-size: 14px;
+  color: var(--aaf-text);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── Restart & disclaimer ───────────────────────────────────────────────── */
+.restartWrap {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: var(--aaf-muted-light);
+  text-align: center;
+  margin-top: 28px;
+  line-height: 1.65;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .questionCard  { padding: 24px 20px; }
+  .scoreCard     { padding: 16px 18px; }
+  .reasoningCard { padding: 20px; }
+}

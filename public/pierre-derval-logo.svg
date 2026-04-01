@@ -1,0 +1,13 @@
+<svg viewBox="130 54 440 52" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZs.woff2') format('woff2');
+    }
+  </style>
+  <text x="138" y="95" text-anchor="start" font-family="'Inter', sans-serif" font-weight="500" font-size="42" letter-spacing="0.18em" fill="#0e1110">P</text>
+  <line x1="176" y1="66" x2="190" y2="94" stroke="#E8734A" stroke-width="3.8" stroke-linecap="butt"/>
+  <text x="202" y="95" text-anchor="start" font-family="'Inter', sans-serif" font-weight="500" font-size="42" letter-spacing="0.18em" fill="#0e1110">ERRE DERVAL</text>
+</svg>

@@ -293,7 +293,7 @@ export const siteData = {
     ]
   },
   contact: {
-    title: "Building AI products in complex environments?",
+    title: "Building AI in complex environments?",
     description:
       "If product, platform, and AI need to move together, I can help make that real.",
     directMessage:
