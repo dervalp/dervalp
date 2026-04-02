@@ -594,6 +594,7 @@ h3,
 .theme-toggle:focus-visible,
 .form-input:focus-visible,
 .form-textarea:focus-visible,
+.form-select:focus-visible,
 .contact-link-row:focus-visible,
 .contact-inline-link:focus-visible {
   outline: 2px solid var(--accent-500);
@@ -1387,7 +1388,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .form-textarea {
   width: 100%;
   border: 1px solid var(--line-strong);
-  border-radius: 0;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.04);
   color: var(--color-ink-950);
   font: inherit;
@@ -1411,6 +1412,31 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .form-textarea {
   min-height: 9.5rem;
   resize: vertical;
+}
+
+.form-select {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.04);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  color: var(--color-ink-950);
+  font: inherit;
+  padding: 0.92rem 2.5rem 0.92rem 1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.form-select option {
+  background: var(--canvas);
+  color: var(--color-ink-950);
+}
+
+:root[data-theme="dark"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
 }
 
 .status-pill {
