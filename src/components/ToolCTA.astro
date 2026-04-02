@@ -104,4 +104,31 @@ const { eyebrow, title, description, pills, ctaLabel, ctaHref } = Astro.props;
     opacity: 0.9;
     transform: translateY(-1px);
   }
+
+  /* ── Dark mode: flip to warm cream so the card pops off the dark canvas */
+  :root[data-theme="dark"] .tool-cta {
+    background: #ede8de;
+  }
+
+  :root[data-theme="dark"] .tool-cta__eyebrow {
+    color: rgba(14, 17, 16, 0.5);
+  }
+
+  :root[data-theme="dark"] .tool-cta__title {
+    color: #0e1110;
+  }
+
+  :root[data-theme="dark"] .tool-cta__desc {
+    color: rgba(14, 17, 16, 0.65);
+  }
+
+  :root[data-theme="dark"] .tool-cta__pill {
+    border-color: rgba(14, 17, 16, 0.18);
+    color: rgba(14, 17, 16, 0.65);
+  }
+
+  :root[data-theme="dark"] .tool-cta__btn {
+    background: #0e1110;
+    color: #fff;
+  }
 </style>
