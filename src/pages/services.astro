@@ -20,7 +20,8 @@ const services = [
     ],
     duration: "1–2 weeks",
     cta: "Talk about data",
-    href: withBase("/contact"),
+    href: withBase("/contact") + "?topic=Data+Readiness",
+    bg: "#eadbcf",
   },
   {
     eyebrow: "Assessment",
@@ -34,13 +35,14 @@ const services = [
     ],
     duration: "2–3 weeks",
     cta: "Talk about readiness",
-    href: withBase("/contact"),
+    href: withBase("/contact") + "?topic=AI+Readiness",
+    bg: "#c5dcf0",
   },
   {
     eyebrow: "Framework",
     title: "AI Governance",
     problem:
-      "Most teams find out who owns AI decisions — and what happens when a model behaves unexpectedly — only after something goes wrong.",
+      "Most teams only find out who owns AI decisions, and what happens when a model behaves unexpectedly, after something goes wrong.",
     deliverables: [
       "Decision ownership matrix for AI systems in your organisation",
       "Risk classification system with escalation paths",
@@ -48,21 +50,23 @@ const services = [
     ],
     duration: "3–4 weeks",
     cta: "Talk about governance",
-    href: withBase("/contact"),
+    href: withBase("/contact") + "?topic=AI+Governance",
+    bg: "#cbcadb",
   },
   {
     eyebrow: "Delivery",
     title: "AI Delivery",
     problem:
-      "Most AI pilots never reach production. Not because the technology doesn't work — because product, platform, and execution weren't aligned from the start.",
+      "Most AI pilots never reach production. Not because the technology does not work. Because product, platform, and execution were not aligned from the start.",
     deliverables: [
       "Unblocked delivery plan with architecture, product, and team aligned",
       "Hands-on sprint advisory to move a specific AI capability from pilot to production",
-      "Honest assessment of what's blocking progress and how to fix it",
+      "Honest assessment of what is blocking progress and how to fix it",
     ],
     duration: "4–8 weeks",
     cta: "Talk about delivery",
-    href: withBase("/contact"),
+    href: withBase("/contact") + "?topic=AI+Delivery",
+    bg: "#bcd1ca",
   },
 ];
 ---
@@ -75,7 +79,7 @@ const services = [
       <h1 class="section-title">AI in complex environments,<br />done properly</h1>
       <p class="services-page__intro">
         Fixed-scope engagements for enterprise teams where AI, product, and platform need to move together.
-        Each service ends with a clear deliverable — not a slide deck of recommendations.
+        Each service ends with a clear deliverable. No slide decks of recommendations.
       </p>
     </header>
 
@@ -83,19 +87,19 @@ const services = [
       <div class="services-call-banner__text">
         <p class="services-call-banner__title">Start with a free project diagnostic call</p>
         <p class="services-call-banner__body">
-          One hour. You walk me through your AI initiative — where you are, what's blocking progress,
-          what you're trying to ship. I ask the hard questions. No commitment, no pitch.
+          One hour. You walk me through your AI initiative: where you are, what is blocking progress,
+          what you are trying to ship. I ask the hard questions. No commitment, no pitch.
           You leave with a clearer picture of what you actually need.
         </p>
       </div>
-      <a href={withBase("/contact")} class="button-primary services-call-banner__cta">
+      <a href={withBase("/contact") + "?topic=General+inquiry"} class="button-primary services-call-banner__cta">
         Book a free hour →
       </a>
     </div>
 
     <div class="services-grid" role="list">
       {services.map((s, i) => (
-        <div class="service-card reveal" style={`--delay: ${160 + i * 80}ms`} role="listitem">
+        <div class="service-card reveal" style={`--delay: ${160 + i * 80}ms; --card-bg: ${s.bg};`} role="listitem">
           <div class="service-card__body">
             <p class="service-card__eyebrow eyebrow">{s.eyebrow}</p>
             <h2 class="service-card__title">{s.title}</h2>
@@ -117,7 +121,7 @@ const services = [
       <p class="services-page__footer-text">
         Start with the diagnostic call. We figure out the right scope together.
       </p>
-      <a href={withBase("/contact")} class="button-primary">Book a free hour →</a>
+      <a href={withBase("/contact") + "?topic=General+inquiry"} class="button-primary">Book a free hour →</a>
     </footer>
 
   </div>
