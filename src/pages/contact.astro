@@ -111,10 +111,10 @@ const hasEndpoint = endpoint.length > 0;
                 <select class="form-select" id="cf-topic" name="topic">
                   <option value="">Select a topic…</option>
                   <option value="General inquiry">General inquiry</option>
-                  <option value="AI Readiness">AI Readiness</option>
                   <option value="Data Readiness">Data Readiness</option>
-                  <option value="AI Implementation">AI Implementation</option>
-                  <option value="AI Consulting">AI Consulting</option>
+                  <option value="AI Readiness">AI Readiness</option>
+                  <option value="AI Governance">AI Governance</option>
+                  <option value="AI Delivery">AI Delivery</option>
                 </select>
               </div>
 
@@ -170,6 +170,13 @@ const hasEndpoint = endpoint.length > 0;
     const submitBtn = document.getElementById('cf-submit');
     const errorEl = document.getElementById('contact-error');
     const successEl = document.getElementById('contact-success');
+
+    // Pre-select topic from URL param (?topic=AI+Governance etc.)
+    const topicParam = new URLSearchParams(window.location.search).get('topic');
+    if (topicParam) {
+      const select = document.getElementById('cf-topic');
+      if (select) select.value = topicParam;
+    }
 
     if (form) {
       form.addEventListener('submit', async (e) => {
