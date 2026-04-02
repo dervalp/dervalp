@@ -1,0 +1,124 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { withBase } from "../utils/url";
+import { siteData } from "../data/site";
+
+const title = `Services | ${siteData.hero.name}`;
+const description =
+  "Fixed-scope AI engagements for enterprise software teams. Data Readiness, AI Readiness, AI Governance, and AI Delivery — each with a clear deliverable.";
+
+const services = [
+  {
+    eyebrow: "Assessment",
+    title: "Data Readiness",
+    problem:
+      "AI projects fail because of data, not models. Before you scope anything, you need to know what your data can actually support.",
+    deliverables: [
+      "Scored assessment across accessibility, quality, ownership, compliance, and freshness",
+      "Written findings with risk-ranked gaps",
+      "Prioritised remediation roadmap before any AI project starts",
+    ],
+    duration: "1–2 weeks",
+    cta: "Talk about data",
+    href: withBase("/contact"),
+  },
+  {
+    eyebrow: "Assessment",
+    title: "AI Readiness",
+    problem:
+      "Shipping AI in an enterprise needs more than the right model. Teams, processes, architecture, and governance all need to be ready before you commit to a timeline.",
+    deliverables: [
+      "28-dimension readiness score across business priority, data, architecture, governance, and delivery",
+      "Written report with dimension-by-dimension findings",
+      "Recommended sequence of next steps before any engagement starts",
+    ],
+    duration: "2–3 weeks",
+    cta: "Talk about readiness",
+    href: withBase("/contact"),
+  },
+  {
+    eyebrow: "Framework",
+    title: "AI Governance",
+    problem:
+      "Most teams find out who owns AI decisions — and what happens when a model behaves unexpectedly — only after something goes wrong.",
+    deliverables: [
+      "Decision ownership matrix for AI systems in your organisation",
+      "Risk classification system with escalation paths",
+      "Governance operating model your teams can actually follow",
+    ],
+    duration: "3–4 weeks",
+    cta: "Talk about governance",
+    href: withBase("/contact"),
+  },
+  {
+    eyebrow: "Delivery",
+    title: "AI Delivery",
+    problem:
+      "Most AI pilots never reach production. Not because the technology doesn't work — because product, platform, and execution weren't aligned from the start.",
+    deliverables: [
+      "Unblocked delivery plan with architecture, product, and team aligned",
+      "Hands-on sprint advisory to move a specific AI capability from pilot to production",
+      "Honest assessment of what's blocking progress and how to fix it",
+    ],
+    duration: "4–8 weeks",
+    cta: "Talk about delivery",
+    href: withBase("/contact"),
+  },
+];
+---
+
+<BlogLayout {title} {description}>
+  <div class="services-page shell">
+
+    <header class="services-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Work with me</p>
+      <h1 class="section-title">AI in complex environments,<br />done properly</h1>
+      <p class="services-page__intro">
+        Fixed-scope engagements for enterprise teams where AI, product, and platform need to move together.
+        Each service ends with a clear deliverable — not a slide deck of recommendations.
+      </p>
+    </header>
+
+    <div class="services-call-banner reveal" style="--delay: 80ms">
+      <div class="services-call-banner__text">
+        <p class="services-call-banner__title">Start with a free project diagnostic call</p>
+        <p class="services-call-banner__body">
+          One hour. You walk me through your AI initiative — where you are, what's blocking progress,
+          what you're trying to ship. I ask the hard questions. No commitment, no pitch.
+          You leave with a clearer picture of what you actually need.
+        </p>
+      </div>
+      <a href={withBase("/contact")} class="button-primary services-call-banner__cta">
+        Book a free hour →
+      </a>
+    </div>
+
+    <div class="services-grid" role="list">
+      {services.map((s, i) => (
+        <div class="service-card reveal" style={`--delay: ${160 + i * 80}ms`} role="listitem">
+          <div class="service-card__body">
+            <p class="service-card__eyebrow eyebrow">{s.eyebrow}</p>
+            <h2 class="service-card__title">{s.title}</h2>
+            <p class="service-card__problem">{s.problem}</p>
+            <ul class="service-card__deliverables">
+              {s.deliverables.map((d) => <li>{d}</li>)}
+            </ul>
+          </div>
+          <div class="service-card__footer">
+            <span class="service-card__duration">{s.duration}</span>
+            <a href={s.href} class="button-primary service-card__cta">{s.cta} →</a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <footer class="services-page__footer reveal" style="--delay: 480ms">
+      <p class="eyebrow">Not sure which service fits?</p>
+      <p class="services-page__footer-text">
+        Start with the diagnostic call. We figure out the right scope together.
+      </p>
+      <a href={withBase("/contact")} class="button-primary">Book a free hour →</a>
+    </footer>
+
+  </div>
+</BlogLayout>

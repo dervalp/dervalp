@@ -113,6 +113,7 @@ export const siteData = {
     favicon: "/favicon.svg"
   },
   navigation: [
+    { id: "services", label: "Services", href: "/services" },
     { id: "blog", label: "Blog", href: "/blog" },
     { id: "tools", label: "Diagnostics", href: "/tools" }
   ],
