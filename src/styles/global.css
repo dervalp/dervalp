@@ -698,6 +698,7 @@ h3,
 
 .nav-link[data-active="true"] {
   border-color: var(--line-subtle);
+  border-radius: 8px;
   background: var(--accent-soft);
   color: var(--accent-700);
 }
