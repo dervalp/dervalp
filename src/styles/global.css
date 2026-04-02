@@ -37,7 +37,7 @@
   --section-contrast: linear-gradient(180deg, rgba(255, 255, 255, 0.60), rgba(255, 255, 255, 0.28));
   --section-contrast-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(249, 245, 237, 0.55));
   --button-primary-bg: #161c20;
-  --button-primary-bg-hover: #2e2b22;
+  --button-primary-bg-hover: #4a3d28;
   --button-primary-fg: #f7f4ef;
   --hero-image-filter: grayscale(1) saturate(0.55) contrast(0.92);
   --hero-image-opacity: 0.5;
@@ -450,6 +450,7 @@ h3,
 }
 
 .hero__actions-panel > .button-primary {
+  border-radius: 0;
   background: var(--button-primary-bg);
   color: var(--button-primary-fg);
 }
@@ -462,6 +463,7 @@ h3,
 }
 
 .hero__actions-panel > .button-secondary {
+  border-radius: 0;
   background: transparent;
 }
 
@@ -549,7 +551,7 @@ h3,
 .button-primary,
 .button-secondary {
   display: inline-flex;
-  min-height: 2.9rem;
+  min-height: 2.375rem;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -708,13 +710,15 @@ h3,
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line-strong);
-  border-radius: 0;
+  border-radius: 8px;
   background: var(--surface);
   color: var(--color-ink-900);
 }
 
 .theme-toggle:hover {
-  transform: translateY(-1px);
+  background: var(--accent-soft);
+  border-color: rgba(106, 125, 86, 0.28);
+  color: var(--accent-700);
 }
 
 .icon-link-button {
