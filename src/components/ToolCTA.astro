@@ -94,15 +94,14 @@ const { eyebrow, title, description, pills, ctaLabel, ctaHref } = Astro.props;
     font-weight: 600;
     letter-spacing: -0.01em;
     padding: 14px 32px;
-    border-radius: 10px;
+    border-radius: 8px;
     text-decoration: none;
-    transition: opacity 180ms ease, transform 180ms ease;
+    transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
     margin-top: 0.25rem;
   }
 
   .tool-cta__btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    background: #ede8de;
   }
 
   /* ── Dark mode: flip to warm cream so the card pops off the dark canvas */
@@ -130,5 +129,9 @@ const { eyebrow, title, description, pills, ctaLabel, ctaHref } = Astro.props;
   :root[data-theme="dark"] .tool-cta__btn {
     background: #0e1110;
     color: #fff;
+  }
+
+  :root[data-theme="dark"] .tool-cta__btn:hover {
+    background: #1e1b14;
   }
 </style>
