@@ -107,6 +107,18 @@ const hasEndpoint = endpoint.length > 0;
               </div>
 
               <div class="contact-form__field">
+                <label class="form-label" for="cf-topic">How can I help?</label>
+                <select class="form-select" id="cf-topic" name="topic">
+                  <option value="">Select a topic…</option>
+                  <option value="General inquiry">General inquiry</option>
+                  <option value="AI Readiness">AI Readiness</option>
+                  <option value="Data Readiness">Data Readiness</option>
+                  <option value="AI Implementation">AI Implementation</option>
+                  <option value="AI Consulting">AI Consulting</option>
+                </select>
+              </div>
+
+              <div class="contact-form__field">
                 <label class="form-label" for="cf-message">Message</label>
                 <textarea
                   class="form-textarea"

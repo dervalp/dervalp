@@ -9,6 +9,7 @@ type ContactPayload = {
   name: string;
   email: string;
   company?: string;
+  topic?: string;
   message: string;
   website?: string;
 };
@@ -39,6 +40,7 @@ function isValidPayload(payload: Partial<ContactPayload>) {
   const name = payload.name?.trim() ?? "";
   const email = payload.email?.trim() ?? "";
   const company = payload.company?.trim() ?? "";
+  const topic = payload.topic?.trim() ?? "";
   const message = payload.message?.trim() ?? "";
   const website = payload.website?.trim() ?? "";
 
@@ -68,6 +70,7 @@ function isValidPayload(payload: Partial<ContactPayload>) {
       name,
       email,
       company,
+      topic,
       message,
       website
     }
@@ -75,13 +78,15 @@ function isValidPayload(payload: Partial<ContactPayload>) {
 }
 
 function emailText(payload: Required<Omit<ContactPayload, "website">> & { website: string }) {
-  const companyLine = payload.company ? `Company: ${payload.company}\n` : "";
+  const companyLine = payload.company ? `Company: ${payload.company}` : "";
+  const topicLine = payload.topic ? `Topic: ${payload.topic}` : "";
   return [
     `New contact form submission from ${payload.name}`,
     "",
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
-    companyLine.trimEnd(),
+    companyLine,
+    topicLine,
     "",
     "Message:",
     payload.message

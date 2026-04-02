@@ -1,6 +1,8 @@
 name = "pierre-derval-contact"
 main = "src/index.ts"
 compatibility_date = "2026-03-23"
+workers_dev = true
+preview_urls = false
 
 [observability.logs]
 enabled = true
