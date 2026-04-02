@@ -1,0 +1,120 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { withBase } from "../utils/url";
+import { siteData } from "../data/site";
+
+const title = `About · ${siteData.hero.name}`;
+const description =
+  "20 years building platforms at enterprise scale. Now helping organisations ship AI that actually works.";
+
+const metrics = [
+  { value: "80%", valueSub: null, label: "AI feature adoption within 6 months" },
+  { value: "weeks", valueSub: "→ hours", label: "Time to deploy AI agents" },
+  { value: "3 months", valueSub: "→ days", label: "Enterprise onboarding time" },
+  { value: "4 months", valueSub: null, label: "Full SaaS platform transformation" },
+];
+
+const timeline = [
+  {
+    years: "2020 – 2026",
+    company: "CluedIn",
+    location: "Brussels",
+    role: "Chief Product Technical Officer",
+    detail: "AI and data platform for regulated industries. Built agentic AI workflows, led SaaS transformation, ACV €300k+, team of 40.",
+  },
+  {
+    years: "2016 – 2020",
+    company: "Adform",
+    location: "London",
+    role: "Principal Architect",
+    detail: "Cross-product platform architecture for a major enterprise adtech platform. Red Dot Award for the FLOW initiative.",
+  },
+  {
+    years: "2012 – 2016",
+    company: "Sitecore",
+    location: "Copenhagen",
+    role: "Lead Developer",
+    detail: "Built SPEAK, the internal platform framework used to develop applications across Sitecore's product suite.",
+  },
+  {
+    years: "2010 – 2012",
+    company: "Amilia",
+    location: "Montreal",
+    role: "VP Product Development",
+    detail: "Led product and engineering for a SaaS platform serving community recreation organisations.",
+  },
+  {
+    years: "2005 – 2009",
+    company: "Brussels",
+    location: "",
+    role: "Engineering and leadership roles",
+    detail: "AG Insurance · BNP Paribas Fortis · SME consulting",
+  },
+];
+---
+
+<BlogLayout {title} {description}>
+  <div class="about-page shell">
+
+    <!-- Header -->
+    <header class="about-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">About</p>
+      <h1 class="about-page__headline">20 years building platforms.<br />Now helping others ship AI.</h1>
+    </header>
+
+    <!-- Bio -->
+    <div class="about-page__bio reveal" style="--delay: 60ms">
+      <p>I've spent 20 years at the intersection of engineering, product, and platform. Building things that enterprise teams depend on, in environments where complexity is the default.</p>
+      <p>Most of that work was inside real companies with real constraints: platform frameworks at Sitecore, cross-product architecture at Adform (where the FLOW initiative received a Red Dot Award), and six years as Chief Product Technical Officer at CluedIn, an enterprise data and AI platform serving regulated industries at €300k+ ACV.</p>
+      <p>I started consulting because I kept seeing the same pattern: organisations with genuine AI ambition, real capability, and stalled delivery. Not because the technology was wrong. Because the decision-making, architecture, and execution were not aligned. That is the gap I work in.</p>
+    </div>
+
+    <!-- Metrics band -->
+    <div class="about-metrics-band reveal" style="--delay: 120ms">
+      <p class="eyebrow about-metrics-band__eyebrow">Signature outcomes</p>
+      <div class="about-metrics-grid">
+        {metrics.map((m) => (
+          <div class="about-metric">
+            <div class="about-metric__value-block">
+              <span class="about-metric__value">{m.value}</span>
+              {m.valueSub && <span class="about-metric__value-sub">{m.valueSub}</span>}
+            </div>
+            <span class="about-metric__label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Career timeline -->
+    <div class="about-timeline reveal" style="--delay: 160ms">
+      <p class="eyebrow">Career</p>
+      <div class="about-timeline__list">
+        {timeline.map((entry) => (
+          <div class="about-timeline__entry">
+            <div class="about-timeline__left">
+              <span class="about-timeline__years">{entry.years}</span>
+              <span class="about-timeline__location">{entry.location}</span>
+            </div>
+            <div class="about-timeline__marker" aria-hidden="true"></div>
+            <div class="about-timeline__right">
+              <p class="about-timeline__company">{entry.company}</p>
+              <p class="about-timeline__role">{entry.role}</p>
+              <p class="about-timeline__detail">{entry.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta reveal" style="--delay: 200ms">
+      <p class="eyebrow">Ready to talk?</p>
+      <h2 class="about-cta__heading">Start with a free diagnostic call.</h2>
+      <p class="about-cta__body">One hour. No commitment.</p>
+      <a href={withBase("/contact") + "?topic=General+inquiry"} class="button-primary">
+        Book a free hour →
+      </a>
+    </div>
+
+  </div>
+</BlogLayout>

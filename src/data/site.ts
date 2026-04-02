@@ -114,6 +114,7 @@ export const siteData = {
   },
   navigation: [
     { id: "services", label: "Services", href: "/services" },
+    { id: "about", label: "About", href: "/about" },
     { id: "blog", label: "Blog", href: "/blog" },
     { id: "tools", label: "Diagnostics", href: "/tools" }
   ],
@@ -265,31 +266,36 @@ export const siteData = {
         company: "Ikary",
         logoAlt: "Ikary logo",
         logoPath: "/logos/ikary.svg",
-        slug: "ikary"
+        slug: "ikary",
+        relevance: "Founder"
       },
       {
         company: "CluedIn",
         logoAlt: "CluedIn logo",
         logoPath: "/logos/cluedin.png",
-        slug: "cluedin"
+        slug: "cluedin",
+        relevance: "Chief Product Technical Officer · AI & data platform · ACV €300k+"
       },
       {
         company: "Adform",
         logoAlt: "Adform logo",
         logoPath: "/logos/adform.svg",
-        slug: "adform"
+        slug: "adform",
+        relevance: "Principal Architect · Enterprise adtech · Red Dot Award"
       },
       {
         company: "Sitecore",
         logoAlt: "Sitecore logo",
         logoPath: "/logos/sitecore.svg",
-        slug: "sitecore"
+        slug: "sitecore",
+        relevance: "Lead Developer · Platform frameworks · Innovation team"
       },
       {
         company: "Amilia",
         logoAlt: "Amilia logo",
         logoPath: "/logos/amilia.svg",
-        slug: "amilia"
+        slug: "amilia",
+        relevance: "VP Product Development · SaaS platform"
       }
     ]
   },
