@@ -31,7 +31,7 @@ That assumption is weak.
 
 This is no longer theoretical. The IEA projects that global data centre electricity consumption will more than double to around 945 TWh by 2030, with AI inference as the primary driver of that growth.[1] In Europe the constraint is already visible. The European Commission is pushing to triple EU data centre capacity within five to seven years, while acknowledging that permitting alone can take more than 48 months and that energy access is a genuine bottleneck.[2] Some markets are at breaking point already. Data centres consume close to 80% of all electricity used in Dublin. The Irish grid operator has effectively paused new connections in parts of the country as a result.[3]
 
-More adoption, more inference, more GPU-hours, more pressure on grids that were not built for this. When supply cannot keep pace, energy gets rationed. When energy gets rationed, prices spike. That is not a forecast — it is how constrained infrastructure markets work.
+More adoption, more inference, more GPU-hours, more pressure on grids that were not built for this. When supply cannot keep pace, energy gets rationed. When energy gets rationed, prices spike. That is not a forecast. It is how constrained infrastructure markets work.
 
 If your product requires dozens or hundreds of model calls per workflow, do not validate the business case at one price point. Stress-test it against worse conditions. Infrastructure markets do not care about product demos.
 
