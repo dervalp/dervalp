@@ -281,7 +281,7 @@ export const siteData = {
         logoAlt: "Adform logo",
         logoPath: "/logos/adform.svg",
         slug: "adform",
-        relevance: ["Principal Architect", "Enterprise Adtech · Red Dot Award"]
+        relevance: ["Principal Architect", "Adtech · Red Dot Award"]
       },
       {
         company: "Sitecore",
