@@ -1175,9 +1175,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .credibility-item__meta {
   display: flex;
+  flex-direction: column;
   min-height: 3.6rem;
   width: 100%;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
