@@ -288,7 +288,7 @@ export const siteData = {
         logoAlt: "Sitecore logo",
         logoPath: "/logos/sitecore.svg",
         slug: "sitecore",
-        relevance: ["Lead Developer", "Platform Frameworks · Innovation Team"]
+        relevance: ["Lead Developer", "Framework · Innovation Team"]
       },
       {
         company: "Amilia",
