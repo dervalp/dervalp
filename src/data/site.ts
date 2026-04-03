@@ -267,14 +267,14 @@ export const siteData = {
         logoAlt: "Ikary logo",
         logoPath: "/logos/ikary.svg",
         slug: "ikary",
-        relevance: "Founder"
+        relevance: ["Founder", "AI Enterprise builder"]
       },
       {
         company: "CluedIn",
         logoAlt: "CluedIn logo",
         logoPath: "/logos/cluedin.png",
         slug: "cluedin",
-        relevance: "Chief Product Technical Officer · AI & data platform · ACV €300k+"
+        relevance: ["Chief Product Technical Officer", "AI & Data Platform"]
       },
       {
         company: "Adform",
