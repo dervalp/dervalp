@@ -77,20 +77,20 @@ const diagnostics = [
       </div>
 
       <div class="shell">
-        <div class="hero hero__layout reveal">
+        <div class="hero hero__layout">
           <div class="hero__content">
-            <h1 class="hero__headline">{siteData.hero.headline}</h1>
+            <h1 class="hero__headline reveal" style="--delay: 0ms">{siteData.hero.headline}</h1>
 
-            <div class="hero__copy">
+            <div class="hero__copy reveal" style="--delay: 150ms">
               {siteData.hero.supportingText.map((paragraph) => <p>{paragraph}</p>)}
             </div>
 
-            <ul class="hero__focus-list" aria-label="Areas of focus">
+            <ul class="hero__focus-list reveal" style="--delay: 280ms" aria-label="Areas of focus">
               {siteData.hero.focusAreas.map((focusArea) => <li>{focusArea}</li>)}
             </ul>
           </div>
 
-          <aside class="hero__actions-panel" aria-label="Primary actions">
+          <aside class="hero__actions-panel reveal" style="--delay: 400ms" aria-label="Primary actions">
             <IconLink
               external={true}
               href={siteData.socials.linkedinUrl}
@@ -174,6 +174,52 @@ const diagnostics = [
       </div>
     </section>
 
+    <section class="section section-band section-band--muted section--credibility-art" data-section id="credibility">
+      <div aria-hidden="true" class="credibility-strip__backdrop">
+        <img
+          alt=""
+          class="credibility-strip__background-image"
+          decoding="async"
+          loading="lazy"
+          src={credibilityBackgroundHref}
+        />
+      </div>
+
+      <div class="shell">
+        <div class="credibility-strip reveal">
+          <div class="max-w-2xl">
+            <p class="eyebrow">Experience / credibility</p>
+            <h2 class="section-title mt-5">{siteData.credibility.title}</h2>
+            {siteData.credibility.description && (
+              <p class="mt-5 text-base leading-8 text-ink-600 sm:text-lg">
+                {siteData.credibility.description}
+              </p>
+            )}
+          </div>
+
+          <div class="credibility-strip__grid">
+            {
+              siteData.credibility.items.map((item) => (
+                <CredibilityItem
+                  company={item.company}
+                  logoAlt={item.logoAlt}
+                  logoPath={item.logoPath}
+                  relevance={item.relevance}
+                  slug={item.slug}
+                />
+              ))
+            }
+          </div>
+
+          {siteData.credibility.note && (
+            <p class="credibility-strip__note">
+              {siteData.credibility.note}
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+
     <section class="shell section" data-section id="capabilities">
       <div class="reveal">
         <SectionHeading
@@ -224,52 +270,6 @@ const diagnostics = [
             </div>
           ))
         }
-      </div>
-    </section>
-
-    <section class="section section-band section-band--muted section--credibility-art" data-section id="credibility">
-      <div aria-hidden="true" class="credibility-strip__backdrop">
-        <img
-          alt=""
-          class="credibility-strip__background-image"
-          decoding="async"
-          loading="lazy"
-          src={credibilityBackgroundHref}
-        />
-      </div>
-
-      <div class="shell">
-        <div class="credibility-strip reveal">
-          <div class="max-w-2xl">
-            <p class="eyebrow">Experience / credibility</p>
-            <h2 class="section-title mt-5">{siteData.credibility.title}</h2>
-            {siteData.credibility.description && (
-              <p class="mt-5 text-base leading-8 text-ink-600 sm:text-lg">
-                {siteData.credibility.description}
-              </p>
-            )}
-          </div>
-
-          <div class="credibility-strip__grid">
-            {
-              siteData.credibility.items.map((item) => (
-                <CredibilityItem
-                  company={item.company}
-                  logoAlt={item.logoAlt}
-                  logoPath={item.logoPath}
-                  relevance={item.relevance}
-                  slug={item.slug}
-                />
-              ))
-            }
-          </div>
-
-          {siteData.credibility.note && (
-            <p class="credibility-strip__note">
-              {siteData.credibility.note}
-            </p>
-          )}
-        </div>
       </div>
     </section>
 

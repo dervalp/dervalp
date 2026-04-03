@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^5.0.2",
+    "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
     "lucide-react": "^1.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
