@@ -281,21 +281,21 @@ export const siteData = {
         logoAlt: "Adform logo",
         logoPath: "/logos/adform.svg",
         slug: "adform",
-        relevance: "Principal Architect · Enterprise adtech · Red Dot Award"
+        relevance: ["Principal Architect", "Enterprise Adtech · Red Dot Award"]
       },
       {
         company: "Sitecore",
         logoAlt: "Sitecore logo",
         logoPath: "/logos/sitecore.svg",
         slug: "sitecore",
-        relevance: "Lead Developer · Platform frameworks · Innovation team"
+        relevance: ["Lead Developer", "Platform Frameworks · Innovation Team"]
       },
       {
         company: "Amilia",
         logoAlt: "Amilia logo",
         logoPath: "/logos/amilia.svg",
         slug: "amilia",
-        relevance: "VP Product Development · SaaS platform"
+        relevance: ["VP Product Development", "SaaS Platform"]
       }
     ]
   },
