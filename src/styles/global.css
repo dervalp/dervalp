@@ -1138,6 +1138,12 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   justify-content: center;
 }
 
+.credibility-item__meta p {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
 .credibility-strip__note {
   margin-top: 1.35rem;
   text-align: center;
