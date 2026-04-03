@@ -1,0 +1,1000 @@
+---
+interface Props {
+  approachFinderUrl?: string;
+}
+const { approachFinderUrl = '' } = Astro.props;
+---
+
+<div class="aps-root" id="aps-root" data-approach-finder-url={approachFinderUrl}>
+  <div class="aps-step-indicator">
+    <div class="aps-step-node">
+      <div class="aps-step-circle active" id="aps-sc1">1</div>
+      <span class="aps-step-label active" id="aps-sl1">Profile</span>
+    </div>
+    <div class="aps-step-connector" id="aps-conn1"></div>
+    <div class="aps-step-node">
+      <div class="aps-step-circle" id="aps-sc2">2</div>
+      <span class="aps-step-label" id="aps-sl2">Dimensions</span>
+    </div>
+    <div class="aps-step-connector" id="aps-conn2"></div>
+    <div class="aps-step-node">
+      <div class="aps-step-circle" id="aps-sc3">3</div>
+      <span class="aps-step-label" id="aps-sl3">Roadmap</span>
+    </div>
+  </div>
+
+  <div class="aps-section visible" id="aps-step1"></div>
+  <div class="aps-section" id="aps-step2"></div>
+  <div class="aps-section" id="aps-step3"></div>
+</div>
+
+<style is:global>
+.aps-root {
+  --aps-bg:#FAF7F2;--aps-surface:#FFFFFF;--aps-border:#E6DDD3;--aps-border-hover:#C8B8A8;
+  --aps-accent:#C8553A;--aps-accent-light:#D4714E;--aps-accent-bg:rgba(200,85,58,0.06);--aps-accent-border:rgba(200,85,58,0.22);
+  --aps-text:#2D2520;--aps-text-strong:#1A1410;--aps-muted:#8A7D74;--aps-muted-light:#B0A69D;
+  --aps-green:#4A7C59;--aps-green-bg:rgba(74,124,89,0.08);--aps-green-border:rgba(74,124,89,0.25);
+  --aps-amber:#B5762A;--aps-amber-bg:rgba(181,118,42,0.08);--aps-amber-border:rgba(181,118,42,0.25);
+  --aps-red:#C8553A;--aps-red-bg:rgba(200,85,58,0.08);--aps-red-border:rgba(200,85,58,0.25);
+  --aps-shadow:0 1px 3px rgba(45,37,32,0.07),0 1px 2px rgba(45,37,32,0.04);
+  --aps-shadow-hover:0 4px 14px rgba(45,37,32,0.09),0 2px 4px rgba(45,37,32,0.05);
+  --aps-dim-data:#5E6B7C;--aps-dim-model:#C8553A;--aps-dim-architecture:#7C6340;
+  --aps-dim-governance:#4A7C59;--aps-dim-team:#8B5E8B;--aps-dim-evaluation:#2D7D9A;
+
+  font-family:'DM Sans',-apple-system,sans-serif;
+  color:var(--aps-text);
+  max-width:720px;
+  margin:0 auto;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── STEP INDICATOR ── */
+.aps-root .aps-step-indicator{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:48px}
+.aps-root .aps-step-node{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1}
+.aps-root .aps-step-circle{width:32px;height:32px;border-radius:50%;border:2px solid var(--aps-border);background:var(--aps-surface);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--aps-muted);transition:all .3s ease}
+.aps-root .aps-step-circle.active{border-color:var(--aps-accent);background:var(--aps-accent);color:#fff}
+.aps-root .aps-step-circle.done{border-color:var(--aps-accent);background:var(--aps-accent-bg);color:var(--aps-accent)}
+.aps-root .aps-step-label{font-size:11px;color:var(--aps-muted);font-weight:500;white-space:nowrap}
+.aps-root .aps-step-label.active{color:var(--aps-accent);font-weight:600}
+.aps-root .aps-step-connector{width:60px;height:2px;background:var(--aps-border);margin:0 4px;margin-bottom:22px;transition:background .3s}
+.aps-root .aps-step-connector.done{background:var(--aps-accent)}
+
+/* ── SECTIONS ── */
+.aps-root .aps-section{display:none;animation:apsFadeUp .35s ease}
+.aps-root .aps-section.visible{display:block}
+@keyframes apsFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── PROFILE FORM (STEP 1) ── */
+.aps-root .field-group{margin-bottom:28px}
+.aps-root .field-label{font-size:13px;font-weight:600;color:var(--aps-text-strong);margin-bottom:4px;display:block}
+.aps-root .field-desc{font-size:12px;color:var(--aps-muted);margin-bottom:12px}
+.aps-root .text-input{width:100%;padding:12px 16px;border:1.5px solid var(--aps-border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--aps-text);background:var(--aps-surface);outline:none;transition:border .2s}
+.aps-root .text-input:focus{border-color:var(--aps-accent)}
+.aps-root .option-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.aps-root .option-card{padding:14px 16px;border:1.5px solid var(--aps-border);border-radius:10px;cursor:pointer;background:var(--aps-surface);transition:all .2s;text-align:left}
+.aps-root .option-card:hover{border-color:var(--aps-border-hover);box-shadow:var(--aps-shadow-hover)}
+.aps-root .option-card.selected{border-color:var(--aps-accent);background:var(--aps-accent-bg)}
+.aps-root .option-card .opt-icon{font-size:18px;margin-bottom:6px;display:block}
+.aps-root .option-card .opt-label{font-size:13px;font-weight:600;color:var(--aps-text-strong);display:block}
+.aps-root .option-card .opt-desc{font-size:11px;color:var(--aps-muted);margin-top:2px;line-height:1.4}
+.aps-root .option-card.selected .opt-label{color:var(--aps-accent)}
+
+/* ── DIMENSION FORM (STEP 2) ── */
+.aps-root .dim-header{margin-bottom:28px}
+.aps-root .dim-progress{font-size:12px;color:var(--aps-muted);margin-bottom:6px;font-weight:500}
+.aps-root .dim-title{font-family:'Newsreader',serif;font-size:22px;font-weight:600;color:var(--aps-text-strong);margin-bottom:4px}
+.aps-root .dim-desc{font-size:14px;color:var(--aps-muted);line-height:1.5}
+.aps-root .question-block{margin-bottom:24px;padding:20px;background:var(--aps-surface);border:1px solid var(--aps-border);border-radius:12px;box-shadow:var(--aps-shadow)}
+.aps-root .question-text{font-size:14px;font-weight:600;color:var(--aps-text-strong);margin-bottom:14px;line-height:1.4}
+.aps-root .radio-group{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.aps-root .radio-opt{padding:10px 12px;border:1.5px solid var(--aps-border);border-radius:8px;cursor:pointer;text-align:center;transition:all .2s}
+.aps-root .radio-opt:hover{border-color:var(--aps-border-hover)}
+.aps-root .radio-opt.selected{border-color:var(--aps-accent);background:var(--aps-accent-bg)}
+.aps-root .radio-opt .ro-label{font-size:12px;color:var(--aps-text-strong);font-weight:600;line-height:1.3;display:block;margin-bottom:3px}
+.aps-root .radio-opt.selected .ro-label{color:var(--aps-accent)}
+.aps-root .radio-opt .ro-desc{font-size:11px;color:var(--aps-muted);line-height:1.35;display:block}
+.aps-root .radio-opt.selected .ro-desc{color:var(--aps-accent-light);opacity:.85}
+
+/* ── NAV BUTTONS ── */
+.aps-root .nav-bar{display:flex;justify-content:space-between;align-items:center;margin-top:32px;gap:12px}
+.aps-root .btn{padding:12px 24px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:8px}
+.aps-root .btn-primary{background:var(--aps-accent);color:#fff}
+.aps-root .btn-primary:hover{background:var(--aps-accent-light);box-shadow:0 4px 12px rgba(200,85,58,.25)}
+.aps-root .btn-primary:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.aps-root .btn-secondary{background:var(--aps-surface);color:var(--aps-text);border:1.5px solid var(--aps-border)}
+.aps-root .btn-secondary:hover{border-color:var(--aps-border-hover);background:#F5F0EB}
+.aps-root .btn-export{background:var(--aps-text-strong);color:#fff;gap:8px}
+.aps-root .btn-export:hover{background:#2D3748;box-shadow:0 4px 12px rgba(26,20,16,.3)}
+
+/* ── RESULTS (STEP 3) ── */
+.aps-root .scores-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px}
+@media(max-width:480px){.aps-root .scores-bar{grid-template-columns:repeat(2,1fr)}}
+.aps-root .score-badge{padding:12px 14px;border-radius:10px;border:1px solid;background:var(--aps-surface)}
+.aps-root .score-badge.good{border-color:var(--aps-green-border);background:var(--aps-green-bg)}
+.aps-root .score-badge.attention{border-color:var(--aps-amber-border);background:var(--aps-amber-bg)}
+.aps-root .score-badge.critical{border-color:var(--aps-red-border);background:var(--aps-red-bg)}
+.aps-root .score-badge .sb-dim{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+.aps-root .score-badge .sb-score{font-family:'Newsreader',serif;font-size:22px;font-weight:600;line-height:1}
+.aps-root .score-badge .sb-label{font-size:10px;font-weight:600;margin-top:2px}
+.aps-root .score-badge.good .sb-score,.aps-root .score-badge.good .sb-label{color:var(--aps-green)}
+.aps-root .score-badge.attention .sb-score,.aps-root .score-badge.attention .sb-label{color:var(--aps-amber)}
+.aps-root .score-badge.critical .sb-score,.aps-root .score-badge.critical .sb-label{color:var(--aps-red)}
+
+/* Tabs */
+.aps-root .tabs{display:flex;gap:0;border-bottom:2px solid var(--aps-border);margin-bottom:28px}
+.aps-root .tab{padding:10px 18px;font-size:13px;font-weight:600;color:var(--aps-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.aps-root .tab:hover{color:var(--aps-text)}
+.aps-root .tab.active{color:var(--aps-accent);border-bottom-color:var(--aps-accent)}
+.aps-root .tab-panel{display:none}
+.aps-root .tab-panel.active{display:block;animation:apsFadeUp .25s ease}
+
+/* Roadmap */
+.aps-root .roadmap-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.aps-root .phase-card{background:var(--aps-surface);border:1px solid var(--aps-border);border-radius:12px;overflow:hidden;box-shadow:var(--aps-shadow)}
+.aps-root .phase-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--aps-border)}
+.aps-root .phase-left{display:flex;align-items:center;gap:12px}
+.aps-root .phase-num{width:28px;height:28px;border-radius:6px;background:var(--aps-accent);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.aps-root .phase-name{font-weight:700;font-size:15px;color:var(--aps-text-strong)}
+.aps-root .phase-dur{font-size:12px;color:var(--aps-muted);font-weight:500}
+.aps-root .phase-stats{display:flex;align-items:center;gap:10px}
+.aps-root .phase-count{font-size:12px;color:var(--aps-muted);background:var(--aps-bg);padding:3px 10px;border-radius:99px;border:1px solid var(--aps-border)}
+.aps-root .blocker-flag{font-size:11px;font-weight:700;color:var(--aps-red);background:var(--aps-red-bg);border:1px solid var(--aps-red-border);padding:3px 10px;border-radius:99px}
+.aps-root .phase-body{padding:16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.aps-root .phase-body{grid-template-columns:1fr}}
+.aps-root .milestone-list{list-style:none;padding:0;margin:0}
+.aps-root .milestone-list li{font-size:12px;color:var(--aps-muted);padding:4px 0;padding-left:14px;position:relative;border-bottom:1px solid var(--aps-border);line-height:1.4}
+.aps-root .milestone-list li:last-child{border-bottom:none}
+.aps-root .milestone-list li::before{content:'\2192';position:absolute;left:0;color:var(--aps-accent);font-size:10px;top:5px}
+.aps-root .phase-section-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--aps-muted);margin-bottom:8px}
+
+/* Task List */
+.aps-root .task-phase-group{margin-bottom:32px}
+.aps-root .task-phase-title{font-family:'Newsreader',serif;font-size:17px;font-weight:600;color:var(--aps-text-strong);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--aps-border);display:flex;align-items:center;gap:10px}
+.aps-root .phase-pill{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:99px}
+.aps-root .phase-pill.discovery{background:#EBF3F7;color:#2D7D9A}
+.aps-root .phase-pill.prototype{background:var(--aps-amber-bg);color:var(--aps-amber)}
+.aps-root .phase-pill.validate{background:#EFF3EB;color:#4A7C59}
+.aps-root .phase-pill.deploy{background:var(--aps-accent-bg);color:var(--aps-accent)}
+.aps-root .phase-pill.scale{background:#F0EBF5;color:#8B5E8B}
+.aps-root .task-table{width:100%;border-collapse:collapse;font-size:13px}
+.aps-root .task-table th{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--aps-muted);padding:8px 10px;border-bottom:2px solid var(--aps-border);text-align:left;background:var(--aps-bg)}
+.aps-root .task-table td{padding:10px 10px;border-bottom:1px solid var(--aps-border);vertical-align:top;line-height:1.4}
+.aps-root .task-table tr:last-child td{border-bottom:none}
+.aps-root .task-table tr:hover td{background:#FAF5EF}
+.aps-root .dim-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.aps-root .task-title-cell{color:var(--aps-text-strong);font-weight:500}
+.aps-root .task-desc-cell{color:var(--aps-muted);font-size:12px;max-width:260px}
+.aps-root .role-badge{font-size:11px;color:var(--aps-muted);white-space:nowrap}
+.aps-root .size-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;background:var(--aps-bg);border:1px solid var(--aps-border);color:var(--aps-text)}
+.aps-root .priority-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.aps-root .priority-badge.critical{background:var(--aps-red-bg);color:var(--aps-red);border:1px solid var(--aps-red-border)}
+.aps-root .priority-badge.high{background:var(--aps-amber-bg);color:var(--aps-amber);border:1px solid var(--aps-amber-border)}
+.aps-root .priority-badge.medium{background:#EDF2FF;color:#3B5BDB;border:1px solid rgba(59,91,219,.2)}
+.aps-root .priority-badge.low{background:var(--aps-bg);color:var(--aps-muted);border:1px solid var(--aps-border)}
+
+/* Risk Register */
+.aps-root .risk-dim-group{margin-bottom:24px}
+.aps-root .risk-dim-title{font-size:13px;font-weight:700;color:var(--aps-text-strong);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.aps-root .risk-card{padding:14px 16px;background:var(--aps-surface);border:1px solid var(--aps-border);border-radius:10px;margin-bottom:8px;box-shadow:var(--aps-shadow)}
+.aps-root .risk-title{font-size:13px;font-weight:600;color:var(--aps-text-strong);margin-bottom:8px}
+.aps-root .risk-meta{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.aps-root .risk-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.05em;text-transform:uppercase}
+.aps-root .risk-tag.impact-high{background:var(--aps-red-bg);color:var(--aps-red);border:1px solid var(--aps-red-border)}
+.aps-root .risk-tag.impact-medium{background:var(--aps-amber-bg);color:var(--aps-amber);border:1px solid var(--aps-amber-border)}
+.aps-root .risk-tag.impact-low{background:var(--aps-green-bg);color:var(--aps-green);border:1px solid var(--aps-green-border)}
+.aps-root .risk-tag.likelihood-high{background:var(--aps-red-bg);color:var(--aps-red);border:1px solid var(--aps-red-border)}
+.aps-root .risk-tag.likelihood-medium{background:var(--aps-amber-bg);color:var(--aps-amber);border:1px solid var(--aps-amber-border)}
+.aps-root .risk-mitigation{font-size:12px;color:var(--aps-muted);line-height:1.5;padding-top:8px;border-top:1px solid var(--aps-border)}
+.aps-root .risk-mitigation strong{color:var(--aps-text)}
+
+/* Export section */
+.aps-root .export-bar{background:var(--aps-surface);border:1px solid var(--aps-border);border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;box-shadow:var(--aps-shadow)}
+@media(max-width:520px){.aps-root .export-bar{flex-direction:column;gap:14px;text-align:center}}
+.aps-root .export-info .ei-title{font-size:15px;font-weight:700;color:var(--aps-text-strong)}
+.aps-root .export-info .ei-desc{font-size:12px;color:var(--aps-muted);margin-top:2px}
+.aps-root .no-results{text-align:center;padding:48px 20px;color:var(--aps-muted);font-size:14px}
+</style>
+
+<script is:inline>
+(function(){
+// ═══════════════════════════════════════════════════════
+// DATA: PROFILE QUESTIONS
+// ═══════════════════════════════════════════════════════
+const PROFILE_FIELDS = [
+  {
+    id:'approach', label:'AI Approach', desc:'What type of AI are you building?',
+    options:[
+      {value:'classic-ml',icon:'\u2699\uFE0F',label:'Classic ML',desc:'Regression, classification, clustering, time-series'},
+      {value:'genai',icon:'\u2726',label:'Generative AI',desc:'Text generation, summarisation, content creation'},
+      {value:'rag',icon:'\uD83D\uDD0D',label:'RAG',desc:'Retrieval-augmented generation on your own data'},
+      {value:'agents',icon:'\u2B21',label:'AI Agents',desc:'Autonomous, multi-step, tool-using workflows'}
+    ]
+  },
+  {
+    id:'domain', label:'Domain', desc:'Your industry or primary use case area',
+    options:[
+      {value:'finance',icon:'\uD83D\uDCCA',label:'Finance',desc:'Risk, compliance, reporting, fraud'},
+      {value:'healthcare',icon:'\uD83C\uDFE5',label:'Healthcare',desc:'Clinical, pharma, patient data'},
+      {value:'retail',icon:'\uD83D\uDECD\uFE0F',label:'Retail / CPG',desc:'Demand, personalisation, supply chain'},
+      {value:'manufacturing',icon:'\uD83C\uDFED',label:'Manufacturing',desc:'Quality, predictive maintenance, ops'},
+      {value:'hr',icon:'\uD83D\uDC65',label:'HR / People',desc:'Talent, engagement, analytics'},
+      {value:'other',icon:'\u25C6',label:'Other',desc:'SaaS, logistics, public sector, etc.'}
+    ]
+  },
+  {
+    id:'teamSize', label:'Team Size', desc:'People dedicated to this AI project',
+    options:[
+      {value:'solo',icon:'1',label:'Solo',desc:'1 person wearing all hats'},
+      {value:'small',icon:'2\u20135',label:'Small team',desc:'2\u20135 people, some dedicated'},
+      {value:'medium',icon:'5\u201315',label:'Medium team',desc:'5\u201315 people, clear roles'},
+      {value:'large',icon:'15+',label:'Large team',desc:'15+ people, multiple workstreams'}
+    ]
+  },
+  {
+    id:'timeline', label:'Timeline Horizon', desc:'Target delivery milestone',
+    options:[
+      {value:'poc',icon:'\u26A1',label:'POC',desc:'Prove the concept in weeks'},
+      {value:'mvp',icon:'\u25B8',label:'MVP',desc:'First production-ready version'},
+      {value:'production',icon:'\u25C9',label:'Full production',desc:'Scaled, governed, enterprise-grade'}
+    ]
+  },
+  {
+    id:'budget', label:'Budget Tier', desc:'Investment level committed to this project',
+    options:[
+      {value:'experimental',icon:'\u25C7',label:'Experimental',desc:'Low, exploratory, time-boxed'},
+      {value:'committed',icon:'\u25C6',label:'Committed',desc:'Funded programme with clear owner'},
+      {value:'strategic',icon:'\u2605',label:'Strategic',desc:'Executive-sponsored, multi-year horizon'}
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+// DATA: DIMENSION QUESTIONS
+// ═══════════════════════════════════════════════════════
+const DIMENSIONS = [
+  {
+    id:'data', label:'Data & Infrastructure', color:'var(--aps-dim-data)',
+    desc:'Assess the availability, quality, and infrastructure readiness of your data.',
+    questions:[
+      {text:'How available and accessible is the data needed for this project?',
+        opts:[{v:1,l:'Not yet available',d:'Needs to be collected or sourced'},{v:2,l:'Partially ready',d:'Some data exists, gaps remain'},{v:3,l:'Ready to use',d:'Data is accessible and structured'}]},
+      {text:'What is the overall quality of your data?',
+        opts:[{v:1,l:'Poor / unknown',d:'Noisy, incomplete, or unlabeled'},{v:2,l:'Mixed quality',d:'Usable but requires significant cleaning'},{v:3,l:'Clean & labeled',d:'Well-structured, trusted, and labeled'}]},
+      {text:'How mature is your data infrastructure?',
+        opts:[{v:1,l:'Greenfield',d:'No pipelines or storage in place'},{v:2,l:'Partial setup',d:'Some tooling exists, gaps to fill'},{v:3,l:'Production-ready',d:'Pipelines, storage, and access all set'}]}
+    ]
+  },
+  {
+    id:'model', label:'Model & AI Approach Fit', color:'var(--aps-dim-model)',
+    desc:'Evaluate how well your chosen AI approach is validated and understood.',
+    questions:[
+      {text:'Has the chosen AI approach been validated for this specific use case?',
+        opts:[{v:1,l:'No POC yet',d:'Purely hypothetical at this stage'},{v:2,l:'Similar POC done',d:'Validated in a related context'},{v:3,l:'Proven in context',d:'Direct proof of concept exists'}]},
+      {text:'Do you have baseline models, benchmarks, or reference performance?',
+        opts:[{v:1,l:'None',d:'Starting from scratch'},{v:2,l:'Partial',d:'Some benchmarks from research or vendors'},{v:3,l:'Well-defined',d:'Clear baseline and target metrics'}]},
+      {text:'How frequently will the model need retraining or updating?',
+        opts:[{v:1,l:'Continuously',d:'Real-time or weekly refresh needed'},{v:2,l:'Periodically',d:'Monthly or quarterly refresh'},{v:3,l:'Rarely',d:'Mostly static after initial training'}]}
+    ]
+  },
+  {
+    id:'architecture', label:'Architecture & Integration', color:'var(--aps-dim-architecture)',
+    desc:'Understand the complexity of fitting AI into your existing systems.',
+    questions:[
+      {text:'How complex is the integration with your existing systems?',
+        opts:[{v:1,l:'Deeply entangled',d:'Legacy systems, shared databases, many integration touchpoints'},{v:2,l:'Moderate coupling',d:'Some integration work needed, partial APIs available'},{v:3,l:'Clean & decoupled',d:'Well-documented APIs, microservices, or greenfield'}]},
+      {text:'What are the latency requirements for AI inference?',
+        opts:[{v:1,l:'Real-time (<200ms)',d:'User-facing, sub-second response required'},{v:2,l:'Near real-time',d:'Seconds to minutes acceptable'},{v:3,l:'Batch',d:'Async processing, hours or overnight'}]},
+      {text:'How mature are your APIs and deployment practices?',
+        opts:[{v:1,l:'Monolith / manual',d:'No containerisation or CI/CD'},{v:2,l:'Partially modernised',d:'Some automation, mixed environments'},{v:3,l:'Cloud-native',d:'Containers, CI/CD, and IaC in place'}]}
+    ]
+  },
+  {
+    id:'governance', label:'Governance, Ethics & Risk', color:'var(--aps-dim-governance)',
+    desc:'Evaluate your regulatory exposure and AI ethics maturity.',
+    questions:[
+      {text:'What is your regulatory and compliance exposure?',
+        opts:[{v:1,l:'Heavily regulated',d:'GDPR, EU AI Act, and sector rules (HIPAA, PSD2, etc.) all apply'},{v:2,l:'Partially regulated',d:'Data protection rules apply but scope is manageable'},{v:3,l:'Minimal exposure',d:'Internal tooling or public data \u2014 few regulatory constraints'}]},
+      {text:'Do you have an AI ethics and review process?',
+        opts:[{v:1,l:'None',d:'No formal review process exists'},{v:2,l:'Informal',d:'Ad hoc reviews, not documented'},{v:3,l:'Formal process',d:'Documented AI ethics framework in place'}]},
+      {text:'How sensitive is the data this AI will process?',
+        opts:[{v:1,l:'Highly sensitive',d:'PII, health records, financial data, or biometrics involved'},{v:2,l:'Business-confidential',d:'Internal records or customer data \u2014 privacy implications exist'},{v:3,l:'Non-sensitive',d:'Aggregated, anonymised, or fully public data only'}]}
+    ]
+  },
+  {
+    id:'team', label:'Team & Change Management', color:'var(--aps-dim-team)',
+    desc:'Assess your team\'s skills, sponsorship, and user readiness.',
+    questions:[
+      {text:'What is your team\'s AI and ML capability level?',
+        opts:[{v:1,l:'None in-house',d:'No AI/ML skills on the team today'},{v:2,l:'Some skills',d:'1\u20132 people with relevant experience'},{v:3,l:'Experienced team',d:'Dedicated AI practitioners on board'}]},
+      {text:'How strong is executive sponsorship for this project?',
+        opts:[{v:1,l:'None / unclear',d:'No executive champion identified'},{v:2,l:'Informal',d:'Interest but no formal commitment'},{v:3,l:'Strong & funded',d:'Named sponsor, budget confirmed, OKRs set'}]},
+      {text:'How ready are end users to adopt AI-driven changes?',
+        opts:[{v:1,l:'Resistant',d:'Significant change concerns or skepticism'},{v:2,l:'Neutral',d:'Open to AI but no active preparation'},{v:3,l:'Receptive',d:'Engaged, trained, and eager to adopt'}]}
+    ]
+  },
+  {
+    id:'evaluation', label:'Evaluation & Testing', color:'var(--aps-dim-evaluation)',
+    desc:'Determine how you will measure quality, validate outputs, and monitor in production.',
+    questions:[
+      {text:'How clearly are your success metrics defined?',
+        opts:[{v:1,l:'Not defined',d:'No KPIs or quality thresholds agreed'},{v:2,l:'Partially defined',d:'Some metrics identified, not all formalised'},{v:3,l:'Clearly defined',d:'KPIs, thresholds, and business targets set'}]},
+      {text:'Do you have a dedicated evaluation dataset?',
+        opts:[{v:1,l:'No',d:'No holdout or test set exists yet'},{v:2,l:'Partial',d:'Small or informal test set in place'},{v:3,l:'Yes, curated',d:'Representative, labeled test dataset ready'}]},
+      {text:'What is your post-deployment monitoring strategy?',
+        opts:[{v:1,l:'None planned',d:'No monitoring approach defined'},{v:2,l:'Basic logging',d:'Logs exist but no ML-specific monitoring'},{v:3,l:'Full observability',d:'Data drift, model metrics, and alerts planned'}]}
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+// DATA: TASK LIBRARY
+// ═══════════════════════════════════════════════════════
+const TASKS = [
+{phase:'discovery',dim:'data',title:'Data sources audit & inventory',desc:'Catalog all available data sources, assess volume, format, recency, and access rights.',role:'Data Engineer',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'discovery',dim:'data',title:'Data quality assessment',desc:'Profile data for completeness, accuracy, consistency, and labeling gaps.',role:'Data Analyst',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'discovery',dim:'data',title:'Infrastructure gap analysis',desc:'Identify compute, storage, and tooling gaps versus project requirements.',role:'Architect',size:'S',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'data',title:'Data access & ownership mapping',desc:'Clarify data ownership, access permissions, and any transfer agreements needed.',role:'Data Engineer',size:'XS',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'data',title:'Data privacy impact assessment (DPIA)',desc:'Formal assessment of privacy risks for any personal data in scope.',role:'PM / Legal',size:'M',bp:'high',app:'all',cond:{dim:'governance',maxScore:6}},
+{phase:'discovery',dim:'model',title:'Use case & problem framing workshop',desc:'Validate the problem statement, confirm AI is the right solution, and align on scope.',role:'PM / Data Scientist',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'discovery',dim:'model',title:'AI approach selection & decision record',desc:'Document the rationale for choosing the selected AI paradigm over alternatives.',role:'Architect / Data Scientist',size:'XS',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'model',title:'Vendor & open-source landscape review',desc:'Survey available models, APIs, and platforms relevant to the use case.',role:'Data Scientist',size:'S',bp:'medium',app:'all',cond:null},
+{phase:'discovery',dim:'architecture',title:'Integration points & system mapping',desc:'Document all upstream/downstream systems the AI component will interact with.',role:'Architect',size:'S',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'architecture',title:'Non-functional requirements definition',desc:'Define latency, throughput, availability, and scalability requirements.',role:'Architect',size:'S',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'governance',title:'Regulatory & compliance requirements mapping',desc:'Identify all applicable regulations (GDPR, AI Act, sector-specific) and map obligations.',role:'PM / Legal',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'discovery',dim:'governance',title:'AI ethics & risk assessment',desc:'Evaluate fairness, transparency, and potential harms; document risk mitigation approach.',role:'PM',size:'S',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'team',title:'Skills gap analysis',desc:'Map required skills against current team capabilities; identify hiring or training needs.',role:'PM',size:'XS',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'team',title:'Stakeholder mapping & RACI',desc:'Identify all stakeholders, define roles, and gain alignment on responsibilities.',role:'PM',size:'XS',bp:'high',app:'all',cond:null},
+{phase:'discovery',dim:'team',title:'Change impact assessment',desc:'Assess how AI will change existing workflows, jobs, and processes.',role:'PM',size:'S',bp:'high',app:'all',cond:{dim:'team',maxScore:6}},
+{phase:'discovery',dim:'evaluation',title:'Success metrics & KPI definition',desc:'Define measurable success criteria: business KPIs, model quality thresholds, and user satisfaction targets.',role:'PM / Data Scientist',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'discovery',dim:'evaluation',title:'Baseline measurement plan',desc:'Establish how current performance is measured so AI improvement can be quantified.',role:'Data Scientist',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'data',title:'Data ingestion pipeline (v1)',desc:'Build the first end-to-end pipeline from source to model-ready format in dev environment.',role:'Data Engineer',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'prototype',dim:'data',title:'Data versioning & lineage setup',desc:'Instrument data versioning (DVC or equivalent) and lineage tracking from day one.',role:'Data Engineer',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'data',title:'Feature engineering baseline',desc:'Design and implement the initial feature set; document feature rationale.',role:'Data Scientist',size:'M',bp:'critical',app:['classic-ml'],cond:null},
+{phase:'prototype',dim:'data',title:'Document & knowledge base preparation',desc:'Collect, chunk, clean, and structure the document corpus for retrieval.',role:'Data Engineer',size:'M',bp:'critical',app:['rag'],cond:null},
+{phase:'prototype',dim:'data',title:'Embedding pipeline construction',desc:'Build the pipeline to generate, store, and refresh document embeddings.',role:'Data Engineer',size:'M',bp:'critical',app:['rag'],cond:null},
+{phase:'prototype',dim:'data',title:'Data labeling & annotation workflow',desc:'Set up a labeling workflow (internal or via tooling) and produce the first labeled batch.',role:'Data Scientist',size:'L',bp:'high',app:['classic-ml'],cond:{dim:'data',maxScore:6}},
+{phase:'prototype',dim:'model',title:'Model selection & baseline prototype',desc:'Implement 2\u20133 candidate models, run initial experiments, and establish a baseline score.',role:'Data Scientist',size:'M',bp:'critical',app:['classic-ml'],cond:null},
+{phase:'prototype',dim:'model',title:'Experiment tracking setup',desc:'Configure MLflow, Weights & Biases, or equivalent to log all experiment runs.',role:'ML Engineer',size:'S',bp:'high',app:['classic-ml'],cond:null},
+{phase:'prototype',dim:'model',title:'Prompt engineering & iteration',desc:'Design, test, and iterate on system prompts and few-shot examples against real inputs.',role:'Data Scientist',size:'S',bp:'critical',app:['genai','rag','agents'],cond:null},
+{phase:'prototype',dim:'model',title:'RAG pipeline construction',desc:'Build the retrieve-augment-generate pipeline: retriever, reranker, and generator.',role:'ML Engineer',size:'M',bp:'critical',app:['rag'],cond:null},
+{phase:'prototype',dim:'model',title:'Vector database setup',desc:'Deploy and configure a vector store (Pinecone, Weaviate, pgvector, etc.).',role:'Data Engineer',size:'M',bp:'critical',app:['rag'],cond:null},
+{phase:'prototype',dim:'model',title:'Agent workflow & tool design',desc:'Define the agent\'s reasoning loop, available tools, and task decomposition logic.',role:'ML Engineer',size:'L',bp:'critical',app:['agents'],cond:null},
+{phase:'prototype',dim:'model',title:'LLM fine-tuning experiment',desc:'Run fine-tuning on a base model using task-specific examples; evaluate against prompting baseline.',role:'ML Engineer',size:'L',bp:'medium',app:['genai'],cond:{dim:'model',maxScore:6}},
+{phase:'prototype',dim:'architecture',title:'API scaffolding & contract definition',desc:'Define API contracts (OpenAPI spec) and build initial scaffolding for the AI service.',role:'Backend Engineer',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'architecture',title:'Model serving infrastructure',desc:'Set up model serving (BentoML, TorchServe, FastAPI, etc.) in the dev environment.',role:'ML Engineer',size:'M',bp:'critical',app:['classic-ml'],cond:null},
+{phase:'prototype',dim:'architecture',title:'LLM gateway / proxy setup',desc:'Deploy an LLM gateway (LiteLLM, PortKey, or similar) for routing, rate limiting, and cost tracking.',role:'ML Engineer',size:'S',bp:'high',app:['genai','rag','agents'],cond:null},
+{phase:'prototype',dim:'architecture',title:'Containerisation (Docker)',desc:'Containerise all services; ensure reproducible builds across dev and staging.',role:'DevOps',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'governance',title:'Model card draft',desc:'Produce a first version of the model card: intended use, limitations, and training data notes.',role:'Data Scientist',size:'S',bp:'medium',app:'all',cond:null},
+{phase:'prototype',dim:'governance',title:'Data access controls setup',desc:'Implement role-based access controls on training data and model artefacts.',role:'Data Engineer',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'governance',title:'Preliminary bias & fairness check',desc:'Run initial bias analysis on training data and model outputs across relevant demographic slices.',role:'Data Scientist',size:'S',bp:'high',app:['classic-ml'],cond:{dim:'governance',maxScore:6}},
+{phase:'prototype',dim:'team',title:'Team onboarding & dev environment setup',desc:'Ensure all team members have working dev environments, access, and a shared getting-started guide.',role:'Tech Lead',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'team',title:'AI literacy workshop for stakeholders',desc:'Deliver a working-session to help business stakeholders understand what the AI can and cannot do.',role:'PM',size:'S',bp:'medium',app:'all',cond:{dim:'team',maxScore:6}},
+{phase:'prototype',dim:'evaluation',title:'Evaluation dataset preparation',desc:'Curate a representative, labeled holdout set for offline evaluation; document selection criteria.',role:'Data Scientist',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'prototype',dim:'evaluation',title:'Offline metrics instrumentation',desc:'Implement all defined KPIs as measurable, automated metrics in the eval pipeline.',role:'ML Engineer',size:'S',bp:'high',app:'all',cond:null},
+{phase:'prototype',dim:'evaluation',title:'First evaluation run & report',desc:'Execute the first full evaluation run; document results and identify top-priority improvements.',role:'Data Scientist',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'validate',dim:'data',title:'Data drift baseline & detection setup',desc:'Measure current data distribution and instrument drift detection for production readiness.',role:'Data Engineer',size:'S',bp:'high',app:'all',cond:null},
+{phase:'validate',dim:'data',title:'Retroactive data cleaning & re-labeling',desc:'Address data quality issues discovered in prototype; produce a cleaner training set.',role:'Data Engineer',size:'M',bp:'high',app:'all',cond:{dim:'data',maxScore:6}},
+{phase:'validate',dim:'model',title:'Model comparison & final selection',desc:'Run structured benchmark across candidate models; select and justify the production candidate.',role:'Data Scientist',size:'M',bp:'critical',app:['classic-ml'],cond:null},
+{phase:'validate',dim:'model',title:'Ablation study',desc:'Systematically remove features or components to confirm each one adds measurable value.',role:'Data Scientist',size:'S',bp:'medium',app:['classic-ml'],cond:{dim:'model',maxScore:6}},
+{phase:'validate',dim:'model',title:'Prompt library refinement',desc:'Consolidate, version, and test all production prompts; document expected behaviour per prompt.',role:'Data Scientist',size:'S',bp:'high',app:['genai','rag','agents'],cond:null},
+{phase:'validate',dim:'model',title:'Human evaluation study',desc:'Recruit domain experts to rate outputs; use results to tune models and prompts.',role:'PM / Data Scientist',size:'M',bp:'high',app:['genai','agents'],cond:null},
+{phase:'validate',dim:'model',title:'Red-teaming & adversarial testing',desc:'Systematically probe the model for failures, hallucinations, jailbreaks, and edge-case errors.',role:'ML Engineer',size:'M',bp:'high',app:['genai','agents'],cond:null},
+{phase:'validate',dim:'architecture',title:'Load & performance testing',desc:'Simulate production traffic; validate that latency and throughput targets are met.',role:'DevOps',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'validate',dim:'architecture',title:'Security review & pen testing',desc:'Conduct a security review covering model APIs, data access, and injection risks.',role:'DevOps / Security',size:'M',bp:'high',app:'all',cond:{dim:'governance',maxScore:7}},
+{phase:'validate',dim:'architecture',title:'Latency optimisation',desc:'Profile and optimise inference latency: quantisation, caching, batching as applicable.',role:'ML Engineer',size:'M',bp:'high',app:'all',cond:{dim:'architecture',maxScore:5}},
+{phase:'validate',dim:'governance',title:'Formal bias & fairness audit',desc:'Conduct a structured audit across protected attributes; document findings and remediations.',role:'Data Scientist / PM',size:'M',bp:'high',app:'all',cond:{dim:'governance',maxScore:6}},
+{phase:'validate',dim:'governance',title:'Model governance sign-off',desc:'Get formal sign-off from relevant stakeholders (legal, compliance, executive) before production.',role:'PM / Legal',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'validate',dim:'governance',title:'Incident & escalation response plan',desc:'Define what constitutes an AI incident and document the escalation and response process.',role:'PM',size:'S',bp:'high',app:'all',cond:null},
+{phase:'validate',dim:'team',title:'User acceptance testing (UAT)',desc:'Run structured UAT sessions with representative end users; capture feedback and blockers.',role:'PM + End Users',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'validate',dim:'team',title:'Stakeholder demo & sign-off',desc:'Present validated results to executive sponsors; obtain sign-off to proceed to deploy.',role:'PM',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'validate',dim:'team',title:'Training materials & user guide creation',desc:'Produce end-user training materials, FAQs, and a step-by-step user guide.',role:'PM',size:'M',bp:'high',app:'all',cond:{dim:'team',maxScore:6}},
+{phase:'validate',dim:'evaluation',title:'Shadow mode deployment',desc:'Run the model in shadow mode alongside the current system; compare outputs without user impact.',role:'ML Engineer',size:'M',bp:'high',app:'all',cond:null},
+{phase:'validate',dim:'evaluation',title:'A/B test framework',desc:'Build the infrastructure to run controlled experiments in production.',role:'ML Engineer',size:'M',bp:'medium',app:'all',cond:{dim:'evaluation',maxScore:6}},
+{phase:'validate',dim:'evaluation',title:'Full evaluation report',desc:'Compile all evaluation results into a shareable report covering quality, performance, bias, and risk.',role:'Data Scientist',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'data',title:'Production data pipeline',desc:'Harden and deploy the data pipeline to production with error handling, retries, and monitoring.',role:'Data Engineer',size:'L',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'data',title:'Data monitoring & alerting',desc:'Set up alerts for data volume drops, schema changes, and distribution shifts.',role:'Data Engineer',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'model',title:'Production model deployment',desc:'Deploy the approved model to production; validate end-to-end with real traffic.',role:'ML Engineer',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'model',title:'Model versioning & rollback procedure',desc:'Document the rollback plan; test the rollback procedure in staging before go-live.',role:'DevOps',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'architecture',title:'CI/CD pipeline for models (MLOps)',desc:'Automate model testing, validation, and deployment through a CI/CD pipeline.',role:'DevOps / ML Engineer',size:'M',bp:'high',app:'all',cond:null},
+{phase:'deploy',dim:'architecture',title:'Observability, logging & tracing',desc:'Instrument distributed tracing, structured logging, and request-level observability.',role:'DevOps',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'architecture',title:'Autoscaling & capacity planning',desc:'Configure autoscaling policies and document capacity assumptions for peak load.',role:'DevOps',size:'M',bp:'high',app:'all',cond:null},
+{phase:'deploy',dim:'governance',title:'Production audit logging',desc:'Ensure all model predictions, inputs, and decisions are logged for accountability.',role:'Data Engineer',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'governance',title:'Data retention & deletion policy',desc:'Implement and document data retention schedules and the right-to-erasure process.',role:'PM / Legal',size:'S',bp:'high',app:'all',cond:null},
+{phase:'deploy',dim:'governance',title:'Compliance documentation package',desc:'Produce the full compliance evidence pack for regulators, auditors, or enterprise procurement.',role:'PM / Legal',size:'M',bp:'high',app:'all',cond:{dim:'governance',maxScore:6}},
+{phase:'deploy',dim:'team',title:'Ops handover & runbook',desc:'Document operational procedures, common failure modes, and first-responder playbook.',role:'Tech Lead',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'team',title:'Support & escalation playbook',desc:'Define tiers of support, SLAs, and escalation paths for AI-related incidents.',role:'PM',size:'S',bp:'high',app:'all',cond:null},
+{phase:'deploy',dim:'team',title:'User training & rollout programme',desc:'Deliver training to all user groups; manage the phased rollout to minimise disruption.',role:'PM',size:'M',bp:'high',app:'all',cond:{dim:'team',maxScore:6}},
+{phase:'deploy',dim:'evaluation',title:'Online monitoring dashboards',desc:'Build real-time dashboards for model performance, data quality, and system health.',role:'ML Engineer / DevOps',size:'M',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'evaluation',title:'Production alerting rules',desc:'Define and activate alert rules for model degradation, anomalies, and pipeline failures.',role:'DevOps',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'deploy',dim:'evaluation',title:'Feedback loop & data collection',desc:'Instrument user feedback signals and log production data for future retraining.',role:'Data Engineer',size:'M',bp:'high',app:'all',cond:null},
+{phase:'scale',dim:'data',title:'Data platform scaling & optimisation',desc:'Scale pipelines for higher volumes; optimise costs and performance of data infrastructure.',role:'Data Engineer',size:'L',bp:'high',app:'all',cond:null},
+{phase:'scale',dim:'data',title:'Dataset expansion strategy',desc:'Define a roadmap for expanding training and evaluation data over time.',role:'Data Scientist',size:'M',bp:'medium',app:'all',cond:null},
+{phase:'scale',dim:'model',title:'Automated retraining pipeline',desc:'Build a scheduled or trigger-based pipeline to retrain, evaluate, and promote models automatically.',role:'ML Engineer',size:'M',bp:'high',app:['classic-ml'],cond:null},
+{phase:'scale',dim:'model',title:'Model performance degradation monitoring',desc:'Set up automated alerts when model metrics drop below defined thresholds.',role:'ML Engineer',size:'S',bp:'critical',app:'all',cond:null},
+{phase:'scale',dim:'model',title:'Fine-tuning cadence & governance',desc:'Define the schedule, data requirements, and approval process for ongoing fine-tuning.',role:'ML Engineer',size:'M',bp:'high',app:['genai'],cond:null},
+{phase:'scale',dim:'model',title:'Multi-model orchestration',desc:'Build orchestration logic to route tasks across specialised agents or models.',role:'ML Engineer',size:'L',bp:'high',app:['agents'],cond:null},
+{phase:'scale',dim:'architecture',title:'Cost optimisation & rightsizing',desc:'Analyse cloud and API costs; implement autoscaling, spot instances, or model distillation to reduce spend.',role:'Architect / DevOps',size:'M',bp:'high',app:'all',cond:null},
+{phase:'scale',dim:'architecture',title:'Multi-region or multi-tenant architecture',desc:'Extend the architecture to support multiple geographies or tenants with data isolation.',role:'Architect',size:'L',bp:'medium',app:'all',cond:null},
+{phase:'scale',dim:'governance',title:'Ongoing compliance monitoring',desc:'Set up automated compliance checks and a regular review cadence with legal/compliance teams.',role:'PM',size:'M',bp:'high',app:'all',cond:null},
+{phase:'scale',dim:'governance',title:'AI governance maturity programme',desc:'Formalise AI governance into repeatable processes: model reviews, risk register, and audit trails.',role:'PM',size:'L',bp:'medium',app:'all',cond:{dim:'governance',maxScore:7}},
+{phase:'scale',dim:'team',title:'Knowledge base & internal documentation',desc:'Build a centralised, searchable knowledge base covering architecture decisions, runbooks, and lessons learned.',role:'Tech Lead',size:'M',bp:'medium',app:'all',cond:null},
+{phase:'scale',dim:'team',title:'AI champions & adoption programme',desc:'Identify and enable internal AI champions to drive adoption and surface new use cases.',role:'PM',size:'M',bp:'medium',app:'all',cond:{dim:'team',maxScore:6}},
+{phase:'scale',dim:'evaluation',title:'Continuous evaluation framework',desc:'Automate regular evaluation runs against evolving test sets to catch regressions early.',role:'ML Engineer',size:'M',bp:'high',app:'all',cond:null},
+{phase:'scale',dim:'evaluation',title:'Business impact & ROI reporting',desc:'Produce quarterly reports linking model performance to business outcomes and ROI.',role:'PM',size:'S',bp:'high',app:'all',cond:null},
+{phase:'scale',dim:'evaluation',title:'Model refresh SLA & review cadence',desc:'Define SLAs for model freshness and a formal review schedule for model lifecycle decisions.',role:'PM',size:'S',bp:'medium',app:'all',cond:null}
+];
+
+// ═══════════════════════════════════════════════════════
+// DATA: RISK TEMPLATES
+// ═══════════════════════════════════════════════════════
+const RISK_TEMPLATES = {
+  data:[
+    {title:'Insufficient or low-quality training data stalls model development',mitigation:'Conduct a data audit in Discovery; establish a data quality SLA before Prototype begins.'},
+    {title:'Data pipeline failures corrupt model inputs in production',mitigation:'Add schema validation, dead-letter queues, and automated data quality checks to the pipeline.'},
+    {title:'Data governance gaps delay compliance sign-off',mitigation:'Involve legal and compliance early; complete the DPIA before Prototype phase.'}
+  ],
+  model:[
+    {title:'Chosen AI approach fails validation, requiring a costly pivot',mitigation:'Run a time-boxed POC in Discovery to validate the approach before committing resources.'},
+    {title:'No agreed baseline makes it impossible to declare success or failure',mitigation:'Define quantitative success thresholds in Discovery before any model work begins.'},
+    {title:'High retraining frequency without automation creates operational debt',mitigation:'Design the retraining pipeline in parallel with the initial model; automate from the start.'}
+  ],
+  architecture:[
+    {title:'Deep coupling with legacy systems slows deployment significantly',mitigation:'Design a strangler-fig integration pattern; use an AI gateway to decouple from core systems.'},
+    {title:'Latency requirements unmet triggers rollback at launch',mitigation:'Test against latency SLAs in the Validate phase; profile and optimise before deployment.'},
+    {title:'Lack of containerisation and CI/CD leads to unreliable deployments',mitigation:'Containerise all services in Prototype; implement CI/CD before the Validate phase.'}
+  ],
+  governance:[
+    {title:'Unaddressed regulatory requirements block production launch',mitigation:'Map all regulatory obligations in Discovery; schedule compliance sign-off into the project plan.'},
+    {title:'Missing AI ethics review exposes the organisation to reputational risk',mitigation:'Run the ethics & risk assessment in Discovery; engage an ethics reviewer before Validate.'},
+    {title:'Data privacy gaps create compliance liability post-launch',mitigation:'Complete a DPIA in Discovery; implement PII controls and audit logging before deployment.'}
+  ],
+  team:[
+    {title:'Skills gap creates single points of failure on the project',mitigation:'Document critical skills in Discovery; hire, train, or engage contractors before Prototype.'},
+    {title:'Weak executive sponsorship risks mid-project cancellation',mitigation:'Secure named executive sponsor and written mandate before committing to full Prototype phase.'},
+    {title:'Low end-user readiness results in poor adoption despite successful delivery',mitigation:'Run an AI literacy workshop in Prototype; include change management tasks in every phase.'}
+  ],
+  evaluation:[
+    {title:'Poorly defined success metrics make it impossible to declare victory',mitigation:'Define measurable, agreed KPIs with business stakeholders in Discovery before any model work.'},
+    {title:'No evaluation dataset means quality gates cannot be enforced',mitigation:'Curate and version the evaluation dataset in parallel with data pipeline work in Prototype.'},
+    {title:'Absent monitoring strategy leads to silent model degradation in production',mitigation:'Design monitoring dashboards and alert rules in Validate; deploy them alongside the model.'}
+  ]
+};
+
+// ═══════════════════════════════════════════════════════
+// DATA: PHASE MILESTONES
+// ═══════════════════════════════════════════════════════
+const PHASE_META = {
+  discovery:{label:'Discovery',emoji:'\uD83D\uDD0D',goal:'Understand, define & align',
+    milestones:['Data sources catalogued & access confirmed','Use case validated & success metrics agreed','AI approach selected & decision record published','Stakeholders aligned, RACI set, risks logged']},
+  prototype:{label:'Prototype',emoji:'\u2699\uFE0F',goal:'Prove it works',
+    milestones:['Working data pipeline to dev environment','First functional model / pipeline prototype','Baseline evaluation score established','Architecture blueprint approved']},
+  validate:{label:'Validate',emoji:'\u2713',goal:'Prove it is right',
+    milestones:['Model meets all defined quality thresholds','Security & performance testing complete','Governance & ethics sign-off obtained','Stakeholder UAT passed, go-live approved']},
+  deploy:{label:'Deploy',emoji:'\u25B8',goal:'Go live safely',
+    milestones:['Production environment live & smoke-tested','Monitoring, alerting & dashboards operational','Runbook, handover & user training complete','Rollback tested and procedures documented']},
+  scale:{label:'Scale',emoji:'\u25C9',goal:'Grow & sustain',
+    milestones:['Automated retraining or refresh pipeline active','Cost baseline established & optimised','Business impact measured & reported to sponsors','Continuous governance & evaluation in place']}
+};
+
+const TIMELINE_DURATIONS = {
+  poc:{discovery:'1\u20132 wks',prototype:'2\u20134 wks',validate:'1\u20132 wks',deploy:'1\u20132 wks',scale:'\u2014'},
+  mvp:{discovery:'2\u20133 wks',prototype:'4\u20136 wks',validate:'2\u20133 wks',deploy:'2\u20133 wks',scale:'3\u20135 wks'},
+  production:{discovery:'3\u20134 wks',prototype:'5\u20138 wks',validate:'3\u20134 wks',deploy:'3\u20135 wks',scale:'6\u201310 wks'}
+};
+
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+var apsState = {
+  step:1,dimStep:0,
+  profile:{projectName:'',approach:'',domain:'',teamSize:'',timeline:'',budget:''},
+  scores:{data:[0,0,0],model:[0,0,0],architecture:[0,0,0],governance:[0,0,0],team:[0,0,0],evaluation:[0,0,0]}
+};
+
+// ═══════════════════════════════════════════════════════
+// RULE ENGINE
+// ═══════════════════════════════════════════════════════
+function apsDimScore(d){return apsState.scores[d].reduce(function(a,b){return a+b},0)}
+function apsDimLevel(s){return s<=4?'critical':s<=6?'attention':'good'}
+function apsDimLevelLabel(s){return s<=4?'\u26A0 Blocker':s<=6?'Attention':'Good'}
+
+var PRI_ORDER=['critical','high','medium','low'];
+function apsBumpPriority(base,level){
+  var i=PRI_ORDER.indexOf(base);
+  if(level==='critical')return PRI_ORDER[Math.max(0,i-2)];
+  if(level==='attention')return PRI_ORDER[Math.max(0,i-1)];
+  return base;
+}
+
+function apsGeneratePlan(){
+  var app=apsState.profile.approach;
+  var tl=apsState.profile.timeline||'mvp';
+  var tasks=TASKS.filter(function(t){return t.app==='all'||t.app.indexOf(app)!==-1});
+  tasks=tasks.filter(function(t){
+    if(!t.cond)return true;
+    return apsDimScore(t.cond.dim)<=t.cond.maxScore;
+  });
+  tasks=tasks.map(function(t){
+    var copy={};for(var k in t)copy[k]=t[k];
+    copy.priority=apsBumpPriority(t.bp,apsDimLevel(apsDimScore(t.dim)));
+    return copy;
+  });
+  var PH=['discovery','prototype','validate','deploy','scale'];
+  tasks.sort(function(a,b){
+    var pd=PH.indexOf(a.phase)-PH.indexOf(b.phase);
+    if(pd!==0)return pd;
+    return PRI_ORDER.indexOf(a.priority)-PRI_ORDER.indexOf(b.priority);
+  });
+  var durations=TIMELINE_DURATIONS[tl]||TIMELINE_DURATIONS.mvp;
+  var phases=PH.map(function(ph){
+    var pt=tasks.filter(function(t){return t.phase===ph});
+    var crit=pt.filter(function(t){return t.priority==='critical'}).length;
+    var high=pt.filter(function(t){return t.priority==='high'}).length;
+    var m=PHASE_META[ph];
+    return{id:ph,label:m.label,emoji:m.emoji,goal:m.goal,milestones:m.milestones,
+      duration:durations[ph],tasks:pt,taskCount:pt.length,
+      criticalCount:crit,highCount:high,hasBlocker:crit>0};
+  });
+  var risks=[];
+  Object.keys(RISK_TEMPLATES).forEach(function(dim){
+    var sc=apsDimScore(dim);
+    if(sc<9){
+      var lv=apsDimLevel(sc);
+      var max=lv==='critical'?3:lv==='attention'?2:1;
+      RISK_TEMPLATES[dim].slice(0,max).forEach(function(r){
+        risks.push({dim:dim,impact:lv==='critical'?'High':'Medium',
+          likelihood:sc<=4?'High':'Medium',title:r.title,mitigation:r.mitigation});
+      });
+    }
+  });
+  return{tasks:tasks,phases:phases,risks:risks};
+}
+
+// ═══════════════════════════════════════════════════════
+// STEP INDICATOR
+// ═══════════════════════════════════════════════════════
+function apsUpdateStepUI(){
+  [1,2,3].forEach(function(n){
+    var c=document.getElementById('aps-sc'+n);
+    var l=document.getElementById('aps-sl'+n);
+    if(n<apsState.step){c.className='aps-step-circle done';c.innerHTML='\u2713'}
+    else if(n===apsState.step){c.className='aps-step-circle active';c.textContent=n;l.className='aps-step-label active'}
+    else{c.className='aps-step-circle';c.textContent=n;l.className='aps-step-label'}
+  });
+  [1,2].forEach(function(n){
+    var conn=document.getElementById('aps-conn'+n);
+    if(conn)conn.className='aps-step-connector'+(apsState.step>n?' done':'');
+  });
+}
+
+function apsShowStep(n){
+  apsState.step=n;
+  document.querySelectorAll('#aps-root .aps-section').forEach(function(s){s.classList.remove('visible')});
+  document.getElementById('aps-step'+n).classList.add('visible');
+  apsUpdateStepUI();
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER STEP 1
+// ═══════════════════════════════════════════════════════
+function apsRenderStep1(){
+  var el=document.getElementById('aps-step1');
+  var html='<div class="field-group">'+
+    '<label class="field-label">Project name</label>'+
+    '<div class="field-desc">Give this scope a name \u2014 it\u2019ll appear in your Excel export</div>'+
+    '<input type="text" class="text-input" id="aps-projectNameInput" placeholder="e.g. Customer Churn Predictor" value="'+apsState.profile.projectName+'" oninput="apsState.profile.projectName=this.value">'+
+    '</div>';
+
+  // Detect approach finder URL from sibling link
+  var approachFinderUrl = '';
+  var rootEl = document.getElementById('aps-root');
+  if(rootEl && rootEl.dataset.approachFinderUrl) {
+    approachFinderUrl = rootEl.dataset.approachFinderUrl;
+  }
+
+  PROFILE_FIELDS.forEach(function(field){
+    var helper = field.id==='approach' && approachFinderUrl
+      ? '<div style="margin-top:10px;font-size:12px;color:var(--aps-muted)">'+
+          'Not sure which one? '+
+          '<a href="'+approachFinderUrl+'" style="color:var(--aps-accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--aps-accent-border)">'+
+            'Use the AI Approach Finder \u2192'+
+          '</a>'+
+        '</div>'
+      : '';
+    html+='<div class="field-group">'+
+      '<label class="field-label">'+field.label+'</label>'+
+      '<div class="field-desc">'+field.desc+'</div>'+
+      '<div class="option-grid">';
+    field.options.forEach(function(opt){
+      var sel=apsState.profile[field.id]===opt.value?'selected':'';
+      html+='<div class="option-card '+sel+'" onclick="apsSelectProfile(\''+field.id+'\',\''+opt.value+'\')">'+
+        '<span class="opt-icon">'+opt.icon+'</span>'+
+        '<span class="opt-label">'+opt.label+'</span>'+
+        '<span class="opt-desc">'+opt.desc+'</span>'+
+        '</div>';
+    });
+    html+='</div>'+helper+'</div>';
+  });
+
+  html+='<div class="nav-bar">'+
+    '<div></div>'+
+    '<button class="btn btn-primary" id="aps-step1Next" onclick="apsGoStep2()">'+
+      'Start Scoping <span>\u2192</span>'+
+    '</button>'+
+    '</div>';
+  el.innerHTML=html;
+  apsCheckStep1Nav();
+}
+
+window.apsSelectProfile=function(field,value){
+  apsState.profile[field]=value;
+  apsRenderStep1();
+  document.getElementById('aps-projectNameInput').value=apsState.profile.projectName;
+};
+
+function apsCheckStep1Nav(){
+  var req=['approach','teamSize','timeline'];
+  var ok=req.every(function(f){return apsState.profile[f]});
+  var btn=document.getElementById('aps-step1Next');
+  if(btn)btn.disabled=!ok;
+}
+
+window.apsGoStep2=function(){
+  apsState.dimStep=0;
+  apsShowStep(2);
+  apsRenderStep2();
+};
+
+// ═══════════════════════════════════════════════════════
+// RENDER STEP 2
+// ═══════════════════════════════════════════════════════
+function apsRenderStep2(){
+  var el=document.getElementById('aps-step2');
+  var dim=DIMENSIONS[apsState.dimStep];
+  var total=DIMENSIONS.length;
+  var isLast=apsState.dimStep===total-1;
+
+  var html='<div class="dim-header">'+
+    '<div class="dim-progress">Dimension '+(apsState.dimStep+1)+' of '+total+'</div>'+
+    '<div class="dim-title" style="color:'+dim.color+'">'+dim.label+'</div>'+
+    '<div class="dim-desc">'+dim.desc+'</div>'+
+    '</div>';
+
+  dim.questions.forEach(function(q,qi){
+    var cur=apsState.scores[dim.id][qi];
+    html+='<div class="question-block">'+
+      '<div class="question-text">'+(qi+1)+'. '+q.text+'</div>'+
+      '<div class="radio-group">';
+    q.opts.forEach(function(opt){
+      var sel=cur===opt.v?'selected':'';
+      html+='<div class="radio-opt '+sel+'" onclick="apsSelectScore(\''+dim.id+'\','+qi+','+opt.v+')">'+
+        '<span class="ro-label">'+opt.l+'</span>'+
+        '<span class="ro-desc">'+opt.d+'</span>'+
+        '</div>';
+    });
+    html+='</div></div>';
+  });
+
+  var canNext=apsState.scores[dim.id].every(function(v){return v>0});
+  var backAction=apsState.dimStep>0?'apsPrevDim()':'apsShowStep(1);apsRenderStep1();';
+  html+='<div class="nav-bar">'+
+    '<button class="btn btn-secondary" onclick="'+backAction+'">\u2190 Back</button>'+
+    '<button class="btn btn-primary" '+(canNext?'':'disabled')+' onclick="'+(isLast?'apsBuildResults()':'apsNextDim()')+'">'+
+      (isLast?'Generate Roadmap \u2713':'Next \u2192')+
+    '</button>'+
+    '</div>';
+
+  el.innerHTML=html;
+}
+
+window.apsSelectScore=function(dim,qi,val){
+  apsState.scores[dim][qi]=val;
+  apsRenderStep2();
+};
+window.apsNextDim=function(){apsState.dimStep++;apsRenderStep2()};
+window.apsPrevDim=function(){apsState.dimStep--;apsRenderStep2()};
+window.apsShowStep=apsShowStep;
+window.apsRenderStep1=apsRenderStep1;
+
+// ═══════════════════════════════════════════════════════
+// RENDER STEP 3 (RESULTS)
+// ═══════════════════════════════════════════════════════
+var apsPLAN=null;
+var apsActiveTab='roadmap';
+
+window.apsBuildResults=function(){
+  apsPLAN=apsGeneratePlan();
+  apsShowStep(3);
+  apsRenderStep3();
+};
+
+var DIM_COLORS={
+  data:'var(--aps-dim-data)',model:'var(--aps-dim-model)',architecture:'var(--aps-dim-architecture)',
+  governance:'var(--aps-dim-governance)',team:'var(--aps-dim-team)',evaluation:'var(--aps-dim-evaluation)'
+};
+var DIM_LABELS={
+  data:'Data',model:'Model',architecture:'Arch',governance:'Gov',team:'Team',evaluation:'Eval'
+};
+
+function apsRenderStep3(){
+  var el=document.getElementById('aps-step3');
+  var name=apsState.profile.projectName||'Your Project';
+  var approachLabel={
+    'classic-ml':'Classic ML','genai':'Generative AI','rag':'RAG','agents':'AI Agents'
+  }[apsState.profile.approach]||apsState.profile.approach;
+
+  var scoreBadges='';
+  DIMENSIONS.forEach(function(d){
+    var sc=apsDimScore(d.id);
+    var lv=apsDimLevel(sc);
+    var lb=apsDimLevelLabel(sc);
+    scoreBadges+='<div class="score-badge '+lv+'">'+
+      '<div class="sb-dim">'+d.label+'</div>'+
+      '<div class="sb-score">'+sc+'<span style="font-size:14px;opacity:.5">/9</span></div>'+
+      '<div class="sb-label">'+lb+'</div>'+
+      '</div>';
+  });
+
+  var totalTasks=apsPLAN.tasks.length;
+  var critCount=apsPLAN.tasks.filter(function(t){return t.priority==='critical'}).length;
+  var riskCount=apsPLAN.risks.length;
+
+  var html=''+
+    '<div style="margin-bottom:24px">'+
+      '<div style="font-family:Newsreader,serif;font-size:26px;font-weight:600;color:var(--aps-text-strong);margin-bottom:4px">'+name+'</div>'+
+      '<div style="font-size:13px;color:var(--aps-muted)">'+
+        approachLabel+' \u00B7 '+apsState.profile.teamSize+' team \u00B7 '+(apsState.profile.timeline||'mvp').toUpperCase()+' horizon'+
+        '<span style="margin:0 8px">\u00B7</span>'+
+        '<span style="color:var(--aps-accent);font-weight:600">'+totalTasks+' tasks</span>'+
+        '<span style="margin:0 6px;color:var(--aps-border)">|</span>'+
+        '<span style="color:'+(critCount>0?'var(--aps-red)':'var(--aps-green)')+';font-weight:600">'+critCount+' critical</span>'+
+        '<span style="margin:0 6px;color:var(--aps-border)">|</span>'+
+        '<span style="color:var(--aps-amber);font-weight:600">'+riskCount+' risks</span>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="scores-bar">'+scoreBadges+'</div>'+
+
+    '<div class="export-bar">'+
+      '<div class="export-info">'+
+        '<div class="ei-title">Export to Excel</div>'+
+        '<div class="ei-desc">4 sheets: Summary \u00B7 Roadmap \u00B7 Task List \u00B7 Risk Register</div>'+
+      '</div>'+
+      '<button class="btn btn-export" onclick="apsExportXLSX()">'+
+        '\u2193 Download .xlsx'+
+      '</button>'+
+    '</div>'+
+
+    '<div class="tabs">'+
+      '<div class="tab '+(apsActiveTab==='roadmap'?'active':'')+'" onclick="apsSwitchTab(\'roadmap\')">Roadmap</div>'+
+      '<div class="tab '+(apsActiveTab==='tasks'?'active':'')+'" onclick="apsSwitchTab(\'tasks\')">Task List ('+totalTasks+')</div>'+
+      '<div class="tab '+(apsActiveTab==='risks'?'active':'')+'" onclick="apsSwitchTab(\'risks\')">Risks ('+riskCount+')</div>'+
+    '</div>'+
+
+    '<div class="tab-panel '+(apsActiveTab==='roadmap'?'active':'')+'" id="aps-tab-roadmap">'+apsRenderRoadmap()+'</div>'+
+    '<div class="tab-panel '+(apsActiveTab==='tasks'?'active':'')+'" id="aps-tab-tasks">'+apsRenderTaskList()+'</div>'+
+    '<div class="tab-panel '+(apsActiveTab==='risks'?'active':'')+'" id="aps-tab-risks">'+apsRenderRisks()+'</div>'+
+
+    '<div class="nav-bar" style="margin-top:32px">'+
+      '<button class="btn btn-secondary" onclick="apsShowStep(2);apsRenderStep2()">\u2190 Revise Answers</button>'+
+      '<button class="btn btn-export" onclick="apsExportXLSX()">\u2193 Download .xlsx</button>'+
+    '</div>';
+  el.innerHTML=html;
+}
+window.apsRenderStep2=apsRenderStep2;
+
+window.apsSwitchTab=function(tab){
+  apsActiveTab=tab;
+  apsRenderStep3();
+};
+
+// ── ROADMAP TAB ──────────────────────────────────────
+function apsRenderRoadmap(){
+  var skip=apsState.profile.timeline==='poc';
+  var html='<div class="roadmap-grid">';
+  apsPLAN.phases.forEach(function(ph,i){
+    if(skip && ph.id==='scale'){
+      html+='<div class="phase-card" style="opacity:.45">'+
+        '<div class="phase-header">'+
+          '<div class="phase-left">'+
+            '<div class="phase-num" style="background:var(--aps-border);color:var(--aps-muted)">'+(i+1)+'</div>'+
+            '<div><div class="phase-name">'+ph.emoji+' '+ph.label+'</div><div class="phase-dur">Not planned for POC scope</div></div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+      return;
+    }
+    html+='<div class="phase-card">'+
+      '<div class="phase-header">'+
+        '<div class="phase-left">'+
+          '<div class="phase-num">'+(i+1)+'</div>'+
+          '<div>'+
+            '<div class="phase-name">'+ph.emoji+' '+ph.label+'</div>'+
+            '<div class="phase-dur">'+ph.goal+' \u00B7 '+ph.duration+'</div>'+
+          '</div>'+
+        '</div>'+
+        '<div class="phase-stats">'+
+          '<div class="phase-count">'+ph.taskCount+' tasks</div>'+
+          (ph.hasBlocker?'<div class="blocker-flag">\u26A0 '+ph.criticalCount+' critical</div>':'')+
+        '</div>'+
+      '</div>'+
+      '<div class="phase-body">'+
+        '<div>'+
+          '<div class="phase-section-title">Key deliverables</div>'+
+          '<ul class="milestone-list">'+
+            ph.milestones.map(function(m){return '<li>'+m+'</li>'}).join('')+
+          '</ul>'+
+        '</div>'+
+        '<div>'+
+          '<div class="phase-section-title">Top tasks by priority</div>'+
+          '<ul class="milestone-list">'+
+            ph.tasks.slice(0,5).map(function(t){return '<li>'+
+              '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:'+DIM_COLORS[t.dim]+';margin-right:4px;vertical-align:middle"></span>'+
+              t.title+
+              '<span style="float:right;font-size:10px;font-weight:700;color:'+(t.priority==='critical'?'var(--aps-red)':t.priority==='high'?'var(--aps-amber)':'var(--aps-muted-light)')+'">'+t.size+'</span>'+
+            '</li>'}).join('')+
+            (ph.taskCount>5?'<li style="color:var(--aps-muted-light);font-style:italic">\u2026and '+(ph.taskCount-5)+' more</li>':'')+
+          '</ul>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  });
+  return html+'</div>';
+}
+
+// ── TASK LIST TAB ──────────────────────────────────────
+function apsRenderTaskList(){
+  var PH=['discovery','prototype','validate','deploy','scale'];
+  var html='';
+  PH.forEach(function(ph){
+    var tasks=apsPLAN.tasks.filter(function(t){return t.phase===ph});
+    if(!tasks.length)return;
+    var meta=PHASE_META[ph];
+    html+='<div class="task-phase-group">'+
+      '<div class="task-phase-title">'+
+        meta.emoji+' '+meta.label+
+        '<span class="phase-pill '+ph+'">'+tasks.length+' tasks</span>'+
+      '</div>'+
+      '<table class="task-table">'+
+        '<thead><tr>'+
+          '<th style="width:34%">Task</th>'+
+          '<th style="width:28%">Description</th>'+
+          '<th>Owner</th>'+
+          '<th>Size</th>'+
+          '<th>Priority</th>'+
+        '</tr></thead>'+
+        '<tbody>'+
+          tasks.map(function(t){return '<tr>'+
+            '<td class="task-title-cell">'+
+              '<span class="dim-dot" style="background:'+DIM_COLORS[t.dim]+'"></span>'+
+              t.title+
+            '</td>'+
+            '<td class="task-desc-cell">'+t.desc+'</td>'+
+            '<td class="role-badge">'+t.role+'</td>'+
+            '<td><span class="size-badge">'+t.size+'</span></td>'+
+            '<td><span class="priority-badge '+t.priority+'">'+t.priority+'</span></td>'+
+          '</tr>'}).join('')+
+        '</tbody>'+
+      '</table>'+
+    '</div>';
+  });
+  return html||'<div class="no-results">No tasks matched your profile.</div>';
+}
+
+// ── RISKS TAB ─────────────────────────────────────────
+function apsRenderRisks(){
+  if(!apsPLAN.risks.length)return '<div class="no-results" style="color:var(--aps-green)">\u2713 No significant risks detected. All dimension scores are strong.</div>';
+  var byDim={};
+  apsPLAN.risks.forEach(function(r){
+    if(!byDim[r.dim])byDim[r.dim]=[];
+    byDim[r.dim].push(r);
+  });
+  var html='';
+  Object.keys(byDim).forEach(function(dim){
+    var dimObj=DIMENSIONS.find(function(d){return d.id===dim});
+    html+='<div class="risk-dim-group">'+
+      '<div class="risk-dim-title">'+
+        '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+DIM_COLORS[dim]+'"></span>'+
+        dimObj.label+
+        '<span style="font-size:11px;color:var(--aps-muted);font-weight:400">'+apsDimScore(dim)+'/9 score</span>'+
+      '</div>';
+    byDim[dim].forEach(function(r){
+      html+='<div class="risk-card">'+
+        '<div class="risk-title">'+r.title+'</div>'+
+        '<div class="risk-meta">'+
+          '<span class="risk-tag impact-'+r.impact.toLowerCase()+'">Impact: '+r.impact+'</span>'+
+          '<span class="risk-tag likelihood-'+r.likelihood.toLowerCase()+'">Likelihood: '+r.likelihood+'</span>'+
+        '</div>'+
+        '<div class="risk-mitigation"><strong>Mitigation:</strong> '+r.mitigation+'</div>'+
+      '</div>';
+    });
+    html+='</div>';
+  });
+  return html;
+}
+
+// ═══════════════════════════════════════════════════════
+// XLSX EXPORT (loads library on demand)
+// ═══════════════════════════════════════════════════════
+window.apsExportXLSX=function(){
+  if(!apsPLAN)return;
+  function doExport(){
+    var wb=XLSX.utils.book_new();
+    var pn=apsState.profile.projectName||'AI Project';
+    var approachLabel={
+      'classic-ml':'Classic ML','genai':'Generative AI','rag':'RAG','agents':'AI Agents'
+    }[apsState.profile.approach]||apsState.profile.approach;
+
+    var dimRows=DIMENSIONS.map(function(d){
+      var sc=apsDimScore(d.id);
+      return[d.label,sc+'/9',apsDimLevelLabel(sc)];
+    });
+    var totalScore=DIMENSIONS.reduce(function(a,d){return a+apsDimScore(d.id)},0);
+    var maxScore=DIMENSIONS.length*9;
+    var pct=Math.round((totalScore/maxScore)*100);
+
+    var summaryData=[
+      ['AI Project Scoper','Generated by pierrederval.com'],[''],
+      ['PROJECT PROFILE',''],
+      ['Project Name',pn],
+      ['AI Approach',approachLabel],
+      ['Domain',apsState.profile.domain||'\u2014'],
+      ['Team Size',apsState.profile.teamSize||'\u2014'],
+      ['Timeline',apsState.profile.timeline||'\u2014'],
+      ['Budget Tier',apsState.profile.budget||'\u2014'],
+      [''],
+      ['DIMENSION SCORES','Score','Level']
+    ].concat(dimRows).concat([
+      [''],
+      ['OVERALL READINESS',pct+'%',pct>=70?'Good':pct>=50?'Attention':'Critical'],
+      ['Total Tasks',apsPLAN.tasks.length,''],
+      ['Critical Tasks',apsPLAN.tasks.filter(function(t){return t.priority==='critical'}).length,''],
+      ['Risks Identified',apsPLAN.risks.length,'']
+    ]);
+    var ws1=XLSX.utils.aoa_to_sheet(summaryData);
+    ws1['!cols']=[{wch:28},{wch:18},{wch:14}];
+    XLSX.utils.book_append_sheet(wb,ws1,'Summary');
+
+    var roadmapHeader=['Phase','Duration','Goal','Tasks','Critical','Key Milestones'];
+    var roadmapRows=apsPLAN.phases.map(function(ph){return[
+      ph.label,ph.duration,ph.goal,ph.taskCount,ph.criticalCount,ph.milestones.join(' | ')
+    ]});
+    var ws2=XLSX.utils.aoa_to_sheet([roadmapHeader].concat(roadmapRows));
+    ws2['!cols']=[{wch:14},{wch:12},{wch:22},{wch:8},{wch:10},{wch:80}];
+    XLSX.utils.book_append_sheet(wb,ws2,'Roadmap');
+
+    var taskHeader=['Phase','Dimension','Task','Description','Owner / Role','Size','Priority','Status','Notes'];
+    var taskRows=apsPLAN.tasks.map(function(t){
+      var dimObj=DIMENSIONS.find(function(d){return d.id===t.dim});
+      return[PHASE_META[t.phase].label,dimObj?dimObj.label:t.dim,t.title,t.desc,t.role,t.size,t.priority,'Open',''];
+    });
+    var ws3=XLSX.utils.aoa_to_sheet([taskHeader].concat(taskRows));
+    ws3['!cols']=[{wch:13},{wch:22},{wch:46},{wch:62},{wch:22},{wch:7},{wch:11},{wch:8},{wch:30}];
+    XLSX.utils.book_append_sheet(wb,ws3,'Task List');
+
+    var riskHeader=['Dimension','Risk','Impact','Likelihood','Mitigation Action','Owner','Status'];
+    var riskRows=apsPLAN.risks.map(function(r){
+      var dimObj=DIMENSIONS.find(function(d){return d.id===r.dim});
+      return[dimObj?dimObj.label:r.dim,r.title,r.impact,r.likelihood,r.mitigation,'PM / Tech Lead','Open'];
+    });
+    var ws4=XLSX.utils.aoa_to_sheet([riskHeader].concat(riskRows));
+    ws4['!cols']=[{wch:20},{wch:52},{wch:9},{wch:12},{wch:70},{wch:18},{wch:9}];
+    XLSX.utils.book_append_sheet(wb,ws4,'Risk Register');
+
+    var filename='AI-Scope-'+pn.replace(/\s+/g,'-')+'.xlsx';
+    XLSX.writeFile(wb,filename);
+  }
+
+  if(window.XLSX){doExport();return}
+  var s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+  s.onload=doExport;
+  document.head.appendChild(s);
+};
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+apsRenderStep1();
+})();
+</script>

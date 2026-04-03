@@ -1,0 +1,101 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import AIProjectScoper from "../../components/AIProjectScoper.astro";
+import { withBase } from "../../utils/url";
+import { siteData } from "../../data/site";
+
+const title = "AI Project Scoper | Pierre Derval";
+const description =
+  "Scope your AI initiative across six dimensions — data, model, architecture, governance, team, and evaluation — then generate a phased roadmap, prioritised task list, and downloadable Excel workbook.";
+
+const toolUrl = Astro.site
+  ? new URL(withBase("/tools/ai-project-scoper"), Astro.site).toString()
+  : withBase("/tools/ai-project-scoper");
+
+const approachFinderUrl = withBase("/tools/ai-approach-finder");
+
+const shareText =
+  "Scope your AI project across 6 dimensions and get a phased roadmap with tasks, risks, and an Excel export. Free tool by Pierre Derval.";
+
+const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(toolUrl)}`;
+const twitterShareUrl  = `https://twitter.com/intent/tweet?url=${encodeURIComponent(toolUrl)}&text=${encodeURIComponent(shareText)}`;
+---
+
+<BlogLayout {title} {description}>
+  <Fragment slot="head">
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url"         content={toolUrl} />
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap"
+    />
+  </Fragment>
+
+  <div class="tool-page shell">
+
+    <!-- Page header -->
+    <header class="tool-page__header reveal" style="--delay: 0ms">
+      <a href={withBase("/tools")} class="eyebrow tool-page__back">&larr; Diagnostics</a>
+      <h1 class="tool-page__title">AI Project Scoper</h1>
+      <p class="tool-page__description">
+        Scope your AI initiative across six dimensions and generate a phased
+        roadmap, task list, and Excel workbook.
+      </p>
+
+      <!-- Share row -->
+      <div class="tool-page__share">
+        <span class="eyebrow">Share</span>
+        <a href={linkedinShareUrl} class="icon-link-button"
+           target="_blank" rel="noreferrer" aria-label="Share on LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href={twitterShareUrl} class="icon-link-button"
+           target="_blank" rel="noreferrer" aria-label="Share on X (Twitter)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Scoper component -->
+    <div class="tool-page__checklist">
+      <AIProjectScoper approachFinderUrl={approachFinderUrl} />
+    </div>
+
+    <!-- Bottom share nudge -->
+    <footer class="tool-page__footer">
+      <p class="eyebrow">Found this useful?</p>
+      <p class="tool-page__footer-text">
+        Share it with a colleague kicking off an AI initiative who needs a
+        structured starting point.
+      </p>
+      <div class="tool-page__share">
+        <a href={linkedinShareUrl} class="icon-link-button"
+           target="_blank" rel="noreferrer" aria-label="Share on LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href={twitterShareUrl} class="icon-link-button"
+           target="_blank" rel="noreferrer" aria-label="Share on X (Twitter)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+</BlogLayout>
