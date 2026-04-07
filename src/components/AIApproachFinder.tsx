@@ -9,6 +9,7 @@ import {
   type Approach,
   type Question,
 } from '../data/aiApproachFinder';
+import { showExportDialog } from '../utils/exportDialog';
 
 // ─── Pure scoring utilities (identical logic to the original HTML) ──────────
 
@@ -282,8 +283,6 @@ interface ResultsViewProps {
 function ResultsView({ answers, onRestart }: ResultsViewProps) {
   const raw = calcScores(answers);
   const pcts = normaliseScores(raw);
-  // pcts available for future use (e.g. tooltips)
-  void pcts;
 
   const brainSorted = [...BRAIN_TYPES].sort((a, b) => raw[b.id] - raw[a.id]);
   const archSorted  = [...ARCH_TYPES].sort((a, b) => raw[b.id] - raw[a.id]);
@@ -294,6 +293,31 @@ function ResultsView({ answers, onRestart }: ResultsViewProps) {
   const topArchRaw  = raw[topArch.id];
 
   const reasoning = buildReasoning(topBrain, topArch, brainSorted, archSorted, raw);
+
+  const handleDownloadPDF = async () => {
+    const result = await showExportDialog("AI Approach Finder");
+    if (!result) return;
+    const topRaw = Math.max(...Object.values(raw));
+    const brainRanking = brainSorted.map(a => ({ name: a.name, pct: pcts[a.id], label: getQualitativeLabel(raw[a.id], topRaw).text, color: a.fill }));
+    const archRanking = archSorted.map(a => ({ name: a.name, pct: pcts[a.id], label: getQualitativeLabel(raw[a.id], topRaw).text, color: a.fill }));
+    const scores: Record<string, number> = {};
+    [...brainSorted, ...archSorted].forEach(a => { scores[a.name] = pcts[a.id]; });
+    import("../utils/leadCapture").then(m => m.captureLead({
+      email: result.email, name: result.name, tool: "AI Approach Finder", scores,
+      verdict: `${brainSorted[0].name} + ${archSorted[0].name}`,
+    }));
+    const qaItems = QUESTIONS.map(q => ({
+      question: q.text,
+      answer: answers[q.id] !== undefined ? q.options[answers[q.id]].label : "Not answered",
+    }));
+    const { generateApproachPDF } = await import("../utils/pdfReport");
+    generateApproachPDF({
+      brainRanking, archRanking,
+      topBrain: { name: brainSorted[0].name, description: DESCRIPTIONS[brainSorted[0].id].long },
+      topArch: { name: archSorted[0].name, description: DESCRIPTIONS[archSorted[0].id].long },
+      qaItems,
+    }).save("AI-Approach-Report.pdf");
+  };
 
   return (
     <div className={styles.results}>
@@ -336,6 +360,12 @@ function ResultsView({ answers, onRestart }: ResultsViewProps) {
         */}
         <p dangerouslySetInnerHTML={{ __html: reasoning }} />
       </div>
+
+      <button onClick={handleDownloadPDF} style={{
+        width: "100%", padding: "12px", fontSize: "0.9rem", fontWeight: 600,
+        background: "#161c20", color: "#f7f4ef", border: "none", borderRadius: "8px",
+        cursor: "pointer", fontFamily: "inherit", marginTop: "1.5rem",
+      }}>Download PDF report</button>
 
       <div className={styles.restartWrap}>
         <button

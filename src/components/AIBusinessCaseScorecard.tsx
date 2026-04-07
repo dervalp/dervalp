@@ -10,6 +10,7 @@ import {
   type DimId,
   type StrengthKey,
 } from '../data/aiBusinessCaseScorecard';
+import { showExportDialog } from '../utils/exportDialog';
 
 // ─── Scoring ───────────────────────────────────────────────────────────────
 
@@ -230,6 +231,27 @@ function ResultsView({ answers, onRestart }: ResultsViewProps) {
   const allSolid = weakDims.length === 0;
   const lowestDim = sortedDims[sortedDims.length - 1];
 
+  const handleDownloadPDF = async () => {
+    const result = await showExportDialog("AI Business Case Scorecard");
+    if (!result) return;
+    const dimData = DIMENSIONS.map(d => ({
+      label: d.label, pct: pcts[d.id], color: d.fill,
+      strength: STRENGTH_THRESHOLDS.find(t => pcts[d.id] >= t.min)?.label ?? "Weak",
+    }));
+    const wdActions = DIMENSIONS.filter(d => pcts[d.id] < 55).map(d => ({ label: d.label, action: DIM_ACTIONS[d.id] }));
+    const scores: Record<string, number> = {};
+    DIMENSIONS.forEach(d => { scores[d.label] = pcts[d.id]; });
+    import("../utils/leadCapture").then(m => m.captureLead({
+      email: result.email, name: result.name, tool: "AI Business Case Scorecard", scores, verdict: tier.title,
+    }));
+    const qaItems = QUESTIONS.map(q => ({
+      question: q.text,
+      answer: answers[q.id] !== undefined ? q.options[answers[q.id]].label : "Not answered",
+    }));
+    const { generateScorecardPDF } = await import("../utils/pdfReport");
+    generateScorecardPDF({ dimensions: dimData, avg, verdict: { title: tier.title, description: tier.description }, weakDims: wdActions, qaItems }).save("Business-Case-Scorecard.pdf");
+  };
+
   return (
     <div className={`${styles.wrap} ${styles.slideIn}`}>
       <div className={styles.results}>
@@ -279,6 +301,11 @@ function ResultsView({ answers, onRestart }: ResultsViewProps) {
           </div>
         )}
 
+        <button type="button" onClick={handleDownloadPDF} style={{
+          width: "100%", padding: "12px", fontSize: "0.9rem", fontWeight: 600,
+          background: "#161c20", color: "#f7f4ef", border: "none", borderRadius: "8px",
+          cursor: "pointer", fontFamily: "inherit", marginTop: "1rem",
+        }}>Download PDF report</button>
         <button type="button" className={styles.restartBtn} onClick={onRestart}>
           Start over
         </button>

@@ -757,11 +757,14 @@ function apsRenderStep3(){
 
     '<div class="export-bar">'+
       '<div class="export-info">'+
-        '<div class="ei-title">Export to Excel</div>'+
+        '<div class="ei-title">Export your project scope</div>'+
         '<div class="ei-desc">4 sheets: Summary \u00B7 Roadmap \u00B7 Task List \u00B7 Risk Register</div>'+
       '</div>'+
-      '<button class="btn btn-export" onclick="apsExportXLSX()">'+
-        '\u2193 Download .xlsx'+
+      '<button class="btn btn-export" onclick="apsExportExcelWithDialog()">'+
+        '\u2193 Excel (.xlsx)'+
+      '</button>'+
+      '<button class="btn btn-export" style="background:var(--aps-accent)" onclick="apsExportPDFWithDialog()">'+
+        '\u2193 PDF Summary'+
       '</button>'+
     '</div>'+
 
@@ -777,7 +780,8 @@ function apsRenderStep3(){
 
     '<div class="nav-bar" style="margin-top:32px">'+
       '<button class="btn btn-secondary" onclick="apsShowStep(2);apsRenderStep2()">\u2190 Revise Answers</button>'+
-      '<button class="btn btn-export" onclick="apsExportXLSX()">\u2193 Download .xlsx</button>'+
+      '<button class="btn btn-export" onclick="apsExportExcelWithDialog()">\u2193 Excel (.xlsx)</button>'+
+      '<button class="btn btn-export" style="background:var(--aps-accent)" onclick="apsExportPDFWithDialog()">\u2193 PDF Summary</button>'+
     '</div>';
   el.innerHTML=html;
 }
@@ -995,6 +999,80 @@ window.apsExportXLSX=function(){
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
+// Expose internal state for the bundled export script
+window.apsGetState=function(){return apsState};
+window.apsGetPlan=function(){return apsPLAN};
+window.apsGetDimScore=apsDimScore;
+window.apsGetDimLevelLabel=apsDimLevelLabel;
+window.apsGetDIMENSIONS=function(){return DIMENSIONS};
+
 apsRenderStep1();
 })();
+</script>
+
+<script>
+import { showExportDialog } from "../utils/exportDialog";
+
+(window as any).apsExportExcelWithDialog = async () => {
+  const result = await showExportDialog("AI Project Scoper", "Excel");
+  if (!result) return;
+  const state = (window as any).apsGetState();
+  const plan = (window as any).apsGetPlan();
+  const DIMS = (window as any).apsGetDIMENSIONS();
+  const scores: Record<string, number> = {};
+  DIMS.forEach((d: any) => { scores[d.label] = (window as any).apsGetDimScore(d.id); });
+  const total = Object.values(scores).reduce((a: number, b: any) => a + (b as number), 0);
+  const pct = Math.round((total / (DIMS.length * 9)) * 100);
+  import("../utils/leadCapture").then(m => m.captureLead({
+    email: result.email, name: result.name,
+    tool: "AI Project Scoper", scores,
+    verdict: `${pct}% readiness, ${plan?.tasks?.length ?? 0} tasks`,
+  }));
+  (window as any).apsExportXLSX();
+};
+
+(window as any).apsExportPDFWithDialog = async () => {
+  const result = await showExportDialog("AI Project Scoper", "PDF");
+  if (!result) return;
+  const state = (window as any).apsGetState();
+  const plan = (window as any).apsGetPlan();
+  const DIMS = (window as any).apsGetDIMENSIONS();
+  const DIM_COLORS: Record<string, string> = {
+    data: "#0F6E56", model: "#185FA5", architecture: "#534AB7",
+    governance: "#BA7517", team: "#993C1D", evaluation: "#2D6A4F",
+  };
+  const dimensions = DIMS.map((d: any) => {
+    const score = (window as any).apsGetDimScore(d.id);
+    return { label: d.label, score, maxScore: 9, level: (window as any).apsGetDimLevelLabel(score), color: DIM_COLORS[d.id] || "#555" };
+  });
+  const totalScore = dimensions.reduce((a: number, d: any) => a + d.score, 0);
+  const overallPct = Math.round((totalScore / (DIMS.length * 9)) * 100);
+  const scores: Record<string, number> = {};
+  dimensions.forEach((d: any) => { scores[d.label] = d.score; });
+
+  import("../utils/leadCapture").then(m => m.captureLead({
+    email: result.email, name: result.name,
+    tool: "AI Project Scoper", scores,
+    verdict: `${overallPct}% readiness, ${plan?.tasks?.length ?? 0} tasks`,
+  }));
+
+  const qaItems: { question: string; answer: string; section?: string }[] = [];
+  DIMS.forEach((d: any) => {
+    d.questions.forEach((q: any, qi: number) => {
+      const val = state.scores[d.id]?.[qi];
+      const selectedOpt = q.opts.find((o: any) => o.v === val);
+      qaItems.push({ question: q.text, answer: selectedOpt ? selectedOpt.l : "Not answered", section: d.label });
+    });
+  });
+  const { generateScoperPDF } = await import("../utils/pdfReport");
+  generateScoperPDF({
+    projectName: state.profile.projectName || "Untitled",
+    approach: state.profile.approach, domain: state.profile.domain || "",
+    teamSize: state.profile.teamSize || "", timeline: state.profile.timeline || "",
+    dimensions, overallPct,
+    taskCount: plan?.tasks?.length ?? 0, riskCount: plan?.risks?.length ?? 0,
+    topRisks: (plan?.risks ?? []).slice(0, 5).map((r: any) => ({ title: r.title, impact: r.impact, mitigation: r.mitigation })),
+    qaItems,
+  }).save(`AI-Scope-${(state.profile.projectName || "Project").replace(/\s+/g, "-")}.pdf`);
+};
 </script>
