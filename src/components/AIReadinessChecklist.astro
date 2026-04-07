@@ -36,6 +36,7 @@ import { SECTIONS, FLAG_CONFIG } from '../data/checklist';
     </div>
 
     <button class="reset-btn" id="reset-btn" type="button">Reset all</button>
+    <button class="download-btn" id="download-pdf-btn" type="button">Download PDF report</button>
   </div>
 
   <!-- Sections -->
@@ -218,6 +219,15 @@ import { SECTIONS, FLAG_CONFIG } from '../data/checklist';
   }
 
   .reset-btn:hover { background: var(--surface, #f4f4f4); }
+
+  .download-btn {
+    font-size: 0.8rem; color: #f7f4ef; background: #161c20; border: none;
+    border-radius: 6px; padding: 6px 14px; cursor: pointer; transition: background 0.15s;
+    font-family: inherit; font-weight: 500; margin-left: 0.5rem;
+  }
+  .download-btn:hover { background: #2e3538; }
+  html[data-theme="dark"] .download-btn { background: #eef2f2; color: #11161a; }
+  html[data-theme="dark"] .download-btn:hover { background: #fff; }
 
   /* ── Sections ── */
   .sections-list { display: flex; flex-direction: column; gap: 12px; }
@@ -495,4 +505,38 @@ import { SECTIONS, FLAG_CONFIG } from '../data/checklist';
   });
 
   updateUI();
+
+  const SECTION_LABELS: Record<string, string> = {
+    biz: "Business Priority", data: "Data Readiness", arch: "Architecture Maturity",
+    gov: "Governance Maturity", delivery: "Delivery Capability",
+  };
+
+  document.getElementById("download-pdf-btn")?.addEventListener("click", async () => {
+    const { showExportDialog } = await import("../utils/exportDialog");
+    const result = await showExportDialog("AI Readiness Checklist");
+    if (!result) return;
+
+    const total = getTotalScore();
+    const verdict = total.pct > 0 ? getVerdict(total.pct) : { label: "", bg: "#eee", text: "#666" };
+    const dimensions = SECTION_IDS.map(id => {
+      const s = getScore(id);
+      return { label: SECTION_LABELS[id], checked: s.checked, total: s.total, pct: s.pct, color: SECTION_META[id].color };
+    });
+    const scores: Record<string, number> = {};
+    dimensions.forEach(d => { scores[d.label] = d.pct; });
+
+    import("../utils/leadCapture").then(m => m.captureLead({
+      email: result.email, name: result.name, tool: "AI Readiness Checklist", scores, verdict: verdict.label,
+    }));
+
+    const qaItems: { question: string; answer: string; section?: string }[] = [];
+    document.querySelectorAll<HTMLButtonElement>(".item-check").forEach(btn => {
+      const key = btn.dataset.key!;
+      const sectionId = btn.dataset.section!;
+      const q = btn.getAttribute("aria-label") || "";
+      qaItems.push({ question: q, answer: state[key] ? "Yes" : "No", section: SECTION_LABELS[sectionId] });
+    });
+    const { generateChecklistPDF } = await import("../utils/pdfReport");
+    generateChecklistPDF({ title: "AI Readiness Checklist", dimensions, totalPct: total.pct, verdict, qaItems }).save("AI-Readiness-Report.pdf");
+  });
 </script>
