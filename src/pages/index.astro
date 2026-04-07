@@ -15,6 +15,12 @@ const heroBackgroundHref = withBase("/hero-background-test.png");
 const credibilityBackgroundHref = withBase("/proven-enterprise-background.png");
 const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
 
+const groupTints: Record<string, string> = {
+  "Strategy": "rgba(234, 219, 207, 0.5)",
+  "Execution": "rgba(188, 209, 202, 0.5)",
+  "AI": "rgba(203, 202, 219, 0.5)",
+};
+
 const diagnostics = [
   {
     href: withBase("/tools/ai-project-scoper"),
@@ -238,7 +244,7 @@ const diagnostics = [
               <div class="capability-group__grid">
                 {
                   group.items.map((item) => (
-                    <div class="h-full">
+                    <div class="h-full" style={`--group-tint: ${groupTints[group.label] || 'transparent'}`}>
                       <CapabilityCard
                         description={item.description}
                         title={item.title}

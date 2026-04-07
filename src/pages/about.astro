@@ -56,21 +56,32 @@ const timeline = [
 <BlogLayout {title} {description}>
   <div class="about-page shell">
 
-    <!-- Header -->
-    <header class="about-page__header reveal" style="--delay: 0ms">
-      <p class="eyebrow">About</p>
-      <h1 class="about-page__headline">20 years building platforms.<br />Now helping others ship AI.</h1>
-    </header>
-
-    <!-- Bio -->
-    <div class="about-page__bio reveal" style="--delay: 60ms">
-      <p>I've spent 20 years at the intersection of engineering, product, and platform. Building things that enterprise teams depend on, in environments where complexity is the default.</p>
-      <p>Most of that work was inside real companies with real constraints: platform frameworks at Sitecore, cross-product architecture at Adform (where the FLOW initiative received a Red Dot Award), and six years as Chief Product Technical Officer at CluedIn, an enterprise data and AI platform serving regulated industries at €300k+ ACV.</p>
-      <p>I started consulting because I kept seeing the same pattern: organisations with genuine AI ambition, real capability, and stalled delivery. Not because the technology was wrong. Because the decision-making, architecture, and execution were not aligned. That is the gap I work in.</p>
+    <!-- Hero: photo + intro -->
+    <div class="about-hero">
+      <div class="about-hero__text reveal" style="--delay: 0ms">
+        <p class="eyebrow">About</p>
+        <h1 class="about-page__headline">20 years building platforms.<br />Now helping others ship AI.</h1>
+        <div class="about-page__bio">
+          <p>I've spent 20 years at the intersection of engineering, product, and platform. Building things that enterprise teams depend on, in environments where complexity is the default.</p>
+          <p>Most of that work was inside real companies with real constraints: platform frameworks at Sitecore, cross-product architecture at Adform (where the FLOW initiative received a Red Dot Award), and six years as Chief Product Technical Officer at CluedIn, an enterprise data and AI platform serving regulated industries at €300k+ ACV.</p>
+          <p>I started consulting because I kept seeing the same pattern: organisations with genuine AI ambition, real capability, and stalled delivery. Not because the technology was wrong. Because the decision-making, architecture, and execution were not aligned. That is the gap I work in.</p>
+        </div>
+      </div>
+      <div class="about-hero__photo reveal" style="--delay: 120ms">
+        <div class="about-hero__photo-frame">
+          <img
+            src={withBase("/pierre-derval-profile.png")}
+            alt="Pierre Derval"
+            width="400"
+            height="500"
+            loading="eager"
+          />
+        </div>
+      </div>
     </div>
 
     <!-- Metrics band -->
-    <div class="about-metrics-band reveal" style="--delay: 120ms">
+    <div class="about-metrics-band reveal" style="--delay: 160ms">
       <p class="eyebrow about-metrics-band__eyebrow">Signature outcomes</p>
       <div class="about-metrics-grid">
         {metrics.map((m) => (
@@ -86,7 +97,7 @@ const timeline = [
     </div>
 
     <!-- Career timeline -->
-    <div class="about-timeline reveal" style="--delay: 160ms">
+    <div class="about-timeline reveal" style="--delay: 200ms">
       <p class="eyebrow">Career</p>
       <div class="about-timeline__list">
         {timeline.map((entry) => (
@@ -107,7 +118,7 @@ const timeline = [
     </div>
 
     <!-- CTA -->
-    <div class="about-cta reveal" style="--delay: 200ms">
+    <div class="about-cta reveal" style="--delay: 240ms">
       <p class="eyebrow">Ready to talk?</p>
       <h2 class="about-cta__heading">Start with a free diagnostic call.</h2>
       <p class="about-cta__body">One hour. No commitment.</p>
