@@ -37,7 +37,7 @@
   --section-contrast: linear-gradient(180deg, rgba(255, 255, 255, 0.60), rgba(255, 255, 255, 0.28));
   --section-contrast-strong: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(249, 245, 237, 0.55));
   --button-primary-bg: #161c20;
-  --button-primary-bg-hover: #3d3d3a;
+  --button-primary-bg-hover: #2e3538;
   --button-primary-fg: #f7f4ef;
   --hero-image-filter: grayscale(1) saturate(0.55) contrast(0.92);
   --hero-image-opacity: 0.5;

@@ -5,7 +5,7 @@ author: "Pierre Derval"
 publishDate: 2026-03-31
 category: "AI Strategy"
 tags: ["ai", "readiness", "strategy", "enterprise", "consulting"]
-image: "/blog/readiness-risk.png"
+image: "/blog/readiness-risk.webp"
 imageAlt: "AI readiness risk assessment framework diagram"
 cta: "ai-readiness"
 draft: false

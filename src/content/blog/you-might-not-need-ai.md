@@ -5,7 +5,7 @@ author: "Pierre Derval"
 publishDate: 2026-04-03
 category: "AI Strategy"
 tags: ["ai", "strategy", "enterprise", "decision-making", "consulting"]
-image: "/blog/from-infrastructure-to-ai-progression.png"
+image: "/blog/from-infrastructure-to-ai-progression.webp"
 imageAlt: "A visual progression from infrastructure and data foundations through to AI and predictive systems"
 cta: "ai-readiness"
 draft: false

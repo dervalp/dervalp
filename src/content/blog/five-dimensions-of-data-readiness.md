@@ -5,7 +5,7 @@ author: "Pierre Derval"
 publishDate: 2026-04-01
 category: "Data Strategy"
 tags: ["data", "readiness", "ai", "strategy", "enterprise"]
-image: "/data-readiness.png"
+image: "/data-readiness.webp"
 imageAlt: "Five dimensions of data readiness framework"
 cta: "data-readiness"
 draft: false

@@ -11,8 +11,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { withBase } from "../utils/url";
 
 const resumeHref = withBase(siteData.socials.resumePath);
-const heroBackgroundHref = withBase("/hero-background-test.png");
-const credibilityBackgroundHref = withBase("/proven-enterprise-background.png");
+const heroBackgroundHref = withBase("/hero-background.webp");
+const credibilityBackgroundHref = withBase("/proven-enterprise-background.webp");
 const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
 
 const groupTints: Record<string, string> = {
