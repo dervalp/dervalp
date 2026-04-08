@@ -267,7 +267,7 @@ export const siteData = {
         logoAlt: "Ikary logo",
         logoPath: "/logos/ikary.svg",
         slug: "ikary",
-        relevance: ["Founder", "AI Enterprise builder"]
+        relevance: ["Creator", "Open-Source AI Platform"]
       },
       {
         company: "CluedIn",
