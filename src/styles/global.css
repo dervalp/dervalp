@@ -1838,6 +1838,38 @@ html[data-theme="dark"] .blog-card:hover {
   color: var(--accent-700);
 }
 
+/* ── Latest posts (homepage) ── */
+.latest-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.latest-posts-grid > * { display: flex; }
+.latest-posts-grid .blog-card {
+  flex: 1;
+  grid-template-rows: auto 1fr;
+}
+.latest-posts-grid .blog-card__body {
+  grid-template-rows: auto auto auto 1fr auto auto;
+}
+.latest-posts-grid .blog-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .latest-posts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .latest-posts-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.latest-posts-cta {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
 /* ── Blog tag pills */
 
 .blog-tag {
