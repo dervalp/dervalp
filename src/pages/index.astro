@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+import BlogPostCard from "../components/BlogPostCard.astro";
 import CapabilityCard from "../components/CapabilityCard.astro";
 import ContactPanel from "../components/ContactPanel.astro";
 import CredibilityItem from "../components/CredibilityItem.astro";
@@ -8,12 +10,16 @@ import SectionHeading from "../components/SectionHeading.astro";
 import TransformationCard from "../components/TransformationCard.astro";
 import { siteData } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sortedPosts } from "../utils/blog";
 import { withBase } from "../utils/url";
 
 const resumeHref = withBase(siteData.socials.resumePath);
 const heroBackgroundHref = withBase("/hero-background.webp");
 const credibilityBackgroundHref = withBase("/proven-enterprise-background.webp");
 const contactEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT?.trim() ?? "";
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const recentPosts = sortedPosts(allPosts).slice(0, 3);
 
 const groupTints: Record<string, string> = {
   "Strategy": "rgba(234, 219, 207, 0.5)",
@@ -276,6 +282,25 @@ const diagnostics = [
             </div>
           ))
         }
+      </div>
+    </section>
+
+    <section class="shell section" data-section id="latest-thinking">
+      <div class="reveal">
+        <p class="eyebrow">Latest thinking</p>
+        <h2 class="section-title mt-5">Recent writing on AI and strategy</h2>
+      </div>
+
+      <div class="latest-posts-grid">
+        {recentPosts.map((post, i) => (
+          <div class="reveal" style={`--delay: ${i * 80}ms`}>
+            <BlogPostCard post={post} />
+          </div>
+        ))}
+      </div>
+
+      <div class="latest-posts-cta reveal" style="--delay: 300ms">
+        <a href={withBase("/blog")} class="button-secondary">View all articles &rarr;</a>
       </div>
     </section>
 
