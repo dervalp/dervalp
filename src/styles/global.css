@@ -1838,6 +1838,56 @@ html[data-theme="dark"] .blog-card:hover {
   color: var(--accent-700);
 }
 
+/* ── Testimonials (homepage) ── */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+@media (min-width: 1024px) {
+  .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.testimonial-card {
+  border: 1px solid var(--line-subtle);
+  border-radius: 12px;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: var(--canvas);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0;
+}
+html[data-theme="dark"] .testimonial-card {
+  background: var(--surface-strong);
+}
+.testimonial-card__quote {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-ink-600);
+  font-style: italic;
+  margin: 0;
+}
+.testimonial-card__attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: auto;
+}
+.testimonial-card__name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-ink-950);
+}
+.testimonial-card__role {
+  font-size: 0.8rem;
+  color: var(--color-ink-400);
+}
+.testimonial-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 /* ── Latest posts (homepage) ── */
 .latest-posts-grid {
   display: grid;
