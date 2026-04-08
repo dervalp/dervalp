@@ -2922,6 +2922,92 @@ html[data-theme="dark"] .blog-card:hover {
 
 /* ── END SERVICES ────────────────────────────────────────────── */
 
+/* ── HOW I HELP ─────────────────────────────────────────────── */
+
+.how-i-help-page {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.how-i-help-page__header {
+  max-width: 42rem;
+  margin-bottom: 3rem;
+}
+
+.how-i-help-page__intro {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.8;
+  color: var(--color-ink-600);
+  margin-top: 1rem;
+}
+
+.how-i-help-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.how-i-help-section {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--line-subtle);
+}
+
+.how-i-help-section:last-child {
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.how-i-help-section__title {
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-ink-950);
+  margin-bottom: 1.25rem;
+}
+
+.how-i-help-section__body {
+  max-width: 42rem;
+}
+
+.how-i-help-section__body p {
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  line-height: 1.8;
+  color: var(--color-ink-600);
+  margin-bottom: 0.85rem;
+}
+
+.how-i-help-section__body p:last-child {
+  margin-bottom: 0;
+}
+
+.how-i-help-page__footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 3rem;
+}
+
+.how-i-help-page__footer-text {
+  font-size: 0.95rem;
+  color: var(--color-ink-600);
+  max-width: 36rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.how-i-help-page__footer-text a {
+  color: var(--accent-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.how-i-help-page__footer-text a:hover {
+  color: var(--accent-500);
+}
+
+/* ── END HOW I HELP ─────────────────────────────────────────── */
+
 /* ── About page ─────────────────────────────────────────────── */
 
 .about-page {
