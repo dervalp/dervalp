@@ -1,0 +1,80 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { withBase } from "../utils/url";
+import { siteData } from "../data/site";
+
+const title = `How I help | ${siteData.hero.name}`;
+const description =
+  "Most organisations do not have an AI problem. They have a readiness problem, a strategy problem, or a delivery problem. I work with enterprise teams to cut through the noise.";
+
+const sections = [
+  {
+    title: "AI product strategy",
+    paragraphs: [
+      "You have pressure to ship AI. That is real. But shipping the wrong thing, at the wrong time, for the wrong reasons creates more debt than it resolves.",
+      "I help teams define what they are actually trying to achieve with AI, which problems are genuinely worth solving, and which ones are better handled with automation or simpler tooling. The output is a clear product direction grounded in business priority, not technology enthusiasm.",
+      "This covers use case selection, build-versus-buy framing, and making the case to leadership in terms that hold up under scrutiny.",
+    ],
+  },
+  {
+    title: "Product and platform operating model",
+    paragraphs: [
+      "AI changes how software teams need to be organised and how products need to be governed. Most operating models were not designed for this.",
+      "I help organisations adapt their product and platform structures to work effectively with AI in the loop. That means clarifying ownership, accountability, and decision rights across engineering, data, and the business. It means designing for iteration, not for a one-time launch.",
+      "The goal is a model that can sustain AI product development over time, not just deliver a first release.",
+    ],
+  },
+  {
+    title: "Advisory for enterprise AI execution",
+    paragraphs: [
+      "Enterprise AI projects fail for predictable reasons. Governance gaps, data that is not ready, architecture decisions that close off options too early, delivery teams that were not set up to handle the ambiguity.",
+      "I provide advisory support to senior teams navigating live programmes. This is not a strategy exercise. It is direct, practical input into decisions that are already in motion.",
+      "I bring an outside perspective that is not sold on any particular vendor, platform, or methodology. The only goal is execution that holds.",
+    ],
+  },
+  {
+    title: "Fractional product and platform leadership",
+    paragraphs: [
+      "Sometimes you need experienced product or platform leadership without the full-time hire. This is common during transformation programmes, organisational transitions, or when a team needs to move faster than a permanent recruitment process allows.",
+      "I take on fractional roles where I am genuinely embedded in the work. That means being present in the decisions, not just the deck reviews. I work best with teams that want a thinking partner with a track record, not a contractor who executes tickets.",
+      "Engagements are scoped to what is actually needed. Some last a quarter. Some run longer. That is a conversation.",
+    ],
+  },
+];
+---
+
+<BlogLayout {title} {description}>
+  <div class="how-i-help-page shell">
+
+    <header class="how-i-help-page__header reveal" style="--delay: 0ms">
+      <p class="eyebrow">Approach</p>
+      <h1 class="section-title">How I help</h1>
+      <p class="how-i-help-page__intro">
+        Most organisations do not have an AI problem. They have a readiness problem, a strategy problem, or a delivery problem. AI just makes it visible faster.
+      </p>
+      <p class="how-i-help-page__intro">
+        I work with enterprise teams to cut through the noise and focus on what actually moves the needle.
+      </p>
+    </header>
+
+    <div class="how-i-help-sections">
+      {sections.map((s, i) => (
+        <section class="how-i-help-section reveal" style={`--delay: ${80 + i * 70}ms`}>
+          <h2 class="how-i-help-section__title">{s.title}</h2>
+          <div class="how-i-help-section__body">
+            {s.paragraphs.map((p) => <p>{p}</p>)}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <footer class="how-i-help-page__footer reveal" style="--delay: 400ms">
+      <p class="eyebrow">Not sure which applies?</p>
+      <p class="how-i-help-page__footer-text">
+        If you are dealing with an AI challenge and you are not certain what kind of help would be most useful, the <a href={withBase("/tools")}>diagnostic tools</a> on this site are a good starting point. Or reach out directly. A short conversation usually makes it clear.
+      </p>
+      <a href={withBase("/contact") + "?topic=General+inquiry"} class="button-primary">Start a conversation →</a>
+    </footer>
+
+  </div>
+</BlogLayout>
