@@ -20,6 +20,10 @@ I help enterprise teams turn AI ambition into shipped, governed products by alig
 - Sitecore
 - Amilia
 
+## Ikary (research project)
+
+- Actively working on declarative open source language for AI: [https://github.com/ikary-platform/ikary-manifest](https://github.com/ikary-platform/ikary-manifest)
+
 ## Signature Outcomes
 
 - Reduced time to AI delivery from weeks to hours
