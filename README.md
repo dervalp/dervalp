@@ -22,7 +22,7 @@ I help enterprise teams turn AI ambition into shipped, governed products by alig
 
 ## Ikary (research project)
 
-- Actively working on declarative open source language for AI: [https://github.com/ikary-platform/ikary-manifest](https://github.com/ikary-platform/ikary-manifest)
+- Actively working on a declarative open source language for AI: [https://github.com/ikary-platform/ikary-manifest](https://github.com/ikary-platform/ikary-manifest)
 
 ## Signature Outcomes
 
