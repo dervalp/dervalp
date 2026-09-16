@@ -15,10 +15,11 @@ I help enterprise teams turn AI ambition into shipped, governed products by alig
 
 ## Selected Experience
 
-- CluedIn
-- Adform
-- Sitecore
-- Amilia
+- Vertuoza (Head of AI)
+- CluedIn (CPO)
+- Adform (Platform Architect)
+- Sitecore (Lead Engineer)
+- Amilia (VP Product Development)
 
 ## Ikary (research project)
 
