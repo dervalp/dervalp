@@ -21,8 +21,9 @@ I help enterprise teams turn AI ambition into shipped, governed products by alig
 - Sitecore (Lead Engineer)
 - Amilia (VP Product Development)
 
-## Ikary (research project)
+## Fieldnote & Ikary (research project)
 
+- Self-improving coding agent
 - Actively working on a declarative open source language for AI: [https://github.com/ikary-platform/ikary-manifest](https://github.com/ikary-platform/ikary-manifest)
 
 ## Signature Outcomes
