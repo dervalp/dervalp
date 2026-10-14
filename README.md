@@ -21,10 +21,11 @@ I help enterprise teams turn AI ambition into shipped, governed products by alig
 - Sitecore (Lead Engineer)
 - Amilia (VP Product Development)
 
-## Fieldnote & Ikary (research project)
+## omni-loop.xyz (research project)
 
 - Self-improving coding agent
-- Actively working on a declarative open source language for AI: [https://github.com/ikary-platform/ikary-manifest](https://github.com/ikary-platform/ikary-manifest)
+- Loop engineering framework
+- Anti-loop engineer framework
 
 ## Signature Outcomes
 
