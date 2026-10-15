@@ -1,0 +1,116 @@
+{
+  "version": "0.0.425",
+  "folders": {
+    ".agents/skills/omni-ask": {
+      ".agents/skills/omni-ask/SKILL.md": "353a9e48a0e88640ba6a75f65ddfc08954475f7df82e6b0cd4a41331dc42240e"
+    },
+    ".agents/skills/omni-brainstorm": {
+      ".agents/skills/omni-brainstorm/SKILL.md": "0347fd2522757be26810009b6cdfd9599ade3634b68917367ee88c837ebf5a0d"
+    },
+    ".agents/skills/omni-bug-fix": {
+      ".agents/skills/omni-bug-fix/SKILL.md": "5aad6969addb71a738076e7ff9e83015315e285073a08ea9731228bcf90af401"
+    },
+    ".agents/skills/omni-do-work": {
+      ".agents/skills/omni-do-work/SKILL.md": "51d14a728d0aa22f1e3741f9b6547c28366682f808f0454cc9c7ddde17d52ef7"
+    },
+    ".agents/skills/omni-dossier-open": {
+      ".agents/skills/omni-dossier-open/SKILL.md": "280767bdf16db1db7deac5a2a528dff0c4458c23f79f2329eaf260f88b225f38"
+    },
+    ".agents/skills/omni-dossier-push": {
+      ".agents/skills/omni-dossier-push/SKILL.md": "16e7546626139862df8c93df10c89a5cf93b08bf4234f2d5d00783dfb41b5662"
+    },
+    ".agents/skills/omni-drive": {
+      ".agents/skills/omni-drive/SKILL.md": "e8054b7d29d347437691bff58a436c335dcbd52d41cd0b21f9e24cf1a1f2987e"
+    },
+    ".agents/skills/omni-enforce": {
+      ".agents/skills/omni-enforce/SKILL.md": "ac989f7f539e968e75cc7bec59fff066e3b45e1a62ea5d88acd04a4c81a8e174"
+    },
+    ".agents/skills/omni-help": {
+      ".agents/skills/omni-help/SKILL.md": "19767b084e9456f659e03d29e57252f03aac5218331bc87105953247f515abd4"
+    },
+    ".agents/skills/omni-invade": {
+      ".agents/skills/omni-invade/SKILL.md": "c86bf6c3a914293ba8a93fccc31b6f7f903ed36cfb8f8f1b2af3728dc17def8a"
+    },
+    ".agents/skills/omni-mega-brainstorm": {
+      ".agents/skills/omni-mega-brainstorm/SKILL.md": "50a7a9264a39f8266c647a316715f7c61a5acbf23f96e46c74f46e0056ebb5f9"
+    },
+    ".agents/skills/omni-mega-bug-fix": {
+      ".agents/skills/omni-mega-bug-fix/SKILL.md": "bae18b528857cc88169150944937e53b49667305a324466a96ac1dab39c2ee5f"
+    },
+    ".agents/skills/omni-mega-drive": {
+      ".agents/skills/omni-mega-drive/SKILL.md": "b2c9d158e5d65f70e095fc0e2706f84e169987e03bde79668117c33e8481557b"
+    },
+    ".agents/skills/omni-mega-invade": {
+      ".agents/skills/omni-mega-invade/SKILL.md": "b252c77e56caf632dc5060c6b3e77df6c4d58d047eb510735767ff4607639f6c"
+    },
+    ".agents/skills/omni-mega-pr-care": {
+      ".agents/skills/omni-mega-pr-care/SKILL.md": "817ebf578f159b246db344ae5b46667d3cba4ff8a599bc7dcb69da0b6df578dd"
+    },
+    ".agents/skills/omni-mega-roadmap": {
+      ".agents/skills/omni-mega-roadmap/SKILL.md": "ae73c95a59867d3d51a65bf5503f4aeb7ddd3a71b77d1a467e2d72c1f3a920e6"
+    },
+    ".agents/skills/omni-pitch": {
+      ".agents/skills/omni-pitch/SKILL.md": "d783b21da1301753c8f923d994c3a2c941e1e00f78653fd950cd3ee5e739be62"
+    },
+    ".agents/skills/omni-pixel-perfect": {
+      ".agents/skills/omni-pixel-perfect/SKILL.md": "5847325988382a64dc96e69ac6b5eb38fa46bffaaec5005db135ef45c0eecd1e",
+      ".agents/skills/omni-pixel-perfect/mock.md": "61b4e492e1a01b2829d794979daac817c8fa344e3e29278c0cccdf39c89cd3e0",
+      ".agents/skills/omni-pixel-perfect/reference/adapt.md": "76649b0c776ad7a387c4573ef338124d2390fdbecf3e4b00dcddc0d31b13a886",
+      ".agents/skills/omni-pixel-perfect/reference/audit.md": "7183e137c2048d63d23267292befa88f4be66c1a5dbb4ddf6377a8c6a61ec9ba",
+      ".agents/skills/omni-pixel-perfect/reference/clarify.md": "9b1529036f5d3e57aec4a3df2daca87244b8ad6fcf212cd6075cacab45a49bd3",
+      ".agents/skills/omni-pixel-perfect/reference/craft-floor.md": "212a92b4daef36fa97a6bdd5fa42283f8695e21fb8834ad95248a0bc6037ce0f",
+      ".agents/skills/omni-pixel-perfect/reference/critique.md": "f17c5b61949a8ac841ae4508d47f664addf09fb0dbb9fbe354ef026c48da0cb7",
+      ".agents/skills/omni-pixel-perfect/reference/harden.md": "4be59113e5aa36ad249b0fd291c58d031a52833320f6038cf54440861abda8fb",
+      ".agents/skills/omni-pixel-perfect/reference/layout.md": "285102382659c9f99dd516d8373a279e5c6cebc81c576bb06fb68dbb645b3917",
+      ".agents/skills/omni-pixel-perfect/reference/lock.md": "259c6d99f41321c4f146f15b9754dea3cf4300773ce2650fc86faf24094417e0",
+      ".agents/skills/omni-pixel-perfect/reference/polish.md": "2aab901d078cd49b297b398f87b0fc964376bafb077d8bfa287c806a991713b6",
+      ".agents/skills/omni-pixel-perfect/reference/review.md": "7f13dd413b9e108922282288a8e87735a619d16bc9922bd791e53046f9373669",
+      ".agents/skills/omni-pixel-perfect/reference/typeset.md": "591491d043b35231fbbae9094ad86f8e09d252bc4a09f3b231929b6609ab4831"
+    },
+    ".agents/skills/omni-plan": {
+      ".agents/skills/omni-plan/SKILL.md": "dee063da16a521e05a3b52bbefb34b4d71edd18a89fab551ee3ff2692a42cf64"
+    },
+    ".agents/skills/omni-pr": {
+      ".agents/skills/omni-pr/SKILL.md": "0157912b8f2979dd0fae5dde965c1bc58d9766725ac8da25f7d6ba1e2913d1d8"
+    },
+    ".agents/skills/omni-pr-care": {
+      ".agents/skills/omni-pr-care/SKILL.md": "17161bf7471b133ae99fefe09a3146a2d2e7308902bdba946c592027da05a32c"
+    },
+    ".agents/skills/omni-prove": {
+      ".agents/skills/omni-prove/SKILL.md": "ca4c44adec1a0d07a33daf1c9011768781238a0ff47b19b0d03eecade2caf604"
+    },
+    ".agents/skills/omni-roadmap": {
+      ".agents/skills/omni-roadmap/SKILL.md": "7d38182553901f8717368ecce9effa931370e319cee5d0115049dd53fd0c1a31"
+    },
+    ".agents/skills/omni-status": {
+      ".agents/skills/omni-status/SKILL.md": "a1c5ac9e4ad0177eab000040855e5109287f0ec021af32a4b3a01041aaa30d00"
+    },
+    ".agents/skills/omni-think-big": {
+      ".agents/skills/omni-think-big/SKILL.md": "b12ba2ee40a4226eb895cdfe6f9ad4527272d8b78a8b6be7370a30db20eb24d9"
+    },
+    ".agents/skills/omni-ultra-wave": {
+      ".agents/skills/omni-ultra-wave/SKILL.md": "772bd348583aee32bb1e91c65f85104e10db6708c3ff6bf514188e0ec4fad912"
+    },
+    ".agents/skills/omni-ultra-yolo": {
+      ".agents/skills/omni-ultra-yolo/SKILL.md": "878e70d9d7a68565a96a4646375ee287c829e57c3f1e019dde8af51caaaf72b9"
+    },
+    ".agents/skills/omni-ultra-yolo-fix": {
+      ".agents/skills/omni-ultra-yolo-fix/SKILL.md": "e5ee2f835ccc0bed38a159a6d6158e600a1f2fdc76546eabc517036d7328e01b"
+    },
+    ".agents/skills/omni-validate-e2e": {
+      ".agents/skills/omni-validate-e2e/SKILL.md": "52dd671f961d984f09120360da4d8819d1a4fa86cd8b8e4649a16b6cca621f59"
+    },
+    ".agents/skills/omni-visual-fix": {
+      ".agents/skills/omni-visual-fix/SKILL.md": "f5e2d4faf90fd5aae6121c67be5233d9cc0e27605ce4e8f1e66b5cbfbc3f13c6"
+    },
+    ".agents/skills/omni-wave": {
+      ".agents/skills/omni-wave/SKILL.md": "c6e4070ba4978df60b8ce5dc4062e9b04abcaeed65650d0113e6e8752c54c1d5"
+    },
+    ".agents/skills/omni-yolo": {
+      ".agents/skills/omni-yolo/SKILL.md": "c6cc0d702c52752be6c245fe221bbb6d22ae7d3a1f1fc9e18370fbd61e1a9320"
+    },
+    ".agents/skills/omni-yolo-fix": {
+      ".agents/skills/omni-yolo-fix/SKILL.md": "ef084f9f6133f24bf170f2f5a89d4296df7e590998ca4affc9f50c1e53ebad2d"
+    }
+  }
+}

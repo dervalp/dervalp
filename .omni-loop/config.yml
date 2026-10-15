@@ -1,0 +1,47 @@
+# Omni Loop config, written by `omni init`. A key not written here keeps its schema default.
+kit: 1
+
+# The repository the loop opens pull requests on.
+repo:
+  slug: dervalp/dervalp
+  defaultBranch: main
+
+# The coding agents the skills are installed for: any of claude, codex, cursor, gemini.
+agents:
+  - codex
+
+# Whether a skill may create a missing loop label while it runs (omni init creates them regardless).
+labels:
+  autoCreate: false
+
+# What the loop runs. null: not known yet; fill it in before the loop needs it. setup prepares a
+# fresh checkout for the preflight, proposed from the lockfile; null: none needed.
+commands:
+  setup: pnpm install --frozen-lockfile
+  test: null
+  preflight: npm run build
+  preflightFull: npm run build
+
+# Where the laws a slice must not break are read from: knowledge, claudeMdInvariants (the ADRs
+# the context files list under the invariants heading) or none.
+laws:
+  source: none
+
+# The Omni page ask mode's questions and the dossiers go to. null: ask mode and dossiers off.
+ask:
+  url: https://www.omni-loop.xyz
+
+# Whether omni dossier sends this repository's PRD folders to ask.url.
+dossier:
+  enabled: true
+
+# Whether the outbox may be answered outside the pull request, at the end of /omni:yolo. false: only on the pull request.
+answers:
+  enabled: true
+
+# Who co-signs the loop's commits, pull requests and issues. null: nobody.
+signature:
+  name: Omni-man
+  email: 333776611+omni-loop-invader[bot]@users.noreply.github.com
+  home: https://www.omni-loop.xyz
+  footer: 🦸 {name} by [Omni Loop]({home}) ©
