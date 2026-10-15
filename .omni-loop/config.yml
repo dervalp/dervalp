@@ -17,7 +17,7 @@ labels:
 # What the loop runs. null: not known yet; fill it in before the loop needs it. setup prepares a
 # fresh checkout for the preflight, proposed from the lockfile; null: none needed.
 commands:
-  setup: pnpm install --frozen-lockfile
+  setup: npm ci
   test: null
   preflight: npm run build
   preflightFull: npm run build
@@ -25,7 +25,7 @@ commands:
 # Where the laws a slice must not break are read from: knowledge, claudeMdInvariants (the ADRs
 # the context files list under the invariants heading) or none.
 laws:
-  source: none
+  source: knowledge
 
 # The Omni page ask mode's questions and the dossiers go to. null: ask mode and dossiers off.
 ask:
@@ -45,3 +45,17 @@ signature:
   email: 333776611+omni-loop-invader[bot]@users.noreply.github.com
   home: https://www.omni-loop.xyz
   footer: 🦸 {name} by [Omni Loop]({home}) ©
+
+# Existing editorial context; absent default agent-context files are omitted.
+paths:
+  context:
+    - "README.md"
+    - "src/content/blog/ai-should-generate-manifests-not-code.md"
+    - "src/content/blog/five-dimensions-of-data-readiness.md"
+    - "src/content/blog/five-questions-before-building-ai.md"
+    - "src/content/blog/you-might-not-need-ai.md"
+
+# First ceilings are measured before this switch is committed.
+budgets:
+  context:
+    enabled: true

@@ -1,0 +1,23 @@
+{
+  "briefing": 3072,
+  "context:README.md": 2048,
+  "context:src/content/blog/ai-should-generate-manifests-not-code.md": 8192,
+  "context:src/content/blog/five-dimensions-of-data-readiness.md": 10240,
+  "context:src/content/blog/five-questions-before-building-ai.md": 9216,
+  "context:src/content/blog/you-might-not-need-ai.md": 9216,
+  "form:architecture": 2048,
+  "form:bug-fixing": 2048,
+  "form:ci": 3072,
+  "form:conventions": 1024,
+  "form:decisions": 2048,
+  "form:definition-of-done": 2048,
+  "form:design": 1024,
+  "form:glossary": 1024,
+  "form:pull-requests": 1024,
+  "form:releasing": 2048,
+  "form:review": 1024,
+  "form:setup": 2048,
+  "form:testing": 3072,
+  "form:verification": 1024,
+  "session": 38912
+}
