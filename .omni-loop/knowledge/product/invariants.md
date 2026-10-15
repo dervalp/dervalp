@@ -1,0 +1,3 @@
+# Product invariants
+
+None yet.
