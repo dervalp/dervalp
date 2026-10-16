@@ -1,6 +1,6 @@
 # Executive-builder website refresh: delivery plan
 
-PRD #29; specification: `spec.md` beside this plan. Feature branch `feat/executive-website-refresh` targets `main` with `Closes #29`. Slice branches `feat/executive-website-refresh--s1` through `--s4` target that feature branch, each with `Part of #29`. No source has been implemented in phase 0. Every slice follows the approved before/after and preserves existing public routes, diagnostic behavior and contact contracts.
+PRD #29; specification: `spec.md` beside this plan. Feature branch `feat/executive-website-refresh` targets `main` with `Closes #29`. Slice branches `feat/executive-website-refresh--s1` through `--s4` target that feature branch, each with `Part of #29`. No source has been implemented in phase 0. Every slice follows the approved before/after and the detailed `pixel-perfect.html` homepage reference and preserves existing public routes, diagnostic behavior and contact contracts.
 
 ## Slices
 
@@ -35,7 +35,7 @@ Shared ground:
 ### s2
 
 - Homepage follows the approved order: personal identity/portrait/contact action; Vertuoza and Omni-loop; attributed prior outcomes/testimonials; engagements; writing/tools; closing contact invitation.
-- The warm ivory/near-black/accent direction, editorial hierarchy and existing portrait match `before-after.html`; the schematic portrait is never shipped. Dark mode stays usable and essential copy is present without reveal scripts.
+- The warm ivory/near-black/accent direction, editorial hierarchy and existing portrait match the detailed `pixel-perfect.html` homepage reference, reached through `visual-review.html`. Use the original light/dark Pierre Derval logo SVGs in header and footer with the orange slash and proportions intact. The earlier schematic is context, and its symbolic portrait is never shipped. Dark mode stays usable and essential copy is present without reveal scripts.
 - Shared navigation/footer and About presentation belong to the same visual system. Existing links/base paths and route names remain intact; all five tools remain reachable.
 - Review actual local feature pages at 1440, 768 and 390 CSS pixels, light/dark themes, keyboard focus and reduced motion. Inspect a representative article and every tool entrypoint for global-style regressions; record screenshots/observations in the sub-PR and feature PR. Mock comparison controls are not production UI.
 - `npm run build` passes; no contact or scoring implementation changes are present in the diff.
