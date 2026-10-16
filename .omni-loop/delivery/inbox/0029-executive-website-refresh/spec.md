@@ -18,7 +18,7 @@ One coordinated refresh of the existing Astro site: lead with the person and cur
 
 ### Experience and visual direction
 
-Use a warm ivory canvas, near-black project sections, large editorial typography, a prominent existing portrait, one vivid accent and restrained motion. Retain a usable dark theme. Replace generic repeated card grids on the marketing surfaces with deliberate hierarchy, project narratives and editorial rows. Retain the existing Pierre Derval logo: `public/pierre-derval-logo.svg` in light headers and `public/pierre-derval-logo-white.svg` in dark headers/footer, including the orange slash, proportions and wordmark. Do not replace it with plain typed text or redraw the mark. The five existing diagnostic tools remain available with their calculations and export/contact behavior intact.
+Use a warm ivory canvas, near-black project sections, large editorial typography, a restrained existing portrait, one vivid accent and restrained motion. Retain a usable dark theme. Replace generic repeated card grids on the marketing surfaces with deliberate hierarchy, project narratives and editorial rows. Rework the logo into a clearly readable full-name PIERRE DERVAL wordmark, with the orange slash as a separate trailing accent rather than replacing a letter. Deliver matching light/dark SVG variants in `public/pierre-derval-logo.svg` and `public/pierre-derval-logo-white.svg`. Keep the existing photograph unaltered: reduce its frame and apply the subtle desaturation/soft-contrast CSS treatment shown in the detailed preview. The five existing diagnostic tools remain available with their calculations and export/contact behavior intact.
 
 Homepage order:
 
@@ -44,7 +44,7 @@ Bring About, Services, How I help and Contact into the same hierarchy and voice.
 
 - Audience, stated by Pierre: CEOs and CTOs of SaaS and large companies considering him for hiring and well-paid consulting.
 - Visual direction chosen by Pierre: executive builder — bold editorial typography, warm light background, dark project sections and restrained vivid accents.
-- Complete bounded design approved in chat on 2026-10-16. In visual review the same day, Pierre requested retaining his original logo and a detailed pixel-accurate approval preview; those refinements are included without expanding production scope. This is an existing-site refresh; it adds no application subsystem, contact service or diagnostic scoring model.
+- Complete bounded design approved in chat on 2026-10-16. In visual review the same day, Pierre requested a detailed pixel-accurate approval preview, then a reworked full-name logo and a smaller, softer portrait; these refinements are included in the design reference. This is an existing-site refresh; it adds no application subsystem, contact service or diagnostic scoring model.
 - Phase 0 uses a review PR: the server flag returned `phase 0: pr · the flag could not be read: refused (403)` at the start of the brainstorm. No server birthplace is declared.
 - Design craft is currently off in repository configuration; keep it off in this PRD. The approved mockup guides delivery, but no screen or law is locked. No personas or confirmed business claims were available from the refused business read; none are invented.
 - Proof video and optional e2e workflow are not requested because their configuration is unset/disabled. Observable acceptance criteria below still require responsive browser review and meaningful technical output checks.
@@ -86,7 +86,7 @@ Merging the feature PR triggers GitHub Pages deployment on main. Roll back with 
 
 ## Acceptance criteria
 
-1. The header and footer retain the original logo assets, with their orange slash and proportions intact. The opening viewport identifies Pierre Derval as an AI & Product Executive and Head of AI at Vertuoza, contains the approved headline, shows his existing portrait, and offers “Discuss your challenge” linking to Contact plus access to the CV.
+1. The header and footer show the revised full-name PIERRE DERVAL wordmark with a separate orange slash. The portrait is smaller and subtly desaturated with softened contrast, matching the detailed preview. The opening viewport identifies Pierre Derval as an AI & Product Executive and Head of AI at Vertuoza, contains the approved headline, shows his existing portrait, and offers “Discuss your challenge” linking to Contact plus access to the CV.
 2. The homepage presents Vertuoza and Omni-loop before the prior-career outcomes and before the diagnostic-tool/article sections. Vertuoza credits the Platform team for AI Advisor/MCP production work; Omni-loop links to the official site and identifies Pierre’s authorship without unsupported ownership claims.
 3. The outcome group is explicitly labelled as prior to Vertuoza. About starts its timeline with Vertuoza (2026–present) and preserves the supplied CV’s earlier role chronology. No new quantitative claim or testimonial is invented.
 4. Services and How I help present the three approved consulting themes in language for CEOs/CTOs, with Contact as the next step and no fabricated package prices, deadlines or employment availability.
