@@ -98,3 +98,7 @@ Merging the feature PR triggers GitHub Pages deployment on main. Roll back with 
 10. The crawl-policy checklist distinguishes project robots output from the host-root authority, does not assert that Google was blocked by the explicit allowlist, and records any unavailable host/live checks honestly.
 11. `npm run build` and the new targeted output checks pass. The feature PR records meaningful red/green evidence for the SEO checks and actual responsive browser-review results; absent full behavioral/typecheck coverage is not represented as passing.
 12. A versioned SEO follow-up checklist gives the exact deployed URL-prefix/sitemap, Search Console inspection steps and baseline fields for the branded query. It explicitly states which require Pierre’s access and that rankings are measured after deployment, not guaranteed by this change.
+
+## Project brand treatment
+
+Keep Pierre’s current preview wordmark unchanged. Give the current-work panels the official brands’ own visual character: Vertuoza’s official navy wordmark on a light plaque, blue panel and orange edge; Omni-loop’s official pixel crest on a deep violet panel with gold and cyan accents. The career strip uses the official Vertuoza mark too. The surrounding page retains the warm editorial system and restrained portrait. Logos retain their original vector geometry and colour; panels are portfolio illustrations, never claimed to be product screenshots. See `visual-review.md` for official source provenance. Implementation stores local brand SVGs and does not depend on remote image availability.

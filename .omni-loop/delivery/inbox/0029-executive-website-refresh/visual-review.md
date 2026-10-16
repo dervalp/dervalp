@@ -41,3 +41,9 @@ Review the precise homepage at the three sizes and in both themes before merging
 ## Latest portrait treatment
 
 Desktop frame is 330 × 440 px (previously approximately 437 × 532); tablet max-width 260 px and height 340 px; phone 120 × 156 px. CSS applies `grayscale(.5) saturate(.65) contrast(.88) brightness(1.04)` plus a faint sage overlay, preserving detail without blur or modifying the photograph.
+
+## Official project brands
+
+The current-work panels use the original SVG path geometry from [Vertuoza’s official navigation](https://www.vertuoza.com) and [Omni-loop’s official homepage crest](https://www.omni-loop.xyz), retrieved 2026-10-16. They are embedded inline in the preview for reliable local review. Vertuoza’s site stylesheet supplies blue `#003fda`, orange `#ff4117` and navy `#08104d`; Omni-loop’s stylesheet/crest supplies deep violet `#0b0a26`, purple `#a45cff`, gold `#ffd84a` and cyan `#6ff0ff`. These colours inform portfolio panels, not reconstructed product UI. Pierre’s wordmark and portrait treatment are unchanged. Production implementation will save the two official marks as local SVG files in the declared s2 territory.
+
+Brand refinement verification: inspected the new project panels at 1440, 768 and 390 CSS pixels, including phone dark theme. Both official marks are legible, panel contents fit, and no horizontal document overflow was observed. Personal wordmark markup and portrait treatment are unchanged in this refinement.
