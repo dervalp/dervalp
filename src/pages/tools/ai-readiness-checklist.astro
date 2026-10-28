@@ -1,16 +1,14 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import AIReadinessChecklist from "../../components/AIReadinessChecklist.astro";
-import { withBase } from "../../utils/url";
+import { absolutePageUrl, withBase } from "../../utils/url";
 import { siteData } from "../../data/site";
 
 const title = "AI Readiness Checklist | Pierre Derval";
 const description =
   "28 questions across five dimensions — business priority, data readiness, architecture maturity, governance, and delivery capability. Know before you build.";
 
-const toolUrl = Astro.site
-  ? new URL(withBase("/tools/ai-readiness-checklist"), Astro.site).toString()
-  : withBase("/tools/ai-readiness-checklist");
+const toolUrl = absolutePageUrl("/tools/ai-readiness-checklist", Astro.site);
 
 const shareText =
   "Are you really ready to start an AI project? This free checklist covers business priority, data readiness, architecture, governance & delivery across 28 questions.";

@@ -1,16 +1,14 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import DataReadinessChecklist from "../../components/DataReadinessChecklist.astro";
-import { withBase } from "../../utils/url";
+import { absolutePageUrl, withBase } from "../../utils/url";
 import { siteData } from "../../data/site";
 
 const title = "Data Readiness Checklist | Pierre Derval";
 const description =
   "27 questions across five dimensions — accessibility, quality, ownership, compliance, and freshness. Know the state of your data before any AI project starts.";
 
-const toolUrl = Astro.site
-  ? new URL(withBase("/tools/data-readiness"), Astro.site).toString()
-  : withBase("/tools/data-readiness");
+const toolUrl = absolutePageUrl("/tools/data-readiness", Astro.site);
 
 const shareText =
   "Is your data actually ready for AI? This free checklist covers accessibility, quality, ownership, compliance & freshness across 27 questions.";

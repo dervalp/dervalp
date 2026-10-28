@@ -1,16 +1,14 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import AIApproachFinder from "../../components/AIApproachFinder";
-import { withBase } from "../../utils/url";
+import { absolutePageUrl, withBase } from "../../utils/url";
 import { siteData } from "../../data/site";
 
 const title = "AI Approach Finder | Pierre Derval";
 const description =
   "Answer eight questions to get a scored recommendation across two layers: the right AI brain (rules, ML, deep learning, GenAI) and the right deployment architecture (RAG or Agents).";
 
-const toolUrl = Astro.site
-  ? new URL(withBase("/tools/ai-approach-finder"), Astro.site).toString()
-  : withBase("/tools/ai-approach-finder");
+const toolUrl = absolutePageUrl("/tools/ai-approach-finder", Astro.site);
 
 const shareText =
   "Which AI approach actually fits your problem? Answer 8 questions and get a scored recommendation across brain type and deployment architecture. Free tool by Pierre Derval.";
