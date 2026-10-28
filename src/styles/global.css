@@ -410,6 +410,16 @@ h3,
   justify-content: center;
 }
 
+.hero__name {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--color-ink-950);
+}
+
 .hero__headline {
   max-width: 62rem;
   text-wrap: balance;
