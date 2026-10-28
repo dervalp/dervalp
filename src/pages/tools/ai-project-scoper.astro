@@ -1,16 +1,14 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import AIProjectScoper from "../../components/AIProjectScoper.astro";
-import { withBase } from "../../utils/url";
+import { absolutePageUrl, withBase } from "../../utils/url";
 import { siteData } from "../../data/site";
 
 const title = "AI Project Scoper | Pierre Derval";
 const description =
   "Scope your AI initiative across six dimensions — data, model, architecture, governance, team, and evaluation — then generate a phased roadmap, prioritised task list, and downloadable Excel workbook.";
 
-const toolUrl = Astro.site
-  ? new URL(withBase("/tools/ai-project-scoper"), Astro.site).toString()
-  : withBase("/tools/ai-project-scoper");
+const toolUrl = absolutePageUrl("/tools/ai-project-scoper", Astro.site);
 
 const approachFinderUrl = withBase("/tools/ai-approach-finder");
 

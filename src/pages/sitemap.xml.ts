@@ -18,11 +18,18 @@ export async function GET() {
   const lastmod = new Date().toISOString();
 
   const staticEntries = [
-    { path: "/",                                changefreq: "monthly", priority: "1.0", lastmod },
-    { path: "/blog/",                           changefreq: "weekly",  priority: "0.8", lastmod },
-    { path: "/tools/",                          changefreq: "monthly", priority: "0.8", lastmod },
-    { path: "/tools/ai-readiness-checklist/",   changefreq: "monthly", priority: "0.9", lastmod },
-    { path: "/tools/data-readiness/",           changefreq: "monthly", priority: "0.9", lastmod },
+    { path: "/",                                      changefreq: "monthly", priority: "1.0", lastmod },
+    { path: "/about/",                                changefreq: "monthly", priority: "0.8", lastmod },
+    { path: "/services/",                             changefreq: "monthly", priority: "0.8", lastmod },
+    { path: "/how-i-help/",                           changefreq: "monthly", priority: "0.8", lastmod },
+    { path: "/contact/",                              changefreq: "monthly", priority: "0.8", lastmod },
+    { path: "/blog/",                                 changefreq: "weekly",  priority: "0.8", lastmod },
+    { path: "/tools/",                                changefreq: "monthly", priority: "0.8", lastmod },
+    { path: "/tools/ai-project-scoper/",              changefreq: "monthly", priority: "0.9", lastmod },
+    { path: "/tools/ai-business-case-scorecard/",     changefreq: "monthly", priority: "0.9", lastmod },
+    { path: "/tools/ai-approach-finder/",             changefreq: "monthly", priority: "0.9", lastmod },
+    { path: "/tools/ai-readiness-checklist/",         changefreq: "monthly", priority: "0.9", lastmod },
+    { path: "/tools/data-readiness/",                 changefreq: "monthly", priority: "0.9", lastmod },
   ];
 
   const posts = await getCollection("blog", ({ data }) => !data.draft);

@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { siteData } from "../data/site";
-import { absoluteUrl, withBase } from "../utils/url";
+import { absoluteUrl, canonicalHref, withBase } from "../utils/url";
 
 interface Props {
   title?: string;
@@ -14,12 +14,20 @@ const {
 } = Astro.props;
 
 const canonicalUrl = Astro.site
-  ? new URL(Astro.url.pathname, Astro.site).toString()
+  ? canonicalHref(Astro.url.pathname, Astro.site)
   : undefined;
 const siteRootUrl = Astro.site
-  ? new URL(import.meta.env.BASE_URL, Astro.site).toString()
+  ? canonicalHref(import.meta.env.BASE_URL || "/", Astro.site)
   : undefined;
 const ogImageUrl = absoluteUrl(siteData.seo.ogImage, Astro.site);
+const ogImageType = siteData.seo.ogImage.endsWith(".jpg") || siteData.seo.ogImage.endsWith(".jpeg")
+  ? "image/jpeg"
+  : "image/png";
+const sameAs = [
+  siteData.socials.linkedinUrl,
+  siteData.socials.githubUrl,
+  siteData.socials.xUrl
+];
 const faviconHref = withBase(siteData.seo.favicon);
 const structuredData = siteRootUrl
   ? [
@@ -40,7 +48,8 @@ const structuredData = siteRootUrl
         url: siteRootUrl,
         description: siteData.seo.description,
         jobTitle: "AI product leadership for enterprise software",
-        sameAs: [siteData.socials.linkedinUrl, siteData.socials.githubUrl],
+        image: absoluteUrl("/pierre-derval-profile.webp", Astro.site),
+        sameAs,
         knowsAbout: [
           "AI product leadership",
           "Platform strategy",
@@ -101,11 +110,16 @@ const structuredData = siteRootUrl
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={siteData.seo.locale} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={siteData.seo.ogImageAlt} />
+    <meta property="og:image:type" content={ogImageType} />
+    <meta property="og:image:width" content={String(siteData.seo.ogImageWidth)} />
+    <meta property="og:image:height" content={String(siteData.seo.ogImageHeight)} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={siteData.seo.ogImageAlt} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <link rel="icon" href={faviconHref} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,6 +127,7 @@ const structuredData = siteRootUrl
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="me" href={siteData.socials.linkedinUrl} />
     <link rel="me" href={siteData.socials.githubUrl} />
+    <link rel="me" href={siteData.socials.xUrl} />
     {structuredData && (
       <script
         type="application/ld+json"
@@ -168,7 +183,7 @@ const structuredData = siteRootUrl
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.8.5 12.35c0 5.24 3.3 9.68 7.87 11.25.58.1.79-.26.79-.58 0-.28-.02-1.23-.02-2.24-3.2.71-3.88-1.4-3.88-1.4-.53-1.38-1.29-1.75-1.29-1.75-1.05-.74.08-.72.08-.72 1.16.08 1.77 1.22 1.77 1.22 1.03 1.82 2.71 1.29 3.37.98.1-.77.4-1.29.73-1.59-2.56-.3-5.25-1.31-5.25-5.86 0-1.29.45-2.35 1.19-3.18-.12-.3-.52-1.51.11-3.14 0 0 .97-.32 3.19 1.21a10.8 10.8 0 0 1 5.8 0c2.22-1.53 3.19-1.21 3.19-1.21.63 1.63.23 2.84.11 3.14.74.83 1.19 1.89 1.19 3.18 0 4.56-2.69 5.55-5.26 5.85.41.37.78 1.1.78 2.22 0 1.61-.02 2.9-.02 3.29 0 .32.21.69.8.57 4.56-1.58 7.85-6.01 7.85-11.25C23.5 5.8 18.35.5 12 .5Z"/></svg>
                 <span>GitHub</span>
               </a>
-              <a class="site-footer__social-link" href="https://x.com/dervalp" target="_blank" rel="noreferrer" aria-label="X">
+              <a class="site-footer__social-link" href={siteData.socials.xUrl} target="_blank" rel="noreferrer" aria-label="X">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 <span>X</span>
               </a>

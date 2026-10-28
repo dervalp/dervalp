@@ -41,6 +41,9 @@ export type SiteData = {
     siteName: string;
     locale: string;
     ogImage: string;
+    ogImageAlt: string;
+    ogImageWidth: number;
+    ogImageHeight: number;
     favicon: string;
   };
   navigation: NavItem[];
@@ -98,6 +101,7 @@ export type SiteData = {
   socials: {
     linkedinUrl: string;
     githubUrl: string;
+    xUrl: string;
     resumePath: string;
   };
 };
@@ -109,7 +113,10 @@ export const siteData = {
       "Pierre Derval helps enterprise software teams turn AI ambition into shipped, governed products by aligning product, platform, and execution in complex B2B environments.",
     siteName: "Pierre Derval",
     locale: "en_BE",
-    ogImage: "/og-image.svg",
+    ogImage: "/og-image.png",
+    ogImageAlt: "Pierre Derval — AI. Shipped.",
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
     favicon: "/favicon.svg"
   },
   navigation: [
@@ -325,6 +332,7 @@ export const siteData = {
   socials: {
     linkedinUrl: "https://be.linkedin.com/in/pierrederval",
     githubUrl: "https://github.com/dervalp",
+    xUrl: "https://x.com/dervalp",
     resumePath: "/Pierre_Derval_Resume.pdf"
   }
 } satisfies SiteData;
