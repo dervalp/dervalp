@@ -3,6 +3,29 @@ import { absoluteUrl } from "../utils/url";
 
 export const prerender = true;
 
+// Google Search Console rejects lastmod values that include a time or
+// fractional seconds (for example 2026-10-28T11:57:02.543Z). The sitemap
+// protocol's W3C date-only form is YYYY-MM-DD.
+function w3cDate(value: Date): string {
+  return value.toISOString().slice(0, 10);
+}
+
+function escapeXml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function absolutePageUrl(path: string, site: URL): string {
+  const withSlash = path.endsWith("/") ? path : `${path}/`;
+  const loc = absoluteUrl(withSlash, site);
+  if (loc.endsWith("/") || loc.includes("?") || loc.includes("#")) return loc;
+  return `${loc}/`;
+}
+
 export async function GET() {
   const site = import.meta.env.SITE ? new URL(import.meta.env.SITE) : undefined;
 
@@ -15,7 +38,7 @@ export async function GET() {
     });
   }
 
-  const lastmod = new Date().toISOString();
+  const lastmod = w3cDate(new Date());
 
   const staticEntries = [
     { path: "/",                                      changefreq: "monthly", priority: "1.0", lastmod },
@@ -37,7 +60,7 @@ export async function GET() {
     path: `/blog/${p.slug}/`,
     changefreq: "monthly",
     priority: "0.7",
-    lastmod: (p.data.updatedDate ?? p.data.publishDate).toISOString()
+    lastmod: w3cDate(p.data.updatedDate ?? p.data.publishDate)
   }));
 
   const allEntries = [...staticEntries, ...postEntries];
@@ -45,7 +68,7 @@ export async function GET() {
   const urls = allEntries
     .map(
       (entry) => `  <url>
-    <loc>${absoluteUrl(entry.path, site)}</loc>
+    <loc>${escapeXml(absolutePageUrl(entry.path, site))}</loc>
     <lastmod>${entry.lastmod}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
@@ -56,7 +79,8 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}
-</urlset>`;
+</urlset>
+`;
 
   return new Response(xml, {
     headers: {
